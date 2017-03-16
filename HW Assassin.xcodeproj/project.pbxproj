@@ -10,7 +10,14 @@
 		6BAC1F77CAFD5AD8432DBBCF /* Pods_HW_AssassinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA661E41C37AA5675B7D59F /* Pods_HW_AssassinUITests.framework */; };
 		78CE49AF52027100FDE7802B /* Pods_HW_AssassinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890D8B39056AC7B882E72C33 /* Pods_HW_AssassinTests.framework */; };
 		DC724C1E1E69D0B7000C4506 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC724C1D1E69D0B7000C4506 /* MapKit.framework */; };
-		DC724C201E69D145000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C1F1E69D145000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */; };
+		DC724C261E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */; };
+		DC724C2A1E69DFF1000C4506 /* icon_12638.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C291E69DFF1000C4506 /* icon_12638.png */; };
+		DC724C2C1E69E03B000C4506 /* home-512.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C2B1E69E03B000C4506 /* home-512.png */; };
+		DC724C341E69E44C000C4506 /* clipart--person-icon--cliparts-15.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C331E69E44C000C4506 /* clipart--person-icon--cliparts-15.png */; };
+		DC724C361E69E4AE000C4506 /* leaderboard-icon-16.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C351E69E4AE000C4506 /* leaderboard-icon-16.png */; };
+		DC724C381E69E53B000C4506 /* Unknown-1.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C371E69E53B000C4506 /* Unknown-1.png */; };
+		DC724C3A1E69E79C000C4506 /* Record-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C391E69E79C000C4506 /* Record-icon.png */; };
+		DC724C3C1E69EAF4000C4506 /* Camera Frame.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DC724C3B1E69EAF4000C4506 /* Camera Frame.jpg */; };
 		DC8F79151E68839A0016B355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79141E68839A0016B355 /* Main.storyboard */; };
 		DC8F79161E68839A0016B355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79141E68839A0016B355 /* Main.storyboard */; };
 		DC8F79171E68839A0016B355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79141E68839A0016B355 /* Main.storyboard */; };
@@ -64,7 +71,14 @@
 		B2189064ED16E8E77693FED8 /* Pods-HW Assassin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW Assassin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HW Assassin/Pods-HW Assassin.debug.xcconfig"; sourceTree = "<group>"; };
 		BFB73421F4701D7DFE3513BA /* Pods-HW AssassinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW AssassinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HW AssassinUITests/Pods-HW AssassinUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC724C1D1E69D0B7000C4506 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		DC724C1F1E69D145000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png"; sourceTree = "<group>"; };
+		DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png"; sourceTree = "<group>"; };
+		DC724C291E69DFF1000C4506 /* icon_12638.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_12638.png; sourceTree = "<group>"; };
+		DC724C2B1E69E03B000C4506 /* home-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-512.png"; sourceTree = "<group>"; };
+		DC724C331E69E44C000C4506 /* clipart--person-icon--cliparts-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clipart--person-icon--cliparts-15.png"; sourceTree = "<group>"; };
+		DC724C351E69E4AE000C4506 /* leaderboard-icon-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leaderboard-icon-16.png"; sourceTree = "<group>"; };
+		DC724C371E69E53B000C4506 /* Unknown-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Unknown-1.png"; sourceTree = "<group>"; };
+		DC724C391E69E79C000C4506 /* Record-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Record-icon.png"; sourceTree = "<group>"; };
+		DC724C3B1E69EAF4000C4506 /* Camera Frame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Camera Frame.jpg"; sourceTree = "<group>"; };
 		DC8F79141E68839A0016B355 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = The_Perfect_Assassin_by_Cascador.jpg; sourceTree = "<group>"; };
 		DC8F79191E6883C60016B355 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
@@ -146,9 +160,16 @@
 				DCC1CC971E6882AC0020884A /* HW AssassinUITests */,
 				DCC1CC761E6882AC0020884A /* Products */,
 				DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */,
-				DC724C1F1E69D145000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */,
 				DC8F79191E6883C60016B355 /* like.png */,
+				DC724C371E69E53B000C4506 /* Unknown-1.png */,
+				DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */,
+				DC724C291E69DFF1000C4506 /* icon_12638.png */,
+				DC724C3B1E69EAF4000C4506 /* Camera Frame.jpg */,
 				DC8F791A1E6883C60016B355 /* 9571.png */,
+				DC724C391E69E79C000C4506 /* Record-icon.png */,
+				DC724C2B1E69E03B000C4506 /* home-512.png */,
+				DC724C351E69E4AE000C4506 /* leaderboard-icon-16.png */,
+				DC724C331E69E44C000C4506 /* clipart--person-icon--cliparts-15.png */,
 				DC8F791B1E6883C60016B355 /* comment-bubble-outline_318-27591.jpg */,
 				310BCC5F5EF81D9CE999A844 /* Pods */,
 				4FDE30B70D87FDACBCD00465 /* Frameworks */,
@@ -318,14 +339,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC724C361E69E4AE000C4506 /* leaderboard-icon-16.png in Resources */,
 				DCC1CC831E6882AC0020884A /* LaunchScreen.storyboard in Resources */,
-				DC724C201E69D145000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png in Resources */,
+				DC724C381E69E53B000C4506 /* Unknown-1.png in Resources */,
+				DC724C3C1E69EAF4000C4506 /* Camera Frame.jpg in Resources */,
+				DC724C3A1E69E79C000C4506 /* Record-icon.png in Resources */,
+				DC724C261E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png in Resources */,
 				DC8F791C1E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg in Resources */,
 				DC8F791F1E6883C60016B355 /* like.png in Resources */,
 				DCC1CC801E6882AC0020884A /* Assets.xcassets in Resources */,
+				DC724C341E69E44C000C4506 /* clipart--person-icon--cliparts-15.png in Resources */,
+				DC724C2A1E69DFF1000C4506 /* icon_12638.png in Resources */,
 				DC8F79251E6883C60016B355 /* comment-bubble-outline_318-27591.jpg in Resources */,
 				DCC1CC7E1E6882AC0020884A /* Main.storyboard in Resources */,
 				DC8F79151E68839A0016B355 /* Main.storyboard in Resources */,
+				DC724C2C1E69E03B000C4506 /* home-512.png in Resources */,
 				DC8F79221E6883C60016B355 /* 9571.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
