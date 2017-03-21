@@ -31,7 +31,17 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func createAccountPressed() {
-        if(passwordTextField.text! != passwordConformationTextField.text!){
+        if(imageView.image == nil){
+            // create the alert
+            let alert = UIAlertController(title: "Error", message: "You must choose a profile photo", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if(passwordTextField.text! != passwordConformationTextField.text!){
             // create the alert
             let alert = UIAlertController(title: "Error", message: "Passwords must match.", preferredStyle: UIAlertControllerStyle.alert)
             
@@ -75,44 +85,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                             print("Response String: \(response.result.value)")
                             
                         }
+                        print(upload.response?.statusCode ?? "error")
                     case .failure(let encodingError):
                         print(encodingError)
                     }
-            }
-            )
-            /*
-            Alamofire.upload(multipartFormData: { multipartFormData in
-                if let imageData = UIImageJPEGRepresentation(self.imageView.image!, 1) {
-                    multipartFormData.append(imageData, withName: "player.profile_picture", fileName: "profile.png", mimeType: "image/png")
                 }
-                
-                for (key, value) in parameters {
-                    multipartFormData.append((value?.data(using: .utf8))!, withName: key)
-                }}, to: "http://hwassassin.hwtechcouncil.com/api/users/", method: .post, headers: ["Accept":"application/json"],
-                    encodingCompletion: { encodingResult in
-                        switch encodingResult {
-                        case .success(let upload, _, _):
-                            print("The upload was successful");
-                            
-                            upload.responseJSON{
-                                response in
-                                print(response.request!) // original URL request
-                                print(response.response!) // URL response
-                                print(response.data!) // server data
-                                print(response.result) // result of response serialization
-                                if let JSON = response.result.value
-                                {
-                                    print("JSON: (JSON)")
-                                }
-                            
-                            }
-                            
-                            print(upload.response.debugDescription)
-                        case .failure(let encodingError):
-                            print("There was a failure");
-                            print("error:\(encodingError)")
-                        }
-            });*/
+            )
         }
         
     }
