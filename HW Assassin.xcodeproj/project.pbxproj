@@ -11,6 +11,7 @@
 		08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */; };
 		6BAC1F77CAFD5AD8432DBBCF /* Pods_HW_AssassinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA661E41C37AA5675B7D59F /* Pods_HW_AssassinUITests.framework */; };
 		78CE49AF52027100FDE7802B /* Pods_HW_AssassinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890D8B39056AC7B882E72C33 /* Pods_HW_AssassinTests.framework */; };
+		DC591A951E842195001746C7 /* Vine Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC591A941E842195001746C7 /* Vine Camera.swift */; };
 		DC724C1E1E69D0B7000C4506 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC724C1D1E69D0B7000C4506 /* MapKit.framework */; };
 		DC724C261E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */; };
 		DC724C2A1E69DFF1000C4506 /* icon_12638.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C291E69DFF1000C4506 /* icon_12638.png */; };
@@ -72,6 +73,7 @@
 		9774032BF8D34BD099251FB7 /* Pods-HW AssassinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW AssassinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HW AssassinTests/Pods-HW AssassinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B2189064ED16E8E77693FED8 /* Pods-HW Assassin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW Assassin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HW Assassin/Pods-HW Assassin.debug.xcconfig"; sourceTree = "<group>"; };
 		BFB73421F4701D7DFE3513BA /* Pods-HW AssassinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW AssassinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HW AssassinUITests/Pods-HW AssassinUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC591A941E842195001746C7 /* Vine Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vine Camera.swift"; sourceTree = "<group>"; };
 		DC724C1D1E69D0B7000C4506 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png"; sourceTree = "<group>"; };
 		DC724C291E69DFF1000C4506 /* icon_12638.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_12638.png; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */,
 				08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */,
+				DC591A941E842195001746C7 /* Vine Camera.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */,
 				08D6A8EB1E7A519D00BE9017 /* MainTitleViewController.swift in Sources */,
 				DCC1CC791E6882AC0020884A /* AppDelegate.swift in Sources */,
+				DC591A951E842195001746C7 /* Vine Camera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
