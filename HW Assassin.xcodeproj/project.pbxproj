@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0870FA481E89BB2A00E6F29C /* HWAssassin.xcdatamodeld */; };
 		08D6A8EB1E7A519D00BE9017 /* MainTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */; };
 		08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */; };
 		6BAC1F77CAFD5AD8432DBBCF /* Pods_HW_AssassinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA661E41C37AA5675B7D59F /* Pods_HW_AssassinUITests.framework */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0870FA491E89BB2A00E6F29C /* HWAssassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HWAssassin.xcdatamodel; sourceTree = "<group>"; };
 		08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTitleViewController.swift; path = "View Controllers/MainTitleViewController.swift"; sourceTree = "<group>"; };
 		08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "View Controllers/SignUpViewController.swift"; sourceTree = "<group>"; };
 		4EA661E41C37AA5675B7D59F /* Pods_HW_AssassinUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_AssassinUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0870FA471E897EBB00E6F29C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0870FA481E89BB2A00E6F29C /* HWAssassin.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		08D6A8E91E7A515F00BE9017 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +211,7 @@
 		DCC1CC771E6882AC0020884A /* HW Assassin */ = {
 			isa = PBXGroup;
 			children = (
+				0870FA471E897EBB00E6F29C /* Model */,
 				08D6A8E91E7A515F00BE9017 /* View Controllers */,
 				DCC1CC781E6882AC0020884A /* AppDelegate.swift */,
 				DC8F79141E68839A0016B355 /* Main.storyboard */,
@@ -539,6 +550,7 @@
 			files = (
 				08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */,
 				08D6A8EB1E7A519D00BE9017 /* MainTitleViewController.swift in Sources */,
+				0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */,
 				DCC1CC791E6882AC0020884A /* AppDelegate.swift in Sources */,
 				DC591A951E842195001746C7 /* Vine Camera.swift in Sources */,
 			);
@@ -804,6 +816,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0870FA481E89BB2A00E6F29C /* HWAssassin.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0870FA491E89BB2A00E6F29C /* HWAssassin.xcdatamodel */,
+			);
+			currentVersion = 0870FA491E89BB2A00E6F29C /* HWAssassin.xcdatamodel */;
+			name = HWAssassin.xcdatamodeld;
+			path = Model/HWAssassin.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DCC1CC6D1E6882AC0020884A /* Project object */;
 }

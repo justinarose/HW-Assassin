@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -62,6 +63,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             let headers: HTTPHeaders = [
                 "Accept": "application/json"
             ]
+            
             
             Alamofire.upload(
                 multipartFormData: { multipartFormData in
