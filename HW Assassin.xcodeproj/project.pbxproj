@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		085FC3811E89FA72000931E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3801E89FA71000931E7 /* LoginViewController.swift */; };
+		085FC3831E8A1224000931E7 /* GameSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3821E8A1224000931E7 /* GameSelectViewController.swift */; };
 		0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0870FA481E89BB2A00E6F29C /* HWAssassin.xcdatamodeld */; };
 		08D6A8EB1E7A519D00BE9017 /* MainTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */; };
 		08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */; };
@@ -63,6 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		085FC3801E89FA71000931E7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "View Controllers/LoginViewController.swift"; sourceTree = "<group>"; };
+		085FC3821E8A1224000931E7 /* GameSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSelectViewController.swift; path = "View Controllers/GameSelectViewController.swift"; sourceTree = "<group>"; };
 		0870FA491E89BB2A00E6F29C /* HWAssassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HWAssassin.xcdatamodel; sourceTree = "<group>"; };
 		08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTitleViewController.swift; path = "View Controllers/MainTitleViewController.swift"; sourceTree = "<group>"; };
 		08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "View Controllers/SignUpViewController.swift"; sourceTree = "<group>"; };
@@ -143,9 +147,11 @@
 		08D6A8E91E7A515F00BE9017 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				085FC3801E89FA71000931E7 /* LoginViewController.swift */,
 				08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */,
 				08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */,
 				DC591A941E842195001746C7 /* Vine Camera.swift */,
+				085FC3821E8A1224000931E7 /* GameSelectViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -548,9 +554,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				085FC3811E89FA72000931E7 /* LoginViewController.swift in Sources */,
 				08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */,
 				08D6A8EB1E7A519D00BE9017 /* MainTitleViewController.swift in Sources */,
 				0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */,
+				085FC3831E8A1224000931E7 /* GameSelectViewController.swift in Sources */,
 				DCC1CC791E6882AC0020884A /* AppDelegate.swift in Sources */,
 				DC591A951E842195001746C7 /* Vine Camera.swift in Sources */,
 			);
