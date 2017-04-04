@@ -59,35 +59,45 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                               "last_name":lastNameTextField.text,
                               "password":passwordTextField.text,
                               "player.year":yearTextField.text];
-
+            
             let headers: HTTPHeaders = [
                 "Accept": "application/json"
             ]
             
             
-            Alamofire.upload(
-                multipartFormData: { multipartFormData in
-                    for (key, value) in parameters {
-                        multipartFormData.append((value?.data(using: .utf8))!, withName: key)
-                    }
-                    
-                    
-                    let imageData = UIImagePNGRepresentation(self.imageView.image!)
-                    
-                    multipartFormData.append(imageData!, withName: "player.profile_picture", fileName: "player.profile_picture", mimeType: "image/png")
+            Alamofire.upload(multipartFormData: { multipartFormData in
+                for (key, value) in parameters {
+                    multipartFormData.append((value?.data(using: .utf8))!, withName: key)
+                }
+                
+                let imageData = UIImagePNGRepresentation(self.imageView.image!)
+                multipartFormData.append(imageData!, withName: "player.profile_picture", fileName: "player.profile_picture", mimeType: "image/png")
             },
-                to: "http://hwassassin.hwtechcouncil.com/api/users/",
-                encodingCompletion: { encodingResult in
-                    switch encodingResult {
+               usingThreshold: UInt64.init(),
+               to: "http://hwassassin.hwtechcouncil.com/api/users/",
+               method: .post,
+               headers: headers,
+               encodingCompletion: { encodingResult in
+                switch encodingResult {
                     case .success(let upload, _, _):
                         upload.responseJSON { response in
                             debugPrint(response)
+                            if let status = response.response?.statusCode {
+                                switch(status){
+                                case 200:
+                                    print("Successfully signed up in")
+                                default:
+                                    print("Error with response status: \(status)")
+                                }
+                            }
+                            //to get JSON return value
+                            if let result = response.result.value {
+                                let JSON = result as! NSDictionary
+                                
+                                print("Response JSON: \(JSON)")
+                                
+                            }
                         }
-                        upload.responseString{ response in
-                            print("Response String: \(response.result.value)")
-                            
-                        }
-                        print(upload.response?.statusCode ?? "error")
                     case .failure(let encodingError):
                         print(encodingError)
                     }

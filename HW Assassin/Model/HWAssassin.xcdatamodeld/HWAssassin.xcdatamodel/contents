@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Badge" representedClassName="Badge" syncable="YES" codeGenerationType="class">
+    <entity name="Badge" representedClassName=".Badge" syncable="YES" codeGenerationType="category">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="badges" inverseEntity="Game" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="badges" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Comment" representedClassName="Comment" syncable="YES" codeGenerationType="class">
+    <entity name="Comment" representedClassName=".Comment" syncable="YES" codeGenerationType="category">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -14,12 +14,12 @@
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CommentLike" inverseName="comment" inverseEntity="CommentLike" syncable="YES"/>
         <relationship name="post" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Post" inverseName="comments" inverseEntity="Post" syncable="YES"/>
     </entity>
-    <entity name="CommentLike" representedClassName="CommentLike" syncable="YES" codeGenerationType="class">
+    <entity name="CommentLike" representedClassName=".CommentLike" syncable="YES" codeGenerationType="category">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="comment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Comment" inverseName="likes" inverseEntity="Comment" syncable="YES"/>
         <relationship name="liker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="commentLikes" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="class">
+    <entity name="Game" representedClassName=".Game" syncable="YES" codeGenerationType="category">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,12 +28,12 @@
         <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="game" inverseEntity="Post" syncable="YES"/>
         <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserGameStatus" inverseName="game" inverseEntity="UserGameStatus" syncable="YES"/>
     </entity>
-    <entity name="Like" representedClassName="Like" syncable="YES" codeGenerationType="class">
+    <entity name="Like" representedClassName=".Like" syncable="YES" codeGenerationType="category">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="liker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="likes" inverseEntity="User" syncable="YES"/>
         <relationship name="post" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Post" inverseName="likes" inverseEntity="Post" syncable="YES"/>
     </entity>
-    <entity name="Post" representedClassName="Post" syncable="YES" codeGenerationType="class">
+    <entity name="Post" representedClassName=".Post" syncable="YES" codeGenerationType="category">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="postThumbnailURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,7 +45,7 @@
         <relationship name="likes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Like" inverseName="post" inverseEntity="Like" syncable="YES"/>
         <relationship name="poster" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="posts" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+    <entity name="User" representedClassName=".User" syncable="YES" codeGenerationType="category">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -62,7 +62,7 @@
         <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserGameStatus" inverseName="user" inverseEntity="UserGameStatus" syncable="YES"/>
         <relationship name="targeteds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserGameStatus" inverseName="target" inverseEntity="UserGameStatus" syncable="YES"/>
     </entity>
-    <entity name="UserGameStatus" representedClassName="UserGameStatus" syncable="YES" codeGenerationType="class">
+    <entity name="UserGameStatus" representedClassName=".UserGameStatus" syncable="YES" codeGenerationType="category">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="statuses" inverseEntity="Game" syncable="YES"/>
@@ -70,13 +70,13 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="statuses" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Game" positionX="-54" positionY="-103" width="128" height="148"/>
-        <element name="User" positionX="223" positionY="-72" width="128" height="268"/>
-        <element name="Post" positionX="-2" positionY="-405" width="128" height="193"/>
-        <element name="UserGameStatus" positionX="-153" positionY="99" width="128" height="118"/>
-        <element name="Like" positionX="151" positionY="228" width="128" height="88"/>
-        <element name="Badge" positionX="405" positionY="261" width="128" height="103"/>
-        <element name="Comment" positionX="234" positionY="-315" width="128" height="133"/>
-        <element name="CommentLike" positionX="466" positionY="-207" width="128" height="88"/>
+        <element name="Badge" positionX="405" positionY="261" width="128" height="105"/>
+        <element name="Comment" positionX="234" positionY="-315" width="128" height="135"/>
+        <element name="CommentLike" positionX="466" positionY="-207" width="128" height="90"/>
+        <element name="Game" positionX="-54" positionY="-103" width="128" height="150"/>
+        <element name="Like" positionX="151" positionY="228" width="128" height="90"/>
+        <element name="Post" positionX="-2" positionY="-405" width="128" height="195"/>
+        <element name="User" positionX="223" positionY="-72" width="128" height="270"/>
+        <element name="UserGameStatus" positionX="-153" positionY="99" width="128" height="120"/>
     </elements>
 </model>

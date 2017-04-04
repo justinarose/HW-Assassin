@@ -50,6 +50,8 @@ class LoginViewController: UIViewController {
                 
                 print("Response JSON: \(JSON)")
                 print("Token:  \(JSON["token"])")
+                let defaults = UserDefaults.standard
+                defaults.set(JSON["token"], forKey: "token")
                 self.performSegue(withIdentifier: "goToGameSelection", sender: sender)
                 
             }
