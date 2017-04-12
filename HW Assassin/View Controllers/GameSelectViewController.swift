@@ -181,7 +181,81 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
     
     // MARK: - UITableViewDelegate
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let obj = fetchedResultsController?.object(at: indexPath){
+            switch(obj.status!){
+            case "r":
+                let alert = UIAlertController(title: "Join game", message: "Would you like to join this game?", preferredStyle: UIAlertControllerStyle.alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default){ action in
+                    print("Selected yes")
+                    
+                    let token = UserDefaults.standard.value(forKey: "token")!
+                    
+                    let headers: HTTPHeaders = [
+                        "Authorization": "Token \(token)",
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    ]
+                    
+                    print(headers)
+                    
+                    Alamofire.request("http://hwassassin.hwtechcouncil.com/api/games/\(obj.id)/join/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+                        debugPrint(response)
+                        
+                        if let status = response.response?.statusCode {
+                            switch(status){
+                            case 200..<299:
+                                print("Successfully joined game")
+                                
+                                //to get JSON return value
+                                if let result = response.result.value {
+                                    let JSON = result as! NSDictionary
+                                    
+                                    print("Response JSON: \(JSON)")
+                                }
+                            default:
+                                print("Error with response status: \(status)")
+                            }
+                        }
+                        
+                    }
+                })
+                
+                alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
+            case "p":
+                let alert = UIAlertController(title: "View game", message: "Would you like to view this game in progress?", preferredStyle: UIAlertControllerStyle.alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default){ action in
+                    print("Selected yes")
+                })
+                
+                alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
+            case "c":
+                let alert = UIAlertController(title: "View game", message: "Would you like to view this past game?", preferredStyle: UIAlertControllerStyle.alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default){ action in
+                    print("Selected yes")
+                })
+                
+                alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
+            default:
+                print("An error occured")
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

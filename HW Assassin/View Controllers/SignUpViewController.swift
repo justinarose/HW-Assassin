@@ -31,7 +31,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func createAccountPressed() {
+    @IBAction func createAccountPressed(_ sender: Any) {
         if(imageView.image == nil){
             // create the alert
             let alert = UIAlertController(title: "Error", message: "You must choose a profile photo", preferredStyle: UIAlertControllerStyle.alert)
@@ -73,38 +73,70 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 let imageData = UIImagePNGRepresentation(self.imageView.image!)
                 multipartFormData.append(imageData!, withName: "player.profile_picture", fileName: "player.profile_picture", mimeType: "image/png")
             },
-               usingThreshold: UInt64.init(),
-               to: "http://hwassassin.hwtechcouncil.com/api/users/",
-               method: .post,
-               headers: headers,
-               encodingCompletion: { encodingResult in
+                             usingThreshold: UInt64.init(),
+                             to: "http://hwassassin.hwtechcouncil.com/api/users/",
+                             method: .post,
+                             headers: headers,
+                             encodingCompletion: { encodingResult in
+                
                 switch encodingResult {
-                    case .success(let upload, _, _):
-                        upload.responseJSON { response in
-                            debugPrint(response)
-                            if let status = response.response?.statusCode {
-                                switch(status){
-                                case 200:
-                                    print("Successfully signed up in")
-                                default:
-                                    print("Error with response status: \(status)")
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        debugPrint(response)
+                        if let status = response.response?.statusCode {
+                            switch(status){
+                            case 200..<299:
+                                print("Successfully signed up in")
+                                
+                                //to get JSON return value
+                                if let result = response.result.value {
+                                    let JSON = result as! NSDictionary
+                                    
+                                    print("Response JSON: \(JSON)")
+                                    
                                 }
-                            }
-                            //to get JSON return value
-                            if let result = response.result.value {
-                                let JSON = result as! NSDictionary
+                                Alamofire.request("http://hwassassin.hwtechcouncil.com/api-token-auth/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+                                    debugPrint(response)
+                                    
+                                    if let status = response.response?.statusCode {
+                                        switch(status){
+                                        case 200..<299:
+                                            print("Successfully logged in")
+                                        default:
+                                            print("Error with response status: \(status)")
+                                        }
+                                    }
+                                    //to get JSON return value
+                                    if let result = response.result.value {
+                                        let tokenResponse = result as! NSDictionary
+                                        
+                                        print("Response JSON: \(tokenResponse)")
+                                        print("Token:  \(tokenResponse["token"])")
+                                        let defaults = UserDefaults.standard
+                                        defaults.set(tokenResponse["token"], forKey: "token")
+                                        self.performSegue(withIdentifier: "goToGameSelection", sender: sender)
+                                        
+                                    }
+                                    
+                                }
+                            default:
+                                print("Error with response status: \(status)")
+                                // create the alert
+                                let alert = UIAlertController(title: "Error", message: "There was a server error.", preferredStyle: UIAlertControllerStyle.alert)
                                 
-                                print("Response JSON: \(JSON)")
+                                // add an action (button)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                 
+                                // show the alert
+                                self.present(alert, animated: true, completion: nil)
                             }
                         }
-                    case .failure(let encodingError):
-                        print(encodingError)
                     }
+                case .failure(let encodingError):
+                    print(encodingError)
                 }
-            )
+            })
         }
-        
     }
     
     @IBAction func selectProfileImage() {

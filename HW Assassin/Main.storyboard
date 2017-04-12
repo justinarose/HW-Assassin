@@ -738,7 +738,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createAccountPressed" destination="Oni-dK-hTc" eventType="touchUpInside" id="paP-S2-t1k"/>
+                                    <action selector="createAccountPressed:" destination="Oni-dK-hTc" eventType="touchUpInside" id="DoK-Li-tSj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vw-oc-LUx">
@@ -794,6 +794,7 @@
                         <outlet property="passwordTextField" destination="lTm-0c-ZlL" id="PIG-VR-rFC"/>
                         <outlet property="usernameTextField" destination="bI7-9e-qPh" id="jUI-Uq-SXF"/>
                         <outlet property="yearTextField" destination="tlg-ol-09b" id="0NG-W7-zdi"/>
+                        <segue destination="tJP-go-mYW" kind="show" identifier="goToGameSelection" id="b6n-nt-jAf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJf-mC-RhD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -894,4 +895,7 @@
         <image name="leaderboard-icon-16.png" width="30" height="30"/>
         <image name="like.png" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="nad-yL-1rF"/>
+    </inferredMetricsTieBreakers>
 </document>

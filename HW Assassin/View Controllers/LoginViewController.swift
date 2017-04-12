@@ -40,22 +40,22 @@ class LoginViewController: UIViewController {
                 switch(status){
                 case 200:
                     print("Successfully logged in")
+                    
+                    //to get JSON return value
+                    if let result = response.result.value {
+                        let JSON = result as! NSDictionary
+                        
+                        print("Response JSON: \(JSON)")
+                        print("Token:  \(JSON["token"])")
+                        let defaults = UserDefaults.standard
+                        defaults.set(JSON["token"], forKey: "token")
+                        self.performSegue(withIdentifier: "goToGameSelection", sender: sender)
+                        
+                    }
                 default:
                     print("Error with response status: \(status)")
                 }
             }
-            //to get JSON return value
-            if let result = response.result.value {
-                let JSON = result as! NSDictionary
-                
-                print("Response JSON: \(JSON)")
-                print("Token:  \(JSON["token"])")
-                let defaults = UserDefaults.standard
-                defaults.set(JSON["token"], forKey: "token")
-                self.performSegue(withIdentifier: "goToGameSelection", sender: sender)
-                
-            }
-            
         }
         
     }
