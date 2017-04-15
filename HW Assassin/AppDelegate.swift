@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("\(token)")
         }
         
+        if let user = UserDefaults.standard.value(forKey: "user"){
+            print("\(user)")
+        }
+        
         return true
     }
 

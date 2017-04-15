@@ -92,30 +92,33 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                 if let result = response.result.value {
                                     let JSON = result as! NSDictionary
                                     
+                                    UserDefaults.standard.set(JSON, forKey: "user")
+                                    
                                     print("Response JSON: \(JSON)")
                                     
-                                }
-                                Alamofire.request("http://hwassassin.hwtechcouncil.com/api-token-auth/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
-                                    debugPrint(response)
+                                
+                                    Alamofire.request("http://hwassassin.hwtechcouncil.com/api-token-auth/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+                                        debugPrint(response)
                                     
-                                    if let status = response.response?.statusCode {
-                                        switch(status){
-                                        case 200..<299:
-                                            print("Successfully logged in")
-                                        default:
-                                            print("Error with response status: \(status)")
+                                        if let status = response.response?.statusCode {
+                                            switch(status){
+                                            case 200..<299:
+                                                print("Successfully logged in")
+                                            default:
+                                                print("Error with response status: \(status)")
+                                            }
                                         }
-                                    }
-                                    //to get JSON return value
-                                    if let result = response.result.value {
-                                        let tokenResponse = result as! NSDictionary
+                                        //to get JSON return value
+                                        if let result = response.result.value {
+                                            let tokenResponse = result as! NSDictionary
                                         
-                                        print("Response JSON: \(tokenResponse)")
-                                        print("Token:  \(tokenResponse["token"])")
-                                        let defaults = UserDefaults.standard
-                                        defaults.set(tokenResponse["token"], forKey: "token")
-                                        self.performSegue(withIdentifier: "goToGameSelection", sender: sender)
+                                            print("Response JSON: \(tokenResponse)")
+                                            print("Token:  \(tokenResponse["token"])")
+                                            let defaults = UserDefaults.standard
+                                            defaults.set(tokenResponse["token"], forKey: "token")
+                                            self.performSegue(withIdentifier: "goToGameSelection", sender: sender)
                                         
+                                        }
                                     }
                                     
                                 }

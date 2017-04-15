@@ -49,7 +49,20 @@ class LoginViewController: UIViewController {
                         print("Token:  \(JSON["token"])")
                         let defaults = UserDefaults.standard
                         defaults.set(JSON["token"], forKey: "token")
-                        self.performSegue(withIdentifier: "goToGameSelection", sender: sender)
+                        
+                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/users/?username=\(self.usernameTextField.text!)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] userResponse in
+                            debugPrint(userResponse)
+                            
+                            if let userResult = userResponse.result.value{
+                                let arr = userResult as! NSArray
+                                let user = arr[0] as! NSDictionary
+                                
+                                defaults.set(user, forKey: "user")
+                                
+                                self.performSegue(withIdentifier: "goToGameSelection", sender: sender)
+                            }
+                        
+                        }
                         
                     }
                 default:
