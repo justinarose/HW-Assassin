@@ -215,6 +215,9 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                                     
                                     print("Response JSON: \(JSON)")
                                 }
+                                
+                                self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
+                                
                             default:
                                 print("Error with response status: \(status)")
                             }

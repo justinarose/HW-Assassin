@@ -263,7 +263,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="565"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2vV-dw-hbA" id="dMo-Iu-V1F">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="564"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="564.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WaX-EB-HyM" userLabel="Video Post">
@@ -822,7 +822,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CXJ-V2-LzU" id="VeV-Ru-JrV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWY-39-MPD">
@@ -875,6 +875,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="7SV-2f-BV3" id="dm6-uw-yl6"/>
+                        <segue destination="V1X-fF-Rbz" kind="presentation" identifier="joinGameSegue" id="Da0-Si-UiT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDd-Ty-d7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
