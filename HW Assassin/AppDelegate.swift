@@ -21,9 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if let token = UserDefaults.standard.value(forKey: "token"), let user = UserDefaults.standard.value(forKey: "user"){
+        if let token = UserDefaults.standard.value(forKey: "token"), let user = UserDefaults.standard.value(forKey: "user"), let status = UserDefaults.standard.value(forKey: "status"){
             print("\(token)")
             print("\(user)")
+            print("\(status)")
             let vc: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "in_game_tab_vc")
             self.window?.rootViewController = vc
         }

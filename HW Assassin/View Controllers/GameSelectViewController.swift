@@ -206,7 +206,7 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                         
                         if let status = response.response?.statusCode {
                             switch(status){
-                            case 200..<299:
+                            case 200..<299 :
                                 print("Successfully joined game")
                                 
                                 //to get JSON return value
@@ -214,9 +214,26 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                                     let JSON = result as! NSDictionary
                                     
                                     print("Response JSON: \(JSON)")
+                                    UserDefaults.standard.set(JSON, forKey:"status")
                                 }
                                 
+                                
                                 self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
+                            
+                            case 409:
+                                print("User already joined game")
+                                
+                                //to get JSON return value
+                                if let result = response.result.value {
+                                    let JSON = result as! NSDictionary
+                                    
+                                    print("Response JSON: \(JSON)")
+                                    UserDefaults.standard.set(JSON, forKey:"status")
+                                }
+                                
+                                
+                                self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
+                                
                                 
                             default:
                                 print("Error with response status: \(status)")
