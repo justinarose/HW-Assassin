@@ -18,13 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        if let token = UserDefaults.standard.value(forKey: "token"){
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let token = UserDefaults.standard.value(forKey: "token"), let user = UserDefaults.standard.value(forKey: "user"){
             print("\(token)")
+            print("\(user)")
+            let vc: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "in_game_tab_vc")
+            self.window?.rootViewController = vc
+        }
+        else{
+            print("Doesn't have user or token stored in UserDefaults")
+            let vc: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "title_page_vc")
+            
+            self.window?.rootViewController = vc
         }
         
-        if let user = UserDefaults.standard.value(forKey: "user"){
-            print("\(user)")
-        }
+        self.window?.makeKeyAndVisible()
         
         return true
     }
