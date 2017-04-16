@@ -76,15 +76,14 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.navigationItem.setHidesBackButton(true, animated: false)
         super.viewDidAppear(animated)
     }
     
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        //return fetchedResultsController?.sections?.count ?? 1
-        return 1
+        return fetchedResultsController?.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
