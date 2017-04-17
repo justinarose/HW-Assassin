@@ -20,6 +20,7 @@
 		08C79C8D1EA420FE00BD3F07 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C79C8C1EA420FE00BD3F07 /* ProfileViewController.swift */; };
 		08C79C911EA440B400BD3F07 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08C79C901EA440B400BD3F07 /* PostTableViewCell.xib */; };
 		08C79C951EA4464C00BD3F07 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C79C941EA4464C00BD3F07 /* PostTableViewCell.swift */; };
+		08C79C9B1EA45E6300BD3F07 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C79C9A1EA45E6300BD3F07 /* FeedViewController.swift */; };
 		08D6A8EB1E7A519D00BE9017 /* MainTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */; };
 		08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */; };
 		08FED0D91E92B42B00825DBB /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FED0D81E92B42B00825DBB /* Badge.swift */; };
@@ -89,6 +90,7 @@
 		08C79C8C1EA420FE00BD3F07 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "View Controllers/ProfileViewController.swift"; sourceTree = "<group>"; };
 		08C79C901EA440B400BD3F07 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostTableViewCell.xib; path = Views/PostTableViewCell.xib; sourceTree = "<group>"; };
 		08C79C941EA4464C00BD3F07 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = Views/PostTableViewCell.swift; sourceTree = "<group>"; };
+		08C79C9A1EA45E6300BD3F07 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = "View Controllers/FeedViewController.swift"; sourceTree = "<group>"; };
 		08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTitleViewController.swift; path = "View Controllers/MainTitleViewController.swift"; sourceTree = "<group>"; };
 		08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "View Controllers/SignUpViewController.swift"; sourceTree = "<group>"; };
 		08FED0D81E92B42B00825DBB /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Badge.swift; path = Model/Badge.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				DC591A941E842195001746C7 /* Vine Camera.swift */,
 				085FC3821E8A1224000931E7 /* GameSelectViewController.swift */,
 				08C79C8C1EA420FE00BD3F07 /* ProfileViewController.swift */,
+				08C79C9A1EA45E6300BD3F07 /* FeedViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				08C79C8D1EA420FE00BD3F07 /* ProfileViewController.swift in Sources */,
 				08C6A0001E92B5E400A559B2 /* User.swift in Sources */,
 				0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */,
+				08C79C9B1EA45E6300BD3F07 /* FeedViewController.swift in Sources */,
 				08C69FFC1E92B5C000A559B2 /* Like.swift in Sources */,
 				08C69FFA1E92B5AF00A559B2 /* Game.swift in Sources */,
 				085FC3831E8A1224000931E7 /* GameSelectViewController.swift in Sources */,

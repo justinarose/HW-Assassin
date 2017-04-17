@@ -15,10 +15,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var usernameCaptionLabel: UILabel!
-    @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var viewAllLabel: UIButton!
-    @IBOutlet weak var usernameCommentLabel: UIButton!
-    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
 
     override func awakeFromNib() {

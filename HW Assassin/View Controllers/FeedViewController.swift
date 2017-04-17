@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  FeedViewController.swift
 //  HW Assassin
 //
 //  Created by Justin Rose on 4/16/17.
@@ -10,44 +10,19 @@ import UIKit
 import CoreData
 import Alamofire
 
-
-class ProfileTableViewCell: UITableViewCell{
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var killCountLabel: UILabel!
-    @IBOutlet weak var badgesCountLabel: UILabel!
-    @IBOutlet weak var rankCountLabel: UILabel!
-}
-
-
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate{
-    
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     var fetchedResultsController: NSFetchedResultsController<Post>?
-    var userAccount: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if userAccount == nil {
-            let u = User(context: AppDelegate.viewContext)
-            let dict = UserDefaults.standard.value(forKey: "user") as! [String: Any]
-            u.id = dict["id"] as! Int64
-            u.firstName = dict["first_name"] as! String?
-            u.lastName = dict["last_name"] as! String?
-            u.email = dict["email"] as! String?
-            u.username = dict["username"] as! String?
-            u.profilePictureURL = (dict["player"] as! NSDictionary)["profile_picture"] as! String?
-            u.year = (dict["player"] as! NSDictionary)["year"] as! String?
-            userAccount = u
-        }
-        
+        tableView.register(UINib(nibName:"PostTableViewCell", bundle:nil), forCellReuseIdentifier: "post_cell")
         tableView.separatorStyle = .none
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 660.0
         tableView.allowsSelection = false
-        
-        self.title = (userAccount?.username)!
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,44 +33,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        let count = fetchedResultsController?.sections?.count ?? 1
-        return count+1
+        return fetchedResultsController?.sections?.count ?? 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1{
-            return 1
-        }
-        else if let sections = fetchedResultsController?.sections, sections.count>0 {
-            return sections[section-1].numberOfObjects
+        if let sections = fetchedResultsController?.sections, sections.count>0 {
+            return sections[section].numberOfObjects
         }
         else{
-            return 0
+            return 3
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "post_cell", for: indexPath) as! PostTableViewCell
         
-        if indexPath.section == 1 {
-            let c = tableView.dequeueReusableCell(withIdentifier: "profile_cell", for: indexPath) as! ProfileTableViewCell
-            c.nameLabel.text = (userAccount?.firstName)! + " " + (userAccount?.lastName)!
-            c.killCountLabel.text = "0"
-            c.badgesCountLabel.text = "0"
-            c.rankCountLabel.text = "0"
-            Alamofire.request((userAccount?.profilePictureURL)!).responseData{ response in
-                debugPrint(response)
-                
-                if let data = response.result.value, let image = UIImage(data: data) {
-                    c.profileImageView.image = image
-                }
-            }
-            cell = c
+        if(indexPath.row == 1){
+            cell.usernameCaptionLabel.text = "jrose1 Soon Lara spotted other landmarks—an outcropping of limestone beside the path that had a silhouette like a man’s face, a marshy spot beside the river where the waterfowl were easily startled, a tall tree that looked like a man with his arms upraised. They were drawing near to the place where there was an island in the river."
         }
-        else{
-            cell = UITableViewCell()
-        }
+        
         return cell
     }
-    
     
     // MARK: - NSFetchedResultsControllerDelegate
     
@@ -131,9 +87,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // MARK: - UITableViewDelegate
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
+    
 
     /*
     // MARK: - Navigation
