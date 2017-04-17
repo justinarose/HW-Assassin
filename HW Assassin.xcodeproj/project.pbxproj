@@ -18,6 +18,8 @@
 		08C6A0001E92B5E400A559B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C69FFF1E92B5E400A559B2 /* User.swift */; };
 		08C6A0021E92B5F700A559B2 /* UserGameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C6A0011E92B5F700A559B2 /* UserGameStatus.swift */; };
 		08C79C8D1EA420FE00BD3F07 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C79C8C1EA420FE00BD3F07 /* ProfileViewController.swift */; };
+		08C79C911EA440B400BD3F07 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08C79C901EA440B400BD3F07 /* PostTableViewCell.xib */; };
+		08C79C951EA4464C00BD3F07 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C79C941EA4464C00BD3F07 /* PostTableViewCell.swift */; };
 		08D6A8EB1E7A519D00BE9017 /* MainTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */; };
 		08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */; };
 		08FED0D91E92B42B00825DBB /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FED0D81E92B42B00825DBB /* Badge.swift */; };
@@ -85,6 +87,8 @@
 		08C69FFF1E92B5E400A559B2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 		08C6A0011E92B5F700A559B2 /* UserGameStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGameStatus.swift; sourceTree = "<group>"; };
 		08C79C8C1EA420FE00BD3F07 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "View Controllers/ProfileViewController.swift"; sourceTree = "<group>"; };
+		08C79C901EA440B400BD3F07 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostTableViewCell.xib; path = Views/PostTableViewCell.xib; sourceTree = "<group>"; };
+		08C79C941EA4464C00BD3F07 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = Views/PostTableViewCell.swift; sourceTree = "<group>"; };
 		08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTitleViewController.swift; path = "View Controllers/MainTitleViewController.swift"; sourceTree = "<group>"; };
 		08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "View Controllers/SignUpViewController.swift"; sourceTree = "<group>"; };
 		08FED0D81E92B42B00825DBB /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Badge.swift; path = Model/Badge.swift; sourceTree = "<group>"; };
@@ -170,6 +174,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		08C79C8F1EA43FDC00BD3F07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08C79C901EA440B400BD3F07 /* PostTableViewCell.xib */,
+				08C79C941EA4464C00BD3F07 /* PostTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		08D6A8E91E7A515F00BE9017 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +259,7 @@
 			children = (
 				0870FA471E897EBB00E6F29C /* Model */,
 				08D6A8E91E7A515F00BE9017 /* View Controllers */,
+				08C79C8F1EA43FDC00BD3F07 /* Views */,
 				DCC1CC781E6882AC0020884A /* AppDelegate.swift */,
 				DC8F79141E68839A0016B355 /* Main.storyboard */,
 				DCC1CC7F1E6882AC0020884A /* Assets.xcassets */,
@@ -409,6 +423,7 @@
 				DC8F79151E68839A0016B355 /* Main.storyboard in Resources */,
 				DC724C2C1E69E03B000C4506 /* home-512.png in Resources */,
 				DC8F79221E6883C60016B355 /* 9571.png in Resources */,
+				08C79C911EA440B400BD3F07 /* PostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +598,7 @@
 			files = (
 				08C69FF81E92B58A00A559B2 /* CommentLike.swift in Sources */,
 				085FC3811E89FA72000931E7 /* LoginViewController.swift in Sources */,
+				08C79C951EA4464C00BD3F07 /* PostTableViewCell.swift in Sources */,
 				08FED0D91E92B42B00825DBB /* Badge.swift in Sources */,
 				08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */,
 				08C69FFE1E92B5D400A559B2 /* Post.swift in Sources */,
