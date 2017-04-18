@@ -64,7 +64,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         let request: NSFetchRequest<Post> = Post.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "timeConfirmed", ascending: false)]
         fetchedResultsController = NSFetchedResultsController<Post>(fetchRequest: request, managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: "PostQueryCache")
         
         fetchedResultsController?.delegate = self

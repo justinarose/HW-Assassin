@@ -1,12 +1,15 @@
 PODS:
   - Alamofire (4.4.0)
+  - NextLevel (0.3.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - NextLevel (~> 0.3.5)
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  NextLevel: bbb758a6e368f3f0f6293940173f0829140ba624
 
-PODFILE CHECKSUM: d5808a8336f425cb30b02a691ea42d944b80ffa8
+PODFILE CHECKSUM: 984009d0be34b6fcbdfd7f1dcc8c93fe1c087779
 
 COCOAPODS: 1.2.0
