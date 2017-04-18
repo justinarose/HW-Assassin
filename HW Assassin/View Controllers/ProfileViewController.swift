@@ -31,16 +31,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         // Do any additional setup after loading the view.
         if userAccount == nil {
-            let u = User(context: AppDelegate.viewContext)
             let dict = UserDefaults.standard.value(forKey: "user") as! [String: Any]
-            u.id = dict["id"] as! Int64
-            u.firstName = dict["first_name"] as! String?
-            u.lastName = dict["last_name"] as! String?
-            u.email = dict["email"] as! String?
-            u.username = dict["username"] as! String?
-            u.profilePictureURL = (dict["player"] as! NSDictionary)["profile_picture"] as! String?
-            u.year = (dict["player"] as! NSDictionary)["year"] as! String?
-            userAccount = u
+            userAccount = User.userWithUserInfo(dict, inManageObjectContext: AppDelegate.viewContext)
         }
         
         tableView.separatorStyle = .none

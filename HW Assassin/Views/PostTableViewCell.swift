@@ -14,14 +14,28 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var usernameCaptionLabel: UILabel!
-    @IBOutlet weak var viewAllLabel: UIButton!
+    @IBOutlet weak var viewAllButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var placeholderImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    @IBAction func viewComments(_ sender: Any) {
+        print("View comments selected")
+    }
+    @IBAction func like(_ sender: Any) {
+        print("Like selected")
+    }
+    
+    @IBAction func comment(_ sender: Any) {
+        print("Comment selected")
+    }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

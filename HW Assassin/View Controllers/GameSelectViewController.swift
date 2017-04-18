@@ -45,11 +45,7 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                 print("Response JSON: \(JSON)")
                 
                 for g in JSON as! [[String: AnyObject]]{
-                    let game = Game(context: AppDelegate.viewContext)
-                    game.id = g["id"] as! Int64!
-                    game.name = g["name"] as? String
-                    game.status = g["status"] as? String
-                    game.pictureURL = g["game_picture"] as? String
+                    Game.gameWithGameInfo(g, inManageObjectContext: AppDelegate.viewContext)
                 }
                 
                 print("Created games")

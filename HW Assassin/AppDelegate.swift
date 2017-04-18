@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,6 +34,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "title_page_vc")
             
             self.window?.rootViewController = vc
+        }
+        
+        let headers = ["Content-Type": "application/json"]
+        
+        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/games/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+            debugPrint(response)
+            
+            //to get JSON return value
+            if let result = response.result.value {
+                let JSON = result as! NSArray
+                print("Response JSON: \(JSON)")
+                
+                for g in JSON as! [[String: AnyObject]]{
+                    Game.gameWithGameInfo(g, inManageObjectContext: AppDelegate.viewContext)
+                }
+                
+                print("Created games")
+            }
         }
         
         self.window?.makeKeyAndVisible()
