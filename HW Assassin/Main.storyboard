@@ -376,10 +376,10 @@
             </objects>
             <point key="canvasLocation" x="2180" y="976.46176911544239"/>
         </scene>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="x0h-si-Ln2">
             <objects>
-                <viewController id="c7k-Ah-RQW" sceneMemberID="viewController">
+                <viewController id="c7k-Ah-RQW" customClass="CameraViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hKO-EA-bng"/>
                         <viewControllerLayoutGuide type="bottom" id="PvE-xk-PEu"/>
