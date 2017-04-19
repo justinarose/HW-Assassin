@@ -11,11 +11,9 @@ import NextLevel
 import CoreMedia
 
 
-class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDelegate,NextLevelVideoDelegate, NextLevelPhotoDelegate {
+class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDelegate,NextLevelVideoDelegate {
     @IBOutlet weak var cameraView: UIView!
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         if let previewView = self.cameraView {
@@ -27,7 +25,6 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
             NextLevel.shared.delegate = self
             NextLevel.shared.deviceDelegate = self
             NextLevel.shared.videoDelegate = self
-            NextLevel.shared.photoDelegate = self
             
             // modify .videoConfiguration, .audioConfiguration, .photoConfiguration properties
             // Compression, resolution, and maximum recording time options are available
@@ -43,8 +40,12 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NextLevel.shared.start()
-        NextLevel.shared.record()
+        do{
+            try NextLevel.shared.start()
+        } catch{
+            print("Error occured with camera: \(error)")
+        }
+        //NextLevel.shared.record()
     
     }
    
@@ -52,7 +53,6 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NextLevel.shared.stop()
-        NextLevel.shared.pause()
         
     }
 
@@ -61,6 +61,164 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - NextLevelDelegate
+    
+    // permission
+    func nextLevel(_ nextLevel: NextLevel, didUpdateAuthorizationStatus status: NextLevelAuthorizationStatus, forMediaType mediaType: String){
+        
+    }
+    
+    // configuration
+    func nextLevel(_ nextLevel: NextLevel, didUpdateVideoConfiguration videoConfiguration: NextLevelVideoConfiguration){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didUpdateAudioConfiguration audioConfiguration: NextLevelAudioConfiguration){
+        
+    }
+    
+    // session
+    func nextLevelSessionWillStart(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelSessionDidStart(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelSessionDidStop(_ nextLevel: NextLevel){
+        
+    }
+    
+    // session interruption
+    func nextLevelSessionWasInterrupted(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelSessionInterruptionEnded(_ nextLevel: NextLevel){
+        
+    }
+    
+    // preview
+    func nextLevelWillStartPreview(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelDidStopPreview(_ nextLevel: NextLevel){
+        
+    }
+    
+    // mode
+    func nextLevelCaptureModeWillChange(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelCaptureModeDidChange(_ nextLevel: NextLevel){
+        
+    }
+    
+    // MARK: - NextLevelDeviceDelegate
+    
+    // position, orientation
+    func nextLevelDevicePositionWillChange(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelDevicePositionDidChange(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didChangeDeviceOrientation deviceOrientation: NextLevelDeviceOrientation){
+        
+    }
+    
+    // aperture
+    func nextLevel(_ nextLevel: NextLevel, didChangeCleanAperture cleanAperture: CGRect){
+        
+    }
+    
+    // focus, exposure, white balance
+    func nextLevelWillStartFocus(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelDidStopFocus(_  nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelWillChangeExposure(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelDidChangeExposure(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelWillChangeWhiteBalance(_ nextLevel: NextLevel){
+        
+    }
+    
+    func nextLevelDidChangeWhiteBalance(_ nextLevel: NextLevel){
+        
+    }
+    
+    // MARK: - NextLevelVideoDelegate
+    
+    // video zoom
+    func nextLevel(_ nextLevel: NextLevel, didUpdateVideoZoomFactor videoZoomFactor: Float){
+        
+    }
+    
+    // video processing
+    func nextLevel(_ nextLevel: NextLevel, willProcessRawVideoSampleBuffer sampleBuffer: CMSampleBuffer){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, renderToCustomContextWithImageBuffer imageBuffer: CVPixelBuffer, onQueue queue: DispatchQueue){
+        
+    }
+    
+    // video recording session
+    func nextLevel(_ nextLevel: NextLevel, didSetupVideoInSession session: NextLevelSession){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didSetupAudioInSession session: NextLevelSession){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didStartClipInSession session: NextLevelSession){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didCompleteClip clip: NextLevelClip, inSession session: NextLevelSession){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didAppendVideoSampleBuffer sampleBuffer: CMSampleBuffer, inSession session: NextLevelSession){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didAppendAudioSampleBuffer sampleBuffer: CMSampleBuffer, inSession session: NextLevelSession){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didSkipVideoSampleBuffer sampleBuffer: CMSampleBuffer, inSession session: NextLevelSession){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didSkipAudioSampleBuffer sampleBuffer: CMSampleBuffer, inSession session: NextLevelSession){
+        
+    }
+    
+    func nextLevel(_ nextLevel: NextLevel, didCompleteSession session: NextLevelSession){
+        
+    }
+    
+    // video frame photo
+    func nextLevel(_ nextLevel: NextLevel, didCompletePhotoCaptureFromVideoFrame photoDict: [String : Any]?){
+        
+    }
 
     /*
     // MARK: - Navigation
