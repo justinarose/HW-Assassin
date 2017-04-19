@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NextLevel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HW Assassin.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,17 +32,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>397F52AEA40815D11404913E246552E1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>4FDF309851B82A4CC110E9BE45AD4A29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D96F65FE630DC4B7DDDB1D0F95E79AB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DBBB2CC102EE7A1250243593D1B721D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
