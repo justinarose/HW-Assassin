@@ -8,9 +8,10 @@
 
 import UIKit
 import NextLevel
+import CoreMedia
 
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDelegate,NextLevelVideoDelegate, NextLevelPhotoDelegate {
     @IBOutlet weak var cameraView: UIView!
     
     
@@ -30,7 +31,7 @@ class CameraViewController: UIViewController {
             
             // modify .videoConfiguration, .audioConfiguration, .photoConfiguration properties
             // Compression, resolution, and maximum recording time options are available
-            NextLevel.shared.videoConfiguration.maxRecordDuration = CMTimeMakeWithSeconds(5, 600)
+            NextLevel.shared.videoConfiguration.maximumCaptureDuration = CMTimeMakeWithSeconds(5, 600)
             NextLevel.shared.audioConfiguration.bitRate = 44000
         
 
@@ -43,7 +44,7 @@ class CameraViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NextLevel.shared.start()
-         NextLevel.shared.record()
+        NextLevel.shared.record()
     
     }
    
