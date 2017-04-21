@@ -9,6 +9,8 @@
 import UIKit
 import NextLevel
 import CoreMedia
+import AVKit
+import AVFoundation
 
 
 class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDelegate,NextLevelVideoDelegate {
@@ -47,6 +49,14 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         }
         //NextLevel.shared.record()
     
+    }
+    
+    func checkCameraAuthorization(){
+        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        if status == AVAuthorizationStatus.authorized{
+            print("Camera is authorized")
+        }
+        
     }
    
     

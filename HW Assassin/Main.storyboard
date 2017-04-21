@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -130,7 +129,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcj-sd-sVK">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="248" width="375" height="60"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dcj-sd-sVK" secondAttribute="height" multiplier="25:4" id="akZ-Ae-UAp"/>
@@ -147,7 +146,7 @@
                         <constraints>
                             <constraint firstItem="dcj-sd-sVK" firstAttribute="leading" secondItem="qgP-f2-7Ob" secondAttribute="leadingMargin" constant="-16" id="1V0-np-dYh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dcj-sd-sVK" secondAttribute="trailing" constant="-16" id="W6Q-lP-gL5"/>
-                            <constraint firstItem="zL1-DP-a2b" firstAttribute="top" secondItem="dcj-sd-sVK" secondAttribute="bottom" id="r3G-cY-4LA"/>
+                            <constraint firstItem="zL1-DP-a2b" firstAttribute="top" secondItem="dcj-sd-sVK" secondAttribute="bottom" constant="359" id="r3G-cY-4LA"/>
                         </constraints>
                     </view>
                     <connections>
@@ -210,7 +209,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="565"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2vV-dw-hbA" id="dMo-Iu-V1F">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="564.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="564"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WaX-EB-HyM" userLabel="Video Post">
@@ -512,7 +511,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="138"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lN3-Gd-ZNF" id="u8h-JK-WZD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="137.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Unknown-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="ya8-9Z-ceF">
@@ -770,7 +769,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CXJ-V2-LzU" id="VeV-Ru-JrV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWY-39-MPD">
