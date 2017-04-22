@@ -32,43 +32,81 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
             // Compression, resolution, and maximum recording time options are available
             NextLevel.shared.videoConfiguration.maximumCaptureDuration = CMTimeMakeWithSeconds(5, 600)
             NextLevel.shared.audioConfiguration.bitRate = 44000
-        
-
         }
-
-        // Do any additional setup after loading the view.
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        do{
-            try NextLevel.shared.start()
-        } catch{
-            print("Error occured with camera: \(error)")
+        
+        let nextLevel = NextLevel.shared
+        
+        if nextLevel.authorizationStatus(forMediaType: AVMediaTypeVideo) != .authorized{
+            nextLevel.requestAuthorization(forMediaType: AVMediaTypeVideo)
         }
-        //NextLevel.shared.record()
-    
+        if nextLevel.authorizationStatus(forMediaType: AVMediaTypeAudio) != .authorized{
+            nextLevel.requestAuthorization(forMediaType: AVMediaTypeAudio)
+        }
+        if nextLevel.session == nil {
+            do {
+                try nextLevel.start()
+            } catch {
+                print("NextLevel, failed to start camera session with error \(error)")
+            }
+        }
     }
     
-    func checkCameraAuthorization(){
-        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+    func checkCameraAuthorization(_ status:AVAuthorizationStatus){
         if status == AVAuthorizationStatus.authorized{
-            print("Camera is authorized")
+            print("\(status) is authorized")
         }
-        
+        else if status == AVAuthorizationStatus.notDetermined{
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo){ granted in
+                if granted{
+                    print("\(status) granted")
+                }
+                else{
+                    // create the alert
+                    let alert = UIAlertController(title: "Not Authorized", message: "Please go to Settings and enable the camera for this app to use this feature.", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+        else if status == AVAuthorizationStatus.denied{
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo){ granted in
+                if granted{
+                    print("Camera granted")
+                }
+                else{
+                    // create the alert
+                    let alert = UIAlertController(title: "Not Authorized", message: "Please go to Settings and enable the camera for this app to use this feature.", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
    
     
     override func viewWillDisappear(_ animated: Bool) {
+        //NextLevel.shared.stop()
+        //print("Stopping NextLevel")
         super.viewWillDisappear(animated)
-        NextLevel.shared.stop()
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        NextLevel.shared.stop()
     }
     
     // MARK: - NextLevelDelegate
