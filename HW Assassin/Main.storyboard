@@ -235,23 +235,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SIR-bx-rlH">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SIR-bx-rlH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="679"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="SIR-bx-rlH" firstAttribute="leading" secondItem="9ry-lO-UuC" secondAttribute="leading" id="Gvn-FP-Ami"/>
-                            <constraint firstItem="GA7-dt-BAm" firstAttribute="top" secondItem="SIR-bx-rlH" secondAttribute="bottom" id="UUO-3d-ydq"/>
-                            <constraint firstAttribute="trailing" secondItem="SIR-bx-rlH" secondAttribute="trailing" id="X6P-5B-0r5"/>
-                            <constraint firstItem="SIR-bx-rlH" firstAttribute="top" secondItem="9ry-lO-UuC" secondAttribute="top" id="j8j-Jj-gSL"/>
+                            <constraint firstItem="SIR-bx-rlH" firstAttribute="leading" secondItem="9ry-lO-UuC" secondAttribute="leading" id="3Qd-tC-pfv"/>
+                            <constraint firstItem="SIR-bx-rlH" firstAttribute="top" secondItem="9ry-lO-UuC" secondAttribute="top" id="HMr-mv-DB1"/>
+                            <constraint firstItem="GA7-dt-BAm" firstAttribute="top" secondItem="SIR-bx-rlH" secondAttribute="bottom" constant="8" symbolic="YES" id="sTA-oQ-QUu"/>
+                            <constraint firstAttribute="trailing" secondItem="SIR-bx-rlH" secondAttribute="trailing" id="xBD-Gj-6Qs"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icon_12638.png" id="3jn-8o-lS0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6PD-22-CbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176" y="974"/>
+            <point key="canvasLocation" x="2175.36231884058" y="973.36956521739137"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="x0h-si-Ln2">
@@ -265,39 +265,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5h1-Go-SLy">
-                                <rect key="frame" x="158" y="524" width="58" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Record" image="Record-icon.png">
-                                    <color key="titleColor" red="0.99487964669999995" green="0.98101102179999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zU1-lY-2tm">
-                                <rect key="frame" x="0.0" y="64" width="375" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
-                            </progressView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrC-i5-A7N">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zU1-lY-2tm">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
+                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                <color key="progressTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Record-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="iM4-TA-HtT">
+                                <rect key="frame" x="162" y="589" width="90" height="90"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="Acy-mP-Cew"/>
+                                    <constraint firstAttribute="height" constant="90" id="v0x-s9-Dh3"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RrC-i5-A7N" firstAttribute="top" secondItem="Ql0-d2-fnB" secondAttribute="top" id="471-pS-uiZ"/>
-                            <constraint firstItem="PvE-xk-PEu" firstAttribute="top" secondItem="RrC-i5-A7N" secondAttribute="bottom" id="ZjG-fW-Y0w"/>
-                            <constraint firstAttribute="trailing" secondItem="RrC-i5-A7N" secondAttribute="trailing" id="gGg-Vf-neO"/>
-                            <constraint firstItem="RrC-i5-A7N" firstAttribute="leading" secondItem="Ql0-d2-fnB" secondAttribute="leading" id="rVx-Nc-lHs"/>
+                            <constraint firstItem="zU1-lY-2tm" firstAttribute="trailing" secondItem="RrC-i5-A7N" secondAttribute="trailing" id="4hN-CQ-aqy"/>
+                            <constraint firstItem="zU1-lY-2tm" firstAttribute="top" secondItem="Ql0-d2-fnB" secondAttribute="top" id="975-dW-Axr"/>
+                            <constraint firstItem="PvE-xk-PEu" firstAttribute="top" secondItem="iM4-TA-HtT" secondAttribute="bottom" constant="8" symbolic="YES" id="BDG-KI-XFk"/>
+                            <constraint firstItem="zU1-lY-2tm" firstAttribute="leading" secondItem="Ql0-d2-fnB" secondAttribute="leading" id="Hw5-VS-ezy"/>
+                            <constraint firstItem="RrC-i5-A7N" firstAttribute="top" secondItem="zU1-lY-2tm" secondAttribute="top" id="L9r-8w-Cem"/>
+                            <constraint firstItem="RrC-i5-A7N" firstAttribute="leading" secondItem="zU1-lY-2tm" secondAttribute="leading" id="LKe-Sp-PjT"/>
+                            <constraint firstItem="iM4-TA-HtT" firstAttribute="centerX" secondItem="Ql0-d2-fnB" secondAttribute="centerX" id="Vg2-OU-wUe"/>
+                            <constraint firstItem="RrC-i5-A7N" firstAttribute="bottom" secondItem="PvE-xk-PEu" secondAttribute="top" id="gKB-tr-LsU"/>
+                            <constraint firstAttribute="trailing" secondItem="RrC-i5-A7N" secondAttribute="trailing" id="hbg-nh-8lx"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png" id="1lj-8I-VXH"/>
                     <connections>
                         <outlet property="cameraView" destination="RrC-i5-A7N" id="OmC-i2-oxx"/>
+                        <outlet property="progressView" destination="zU1-lY-2tm" id="DVT-jc-Wpm"/>
+                        <outlet property="recordImageView" destination="iM4-TA-HtT" id="The-oU-uj0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8y-ki-wfG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2180" y="1682.608695652174"/>
+            <point key="canvasLocation" x="2179.7101449275365" y="1682.608695652174"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="w1r-fO-gYw">

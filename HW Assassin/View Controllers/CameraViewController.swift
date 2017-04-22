@@ -15,6 +15,9 @@ import AVFoundation
 
 class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDelegate,NextLevelVideoDelegate {
     @IBOutlet weak var cameraView: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var recordImageView: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +27,20 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
             NextLevel.shared.previewLayer.frame = previewView.bounds
             previewView.layer.addSublayer(NextLevel.shared.previewLayer)
             
+            
+            let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGestureRecognizer(_:)))
+            self.recordImageView.addGestureRecognizer(gesture)
+            self.recordImageView.isUserInteractionEnabled = true
+            
             NextLevel.shared.delegate = self
             NextLevel.shared.deviceDelegate = self
             NextLevel.shared.videoDelegate = self
             
             // modify .videoConfiguration, .audioConfiguration, .photoConfiguration properties
             // Compression, resolution, and maximum recording time options are available
-            NextLevel.shared.videoConfiguration.maximumCaptureDuration = CMTimeMakeWithSeconds(5, 600)
+            NextLevel.shared.videoConfiguration.maximumCaptureDuration = CMTimeMakeWithSeconds(10, 60)
             NextLevel.shared.audioConfiguration.bitRate = 44000
+            NextLevel.shared.videoConfiguration.aspectRatio = .square
         }
         
     }
@@ -55,48 +64,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
             }
         }
     }
-    
-    func checkCameraAuthorization(_ status:AVAuthorizationStatus){
-        if status == AVAuthorizationStatus.authorized{
-            print("\(status) is authorized")
-        }
-        else if status == AVAuthorizationStatus.notDetermined{
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo){ granted in
-                if granted{
-                    print("\(status) granted")
-                }
-                else{
-                    // create the alert
-                    let alert = UIAlertController(title: "Not Authorized", message: "Please go to Settings and enable the camera for this app to use this feature.", preferredStyle: UIAlertControllerStyle.alert)
-                    
-                    // add an action (button)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    
-                    // show the alert
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-        }
-        else if status == AVAuthorizationStatus.denied{
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo){ granted in
-                if granted{
-                    print("Camera granted")
-                }
-                else{
-                    // create the alert
-                    let alert = UIAlertController(title: "Not Authorized", message: "Please go to Settings and enable the camera for this app to use this feature.", preferredStyle: UIAlertControllerStyle.alert)
-                    
-                    // add an action (button)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    
-                    // show the alert
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
-        }
-    }
    
-    
     override func viewWillDisappear(_ animated: Bool) {
         //NextLevel.shared.stop()
         //print("Stopping NextLevel")
@@ -260,12 +228,90 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     }
     
     func nextLevel(_ nextLevel: NextLevel, didCompleteSession session: NextLevelSession){
-        
+        print("Completed capture")
+        endCapture()
     }
     
     // video frame photo
     func nextLevel(_ nextLevel: NextLevel, didCompletePhotoCaptureFromVideoFrame photoDict: [String : Any]?){
         
+    }
+    
+    
+    // MARK: - Long Press Gesture Recognizer Delegate
+    func handleLongPressGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
+        switch gestureRecognizer.state {
+        case .began:
+            self.startCapture()
+            break
+        case .ended:
+            fallthrough
+        case .cancelled:
+            fallthrough
+        case .failed:
+            self.pauseCapture()
+            fallthrough
+        default:
+            break
+        }
+    }
+    
+    // MARK: - Helper Functions
+    func startCapture() {
+        print("Starting capture")
+        NextLevel.shared.record()
+    }
+    
+    func pauseCapture() {
+        print("Pausing capture")
+        NextLevel.shared.pause()
+    }
+    
+    func endCapture(){
+        if let session = NextLevel.shared.session {
+            
+            if session.clips.count > 1 {
+                NextLevel.shared.session?.mergeClips(usingPreset: AVAssetExportPresetLowQuality, completionHandler: { (url: URL?, error: Error?) in
+                    if let videoUrl = url {
+                        var fileSize : UInt64 = 0
+                        
+                        do {
+                            //return [FileAttributeKey : Any]
+                            let attr = try FileManager.default.attributesOfItem(atPath: videoUrl.path)
+                            fileSize = attr[FileAttributeKey.size] as! UInt64
+                            
+                            //if you convert to NSDictionary, you can get file size old way as well.
+                            let dict = attr as NSDictionary
+                            fileSize = dict.fileSize()
+                        } catch {
+                            print("Error: \(error)")
+                        }
+                        
+                        print("File size: \(fileSize)")
+                        let player = AVPlayer(url: videoUrl)
+                        let playerViewController = AVPlayerViewController()
+                        playerViewController.player = player
+                        self.present(playerViewController, animated: true) {
+                            NextLevel.shared.stop()
+                            playerViewController.player!.play()
+                        }
+                    } else if let _ = error {
+                        print("failed to merge clips at the end of capture \(String(describing: error))")
+                    }
+                })
+            } else {
+                if let videoUrl = NextLevel.shared.session?.lastClipUrl {
+                    print("\(videoUrl)")
+                } else {
+                    // prompt that the video has been saved
+                    let alertController = UIAlertController(title: "Something failed!", message: "Something failed!", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+            
+        }
     }
 
     /*

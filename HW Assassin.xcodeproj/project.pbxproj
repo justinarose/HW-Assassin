@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082BFA3D1EAAF9820065A656 /* circle-outline-512.gif in Resources */ = {isa = PBXBuildFile; fileRef = 082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */; };
 		085FC3811E89FA72000931E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3801E89FA71000931E7 /* LoginViewController.swift */; };
 		085FC3831E8A1224000931E7 /* GameSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3821E8A1224000931E7 /* GameSelectViewController.swift */; };
 		0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0870FA481E89BB2A00E6F29C /* HWAssassin.xcdatamodeld */; };
@@ -27,7 +28,6 @@
 		08FED0D91E92B42B00825DBB /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FED0D81E92B42B00825DBB /* Badge.swift */; };
 		6BAC1F77CAFD5AD8432DBBCF /* Pods_HW_AssassinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA661E41C37AA5675B7D59F /* Pods_HW_AssassinUITests.framework */; };
 		78CE49AF52027100FDE7802B /* Pods_HW_AssassinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890D8B39056AC7B882E72C33 /* Pods_HW_AssassinTests.framework */; };
-		DC591A951E842195001746C7 /* Vine Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC591A941E842195001746C7 /* Vine Camera.swift */; };
 		DC724C1E1E69D0B7000C4506 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC724C1D1E69D0B7000C4506 /* MapKit.framework */; };
 		DC724C261E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */; };
 		DC724C2A1E69DFF1000C4506 /* icon_12638.png in Resources */ = {isa = PBXBuildFile; fileRef = DC724C291E69DFF1000C4506 /* icon_12638.png */; };
@@ -78,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "circle-outline-512.gif"; sourceTree = "<group>"; };
 		085FC3801E89FA71000931E7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "View Controllers/LoginViewController.swift"; sourceTree = "<group>"; };
 		085FC3821E8A1224000931E7 /* GameSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSelectViewController.swift; path = "View Controllers/GameSelectViewController.swift"; sourceTree = "<group>"; };
 		0870FA491E89BB2A00E6F29C /* HWAssassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HWAssassin.xcdatamodel; sourceTree = "<group>"; };
@@ -105,7 +106,6 @@
 		9774032BF8D34BD099251FB7 /* Pods-HW AssassinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW AssassinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HW AssassinTests/Pods-HW AssassinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B2189064ED16E8E77693FED8 /* Pods-HW Assassin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW Assassin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HW Assassin/Pods-HW Assassin.debug.xcconfig"; sourceTree = "<group>"; };
 		BFB73421F4701D7DFE3513BA /* Pods-HW AssassinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW AssassinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HW AssassinUITests/Pods-HW AssassinUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		DC591A941E842195001746C7 /* Vine Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vine Camera.swift"; sourceTree = "<group>"; };
 		DC724C1D1E69D0B7000C4506 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png"; sourceTree = "<group>"; };
 		DC724C291E69DFF1000C4506 /* icon_12638.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_12638.png; sourceTree = "<group>"; };
@@ -193,7 +193,6 @@
 				085FC3801E89FA71000931E7 /* LoginViewController.swift */,
 				08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */,
 				08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */,
-				DC591A941E842195001746C7 /* Vine Camera.swift */,
 				085FC3821E8A1224000931E7 /* GameSelectViewController.swift */,
 				08C79C8C1EA420FE00BD3F07 /* ProfileViewController.swift */,
 				08C79C9A1EA45E6300BD3F07 /* FeedViewController.swift */,
@@ -234,6 +233,7 @@
 				DCC1CC971E6882AC0020884A /* HW AssassinUITests */,
 				DCC1CC761E6882AC0020884A /* Products */,
 				DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */,
+				082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */,
 				DC8F79191E6883C60016B355 /* like.png */,
 				DC724C371E69E53B000C4506 /* Unknown-1.png */,
 				DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */,
@@ -429,6 +429,7 @@
 				DC8F79251E6883C60016B355 /* comment-bubble-outline_318-27591.jpg in Resources */,
 				DC8F79151E68839A0016B355 /* Main.storyboard in Resources */,
 				DC724C2C1E69E03B000C4506 /* home-512.png in Resources */,
+				082BFA3D1EAAF9820065A656 /* circle-outline-512.gif in Resources */,
 				DC8F79221E6883C60016B355 /* 9571.png in Resources */,
 				08C79C911EA440B400BD3F07 /* PostTableViewCell.xib in Resources */,
 			);
@@ -621,7 +622,6 @@
 				08C69FF61E92B56A00A559B2 /* Comment.swift in Sources */,
 				087158461EA7D49200673D4B /* CameraViewController.swift in Sources */,
 				08C6A0021E92B5F700A559B2 /* UserGameStatus.swift in Sources */,
-				DC591A951E842195001746C7 /* Vine Camera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
