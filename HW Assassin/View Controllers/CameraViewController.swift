@@ -11,13 +11,14 @@ import NextLevel
 import CoreMedia
 import AVKit
 import AVFoundation
+import QuartzCore
 
 
 class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDelegate,NextLevelVideoDelegate {
     @IBOutlet weak var cameraView: UIView!
-    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var recordImageView: UIImageView!
-    
+    var timeLeft: Double?
+    var startTime: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,12 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
             let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGestureRecognizer(_:)))
             self.recordImageView.addGestureRecognizer(gesture)
             self.recordImageView.isUserInteractionEnabled = true
+            
+            let focusTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleFocusTapGestureRecognizer(_:)))
+            focusTapGestureRecognizer.numberOfTapsRequired = 1
+            previewView.addGestureRecognizer(focusTapGestureRecognizer)
+            
+            timeLeft = 10.0
             
             NextLevel.shared.delegate = self
             NextLevel.shared.deviceDelegate = self
@@ -155,11 +162,11 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     
     // focus, exposure, white balance
     func nextLevelWillStartFocus(_ nextLevel: NextLevel){
-        
+        //print("Started focus")
     }
     
     func nextLevelDidStopFocus(_  nextLevel: NextLevel){
-        
+        //print("Stopped focus")
     }
     
     func nextLevelWillChangeExposure(_ nextLevel: NextLevel){
@@ -259,11 +266,21 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     // MARK: - Helper Functions
     func startCapture() {
         print("Starting capture")
+        
         NextLevel.shared.record()
+        
+        
+        self.startTime = Date()
     }
     
     func pauseCapture() {
         print("Pausing capture")
+        let interval = self.startTime?.timeIntervalSinceNow
+        timeLeft = timeLeft! + interval!
+        
+        
+        print("Time left \(self.timeLeft!)")
+        
         NextLevel.shared.pause()
     }
     
@@ -312,6 +329,13 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
             }
             
         }
+    }
+    
+    func handleFocusTapGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
+        let tapPoint = gestureRecognizer.location(in: self.cameraView)
+        let previewLayer = NextLevel.shared.previewLayer
+        let adjustedPoint = previewLayer.captureDevicePointOfInterest(for: tapPoint)
+        NextLevel.shared.focusExposeAndAdjustWhiteBalance(atAdjustedPoint: adjustedPoint)
     }
 
     /*
