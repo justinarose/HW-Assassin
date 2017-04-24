@@ -77,7 +77,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                              to: "http://hwassassin.hwtechcouncil.com/api/users/",
                              method: .post,
                              headers: headers,
-                             encodingCompletion: { encodingResult in
+                             encodingCompletion: { [unowned self] encodingResult in
                 
                 switch encodingResult {
                 case .success(let upload, _, _):
@@ -96,8 +96,11 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                     
                                     print("Response JSON: \(JSON)")
                                     
+                                    let loginParameters: Parameters = ["username":self.usernameTextField.text!,
+                                                      "password":self.passwordTextField.text!];
+                                    
                                 
-                                    Alamofire.request("http://hwassassin.hwtechcouncil.com/api-token-auth/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+                                    Alamofire.request("http://hwassassin.hwtechcouncil.com/api-token-auth/", method: .post, parameters: loginParameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
                                         debugPrint(response)
                                     
                                         if let status = response.response?.statusCode {
@@ -113,7 +116,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                             let tokenResponse = result as! NSDictionary
                                         
                                             print("Response JSON: \(tokenResponse)")
-                                            print("Token:  \(tokenResponse["token"])")
+                                            print("Token:  \(String(describing: tokenResponse["token"]))")
                                             let defaults = UserDefaults.standard
                                             defaults.set(tokenResponse["token"], forKey: "token")
                                             self.performSegue(withIdentifier: "goToGameSelection", sender: sender)

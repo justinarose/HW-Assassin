@@ -33,8 +33,8 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func loginButtonPressed(_ sender: Any) {
-        let parameters = ["username":usernameTextField.text,
-                          "password":passwordTextField.text]
+        let parameters: Parameters = ["username":usernameTextField.text!,
+                          "password":passwordTextField.text!]
         
         let headers = ["Content-Type": "application/json"]
         
@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
                         let JSON = result as! NSDictionary
                         
                         print("Response JSON: \(JSON)")
-                        print("Token:  \(JSON["token"])")
+                        print("Token:  \(JSON["token"]!)")
                         let defaults = UserDefaults.standard
                         defaults.set(JSON["token"], forKey: "token")
                         

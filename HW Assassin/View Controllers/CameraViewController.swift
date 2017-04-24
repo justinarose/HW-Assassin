@@ -15,10 +15,13 @@ import QuartzCore
 
 
 class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDelegate,NextLevelVideoDelegate {
+    
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var recordImageView: UIImageView!
+    var statusView: UIView!
     var timeLeft: Double?
     var startTime: Date?
+    var gesture: UILongPressGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +32,18 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
             previewView.layer.addSublayer(NextLevel.shared.previewLayer)
             
             
-            let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGestureRecognizer(_:)))
+            self.gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGestureRecognizer(_:)))
             self.recordImageView.addGestureRecognizer(gesture)
             self.recordImageView.isUserInteractionEnabled = true
             
             let focusTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleFocusTapGestureRecognizer(_:)))
             focusTapGestureRecognizer.numberOfTapsRequired = 1
             previewView.addGestureRecognizer(focusTapGestureRecognizer)
+            
+            self.statusView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 2))
+            self.statusView.backgroundColor = UIColor.red
+            self.view.addSubview(self.statusView)
+            
             
             timeLeft = 10.0
             
@@ -54,6 +62,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated);
         
         let nextLevel = NextLevel.shared
         
@@ -66,6 +75,8 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         if nextLevel.session == nil {
             do {
                 try nextLevel.start()
+                self.statusView.frame = CGRect(x: 0, y: 0, width: 0, height: 2)
+                self.gesture.isEnabled = true
             } catch {
                 print("NextLevel, failed to start camera session with error \(error)")
             }
@@ -73,8 +84,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     }
    
     override func viewWillDisappear(_ animated: Bool) {
-        //NextLevel.shared.stop()
-        //print("Stopping NextLevel")
+        
         super.viewWillDisappear(animated)
     }
 
@@ -215,6 +225,10 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     }
     
     func nextLevel(_ nextLevel: NextLevel, didCompleteClip clip: NextLevelClip, inSession session: NextLevelSession){
+        print("Completed clip")
+        if self.timeLeft! <= 0{
+            self.endCapture()
+        }
         
     }
     
@@ -235,8 +249,6 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     }
     
     func nextLevel(_ nextLevel: NextLevel, didCompleteSession session: NextLevelSession){
-        print("Completed capture")
-        endCapture()
     }
     
     // video frame photo
@@ -269,6 +281,18 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         
         NextLevel.shared.record()
         
+        UIView.animate(withDuration: timeLeft!, delay: 0, options: [.curveLinear, .allowUserInteraction], animations: { [unowned self] in
+            self.statusView.frame = CGRect(origin: self.statusView.frame.origin, size: CGSize(width: self.view.frame.size.width, height: self.statusView.frame.size.height))
+        }){[unowned self] completed in
+            if completed{
+                print("Finished animation")
+                self.pauseCapture()
+                self.gesture.isEnabled = false
+            }
+            else{
+                print("Stopped animation")
+            }
+        }
         
         self.startTime = Date()
     }
@@ -278,8 +302,12 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         let interval = self.startTime?.timeIntervalSinceNow
         timeLeft = timeLeft! + interval!
         
+        self.statusView.layer.removeAllAnimations()
+        self.statusView.frame = CGRect(origin: self.statusView.frame.origin, size: CGSize(width: CGFloat((10-timeLeft!)/10.0) * self.view.frame.size.width, height: self.statusView.frame.size.height))
         
-        print("Time left \(self.timeLeft!)")
+        print("Time left \(self.timeLeft!) Interval: \(interval!)")
+        print("Total clips \(String(describing: NextLevel.shared.session?.duration.seconds))")
+        
         
         NextLevel.shared.pause()
     }
@@ -308,9 +336,11 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
                         let player = AVPlayer(url: videoUrl)
                         let playerViewController = AVPlayerViewController()
                         playerViewController.player = player
-                        self.present(playerViewController, animated: true) {
+                        self.present(playerViewController, animated: true) { [unowned self] in
+                            print("Present completed")
                             NextLevel.shared.stop()
                             playerViewController.player!.play()
+                            self.timeLeft = 10.0
                         }
                     } else if let _ = error {
                         print("failed to merge clips at the end of capture \(String(describing: error))")
@@ -318,7 +348,15 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
                 })
             } else {
                 if let videoUrl = NextLevel.shared.session?.lastClipUrl {
-                    print("\(videoUrl)")
+                    let player = AVPlayer(url: videoUrl)
+                    let playerViewController = AVPlayerViewController()
+                    playerViewController.player = player
+                    self.present(playerViewController, animated: true) { [unowned self] in
+                        print("Present completed")
+                        NextLevel.shared.stop()
+                        playerViewController.player!.play()
+                        self.timeLeft = 10.0
+                    }
                 } else {
                     // prompt that the video has been saved
                     let alertController = UIAlertController(title: "Something failed!", message: "Something failed!", preferredStyle: .alert)
