@@ -22,6 +22,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     var timeLeft: Double?
     var startTime: Date?
     var gesture: UILongPressGestureRecognizer!
+    var url: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +99,15 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     
     // permission
     func nextLevel(_ nextLevel: NextLevel, didUpdateAuthorizationStatus status: NextLevelAuthorizationStatus, forMediaType mediaType: String){
-        
+        if nextLevel.session == nil {
+            do {
+                try nextLevel.start()
+                self.statusView.frame = CGRect(x: 0, y: 0, width: 0, height: 2)
+                self.gesture.isEnabled = true
+            } catch {
+                print("NextLevel, failed to start camera session with error \(error)")
+            }
+        }
     }
     
     // configuration
@@ -262,12 +271,16 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         switch gestureRecognizer.state {
         case .began:
             self.startCapture()
+            print("Began")
             break
         case .ended:
+            print("Ended")
             fallthrough
         case .cancelled:
+            print("Cancelled")
             fallthrough
         case .failed:
+            print("Failed")
             self.pauseCapture()
             fallthrough
         default:
@@ -332,31 +345,19 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
                             print("Error: \(error)")
                         }
                         
-                        print("File size: \(fileSize)")
-                        let player = AVPlayer(url: videoUrl)
-                        let playerViewController = AVPlayerViewController()
-                        playerViewController.player = player
-                        self.present(playerViewController, animated: true) { [unowned self] in
-                            print("Present completed")
-                            NextLevel.shared.stop()
-                            playerViewController.player!.play()
-                            self.timeLeft = 10.0
-                        }
+                        print("File size: \(fileSize) \(String(describing: url))")
+                        
+                        self.url = videoUrl
+                        self.performSegue(withIdentifier: "viewVideo", sender: nil)
+                        
                     } else if let _ = error {
                         print("failed to merge clips at the end of capture \(String(describing: error))")
                     }
                 })
             } else {
                 if let videoUrl = NextLevel.shared.session?.lastClipUrl {
-                    let player = AVPlayer(url: videoUrl)
-                    let playerViewController = AVPlayerViewController()
-                    playerViewController.player = player
-                    self.present(playerViewController, animated: true) { [unowned self] in
-                        print("Present completed")
-                        NextLevel.shared.stop()
-                        playerViewController.player!.play()
-                        self.timeLeft = 10.0
-                    }
+                    self.url = videoUrl
+                    self.performSegue(withIdentifier: "viewVideo", sender: nil)
                 } else {
                     // prompt that the video has been saved
                     let alertController = UIAlertController(title: "Something failed!", message: "Something failed!", preferredStyle: .alert)
@@ -376,14 +377,20 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         NextLevel.shared.focusExposeAndAdjustWhiteBalance(atAdjustedPoint: adjustedPoint)
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        NextLevel.shared.stop()
+        self.timeLeft = 10.0
+        
+        let vc = segue.destination as! VerifyPostViewController
+        vc.url = self.url
+        
     }
-    */
+    
 
 }

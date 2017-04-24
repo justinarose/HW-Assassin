@@ -25,6 +25,7 @@
 		08C79C9B1EA45E6300BD3F07 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C79C9A1EA45E6300BD3F07 /* FeedViewController.swift */; };
 		08D6A8EB1E7A519D00BE9017 /* MainTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */; };
 		08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */; };
+		08F1692E1EADB29A007EB73A /* VerifyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F1692D1EADB29A007EB73A /* VerifyPostViewController.swift */; };
 		08FED0D91E92B42B00825DBB /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FED0D81E92B42B00825DBB /* Badge.swift */; };
 		6BAC1F77CAFD5AD8432DBBCF /* Pods_HW_AssassinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA661E41C37AA5675B7D59F /* Pods_HW_AssassinUITests.framework */; };
 		78CE49AF52027100FDE7802B /* Pods_HW_AssassinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890D8B39056AC7B882E72C33 /* Pods_HW_AssassinTests.framework */; };
@@ -96,6 +97,7 @@
 		08C79C9A1EA45E6300BD3F07 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = "View Controllers/FeedViewController.swift"; sourceTree = "<group>"; };
 		08D6A8EA1E7A519D00BE9017 /* MainTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTitleViewController.swift; path = "View Controllers/MainTitleViewController.swift"; sourceTree = "<group>"; };
 		08D6A8EC1E7A562700BE9017 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "View Controllers/SignUpViewController.swift"; sourceTree = "<group>"; };
+		08F1692D1EADB29A007EB73A /* VerifyPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyPostViewController.swift; path = "View Controllers/VerifyPostViewController.swift"; sourceTree = "<group>"; };
 		08FED0D81E92B42B00825DBB /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Badge.swift; path = Model/Badge.swift; sourceTree = "<group>"; };
 		4EA661E41C37AA5675B7D59F /* Pods_HW_AssassinUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_AssassinUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		673CCA286451B666DB860C6A /* Pods-HW AssassinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW AssassinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HW AssassinTests/Pods-HW AssassinTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				08C79C8C1EA420FE00BD3F07 /* ProfileViewController.swift */,
 				08C79C9A1EA45E6300BD3F07 /* FeedViewController.swift */,
 				087158451EA7D49200673D4B /* CameraViewController.swift */,
+				08F1692D1EADB29A007EB73A /* VerifyPostViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 				08C69FF81E92B58A00A559B2 /* CommentLike.swift in Sources */,
 				085FC3811E89FA72000931E7 /* LoginViewController.swift in Sources */,
 				08C79C951EA4464C00BD3F07 /* PostTableViewCell.swift in Sources */,
+				08F1692E1EADB29A007EB73A /* VerifyPostViewController.swift in Sources */,
 				08FED0D91E92B42B00825DBB /* Badge.swift in Sources */,
 				08D6A8ED1E7A562700BE9017 /* SignUpViewController.swift in Sources */,
 				08C69FFE1E92B5D400A559B2 /* Post.swift in Sources */,

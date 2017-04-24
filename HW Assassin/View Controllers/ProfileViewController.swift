@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     var fetchedResultsController: NSFetchedResultsController<Post>?
     var userAccount: User?
+    var status: UserGameStatus?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let dict = UserDefaults.standard.value(forKey: "user") as! [String: Any]
             userAccount = User.userWithUserInfo(dict, inManageObjectContext: AppDelegate.viewContext)
         }
+        
+        self.status = (userAccount?.statuses?.anyObject() as! UserGameStatus)
         
         let request: NSFetchRequest<Post> = Post.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "timeConfirmed", ascending: false)]
@@ -77,8 +80,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             return 1
         }
         else if let sections = fetchedResultsController?.sections, sections.count>0 {
-            let numObjects = sections[section-1].numberOfObjects
-            print("SECTION COUNT---------- \(numObjects)")
             return sections[section-1].numberOfObjects
         }
         else{
@@ -88,14 +89,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell
         
-        print("CELL FOR INDEX PATH----------\(indexPath)")
-        
         if indexPath.section == 0 {
             let c = tableView.dequeueReusableCell(withIdentifier: "profile_cell", for: indexPath) as! ProfileTableViewCell
             c.nameLabel.text = (userAccount?.firstName)! + " " + (userAccount?.lastName)!
             c.killCountLabel.text = "0"
             c.yearLabel.text = (userAccount?.year)!
             c.rankCountLabel.text = "0"
+            
+            
+            let targetName = (self.status?.target?.firstName)! + " " + (self.status?.target?.lastName)!
+            c.targetButton.setTitle(targetName, for: .normal)
             
             Alamofire.request((userAccount?.profilePictureURL)!).responseData{ response in
                 debugPrint(response)

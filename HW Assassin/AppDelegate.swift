@@ -51,6 +51,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 
                 print("Created games")
+                
+                Alamofire.request("http://hwassassin.hwtechcouncil.com/api/users/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    debugPrint(response)
+                    
+                    //to get JSON return value
+                    if let result = response.result.value {
+                        let JSON = result as! NSArray
+                        print("Response JSON: \(JSON)")
+                        
+                        for u in JSON as! [[String: AnyObject]]{
+                            User.userWithUserInfo(u, inManageObjectContext: AppDelegate.viewContext)
+                        }
+                        
+                        print("Created users")
+                        
+                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                            debugPrint(response)
+                            
+                            //to get JSON return value
+                            if let result = response.result.value {
+                                let JSON = result as! NSArray
+                                print("Response JSON: \(JSON)")
+                                
+                                for s in JSON as! [[String: AnyObject]]{
+                                    UserGameStatus.statusWithStatusInfo(s, inManageObjectContext: AppDelegate.viewContext)
+                                }
+                                
+                                print("Created statuses")
+                            }
+                        }
+                        
+                        
+                    }
+                }
             }
         }
         
