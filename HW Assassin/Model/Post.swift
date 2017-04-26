@@ -28,7 +28,7 @@ class Post: NSManagedObject {
             post.postThumbnailURL = postInfo["post_thumbnail_image"] as? String
             
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
             let localDate = formatter.date(from: postInfo["time_confirmed"] as! String)
             
             post.timeConfirmed = localDate as NSDate?//need to fix, but not right now

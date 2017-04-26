@@ -24,7 +24,6 @@ class VerifyPostViewController: UIViewController {
         if let videoUrl = self.url{
             captionTextField.layer.borderColor = UIColor.lightGray.cgColor
             captionTextField.layer.borderWidth = 1.0
-            
             self.player = AVPlayer(url: videoUrl)
             let playerLayer = AVPlayerLayer(player: self.player)
             playerLayer.videoGravity = AVLayerVideoGravityResize
@@ -78,7 +77,7 @@ class VerifyPostViewController: UIViewController {
                 
                 // thumbnail here
                 let imageData = UIImagePNGRepresentation(thumbnail)
-                multipartFormData.append(imageData!, withName: "post_thumbnail_image", fileName: "post_thumbnail_image", mimeType: "image/png")
+                multipartFormData.append(imageData!, withName: "post_thumbnail_image", fileName: "post_thumbnail_image.png", mimeType: "image/png")
                 
             } catch let error {
                 print("*** Error generating thumbnail: \(error.localizedDescription)")
@@ -101,9 +100,29 @@ class VerifyPostViewController: UIViewController {
                                         switch(status){
                                         case 200..<299:
                                             print("Successfully submitted kill")
+                                            // create the alert
+                                            let alert = UIAlertController(title: "Success", message: "Successfully submitted kill", preferredStyle: UIAlertControllerStyle.alert)
+                                            
+                                            // add an action (button)
+                                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action in
+                                                self.navigationController?.popViewController(animated: true)
+                                            })
+                                            
+                                            // show the alert
+                                            self.present(alert, animated: true, completion: nil)
                                             
                                         default:
                                             print("An error occured")
+                                            // create the alert
+                                            let alert = UIAlertController(title: "Error", message: "An error occured. Have you already submited a kill for this target?", preferredStyle: UIAlertControllerStyle.alert)
+                                            
+                                            // add an action (button)
+                                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action in
+                                                self.navigationController?.popViewController(animated: true)
+                                            })
+                                            
+                                            // show the alert
+                                            self.present(alert, animated: true, completion: nil)
                                         }
                                     }
                                 }

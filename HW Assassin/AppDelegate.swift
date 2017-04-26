@@ -14,6 +14,8 @@ import Alamofire
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var user: User?
+    var gameId: Int64?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -27,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("\(user)")
             print("\(status)")
             let vc: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "in_game_tab_vc")
+            
+            self.user = User.userWithUserInfo(user as! [String : Any], inManageObjectContext: AppDelegate.viewContext)
+            let dict = status as! [String: Any]
+            self.gameId = dict["game"] as! Int64!
+            
             self.window?.rootViewController = vc
         }
         else{
@@ -82,7 +89,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                         
+                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                            debugPrint(response)
+                            
+                            //to get JSON return value
+                            if let result = response.result.value {
+                                let JSON = result as! NSArray
+                                print("Response JSON: \(JSON)")
+                                
+                                for s in JSON as! [[String: AnyObject]]{
+                                    UserGameStatus.statusWithStatusInfo(s, inManageObjectContext: AppDelegate.viewContext)
+                                }
+                                
+                                print("Created statuses")
+                            }
+                        }
                         
+                        if self.user != nil && self.gameId != nil{
+                            Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/?killed=\(self.user!.id)&game=\(self.gameId!)&status=p").responseJSON{ response in
+                                debugPrint(response)
+                                
+                                if let result = response.result.value{
+                                    let JSON = result as! NSArray
+                                    print("Response JSON: \(JSON)")
+                                    
+                                    if JSON.count > 0 {
+                                        let postDict = JSON.firstObject!
+                                        let post = Post.postWithPostInfo(postDict as! [String : Any], inManageObjectContext: AppDelegate.viewContext)
+                                        let vc : VerifyKillViewController = mainStoryboard.instantiateViewController(withIdentifier: "verify_kill_vc") as! VerifyKillViewController
+                                        vc.post = post
+                                        self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -159,6 +199,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    static func saveViewContext () {
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
     
     static var persistentContainer: NSPersistentContainer {

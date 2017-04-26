@@ -31,7 +31,7 @@
         <!--Main Title View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainTitleViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main_title_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MainTitleViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -100,7 +100,7 @@
         <!--Login View Controller-->
         <scene sceneID="0b9-Wn-XD5">
             <objects>
-                <viewController id="MtE-t8-0J3" customClass="LoginViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MtE-t8-0J3" customClass="LoginViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="z7F-Nl-UpU"/>
                         <viewControllerLayoutGuide type="bottom" id="zL1-DP-a2b"/>
@@ -164,7 +164,7 @@
         <!--HW Assassin-->
         <scene sceneID="QiH-h1-Eob">
             <objects>
-                <viewController id="QrP-is-c1D" customClass="FeedViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="feed_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QrP-is-c1D" customClass="FeedViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8oJ-LB-mpy"/>
                         <viewControllerLayoutGuide type="bottom" id="9du-WU-RL1"/>
@@ -201,7 +201,7 @@
         <!--View Controller-->
         <scene sceneID="H7a-Yy-3ZZ">
             <objects>
-                <viewController id="alP-Yq-JeV" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="leader_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="alP-Yq-JeV" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DA2-ax-oah"/>
                         <viewControllerLayoutGuide type="bottom" id="9Pu-qt-kPZ"/>
@@ -232,7 +232,7 @@
         <!--View Controller-->
         <scene sceneID="LNA-Rq-4lQ">
             <objects>
-                <viewController id="1ha-wJ-isa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1ha-wJ-isa" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nyT-ms-ePE"/>
                         <viewControllerLayoutGuide type="bottom" id="GA7-dt-BAm"/>
@@ -262,7 +262,7 @@
         <!--Camera View Controller-->
         <scene sceneID="x0h-si-Ln2">
             <objects>
-                <viewController id="c7k-Ah-RQW" customClass="CameraViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="camera_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="c7k-Ah-RQW" customClass="CameraViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hKO-EA-bng"/>
                         <viewControllerLayoutGuide type="bottom" id="PvE-xk-PEu"/>
@@ -308,7 +308,7 @@
         <!--Verify Post View Controller-->
         <scene sceneID="w1r-fO-gYw">
             <objects>
-                <viewController storyboardIdentifier="bullshit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hs2-eQ-BCK" customClass="VerifyPostViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="verify_post_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hs2-eQ-BCK" customClass="VerifyPostViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8g8-F0-4a6"/>
                         <viewControllerLayoutGuide type="bottom" id="9zH-1z-d46"/>
@@ -387,10 +387,103 @@
             </objects>
             <point key="canvasLocation" x="3591.3043478260875" y="-109.23913043478262"/>
         </scene>
+        <!--Verify Kill View Controller-->
+        <scene sceneID="Ay7-w9-LLv">
+            <objects>
+                <viewController storyboardIdentifier="verify_kill_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="04X-wJ-dH3" customClass="VerifyKillViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qoU-Ft-xun"/>
+                        <viewControllerLayoutGuide type="bottom" id="fiF-mc-4bz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FNc-IV-NsH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DA8-xd-TSc">
+                                <rect key="frame" x="20" y="20" width="374" height="374"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DA8-xd-TSc" secondAttribute="height" multiplier="1:1" id="ghc-zX-ZDW"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02q-Z7-aut">
+                                <rect key="frame" x="0.0" y="638" width="414" height="45"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="02q-Z7-aut" secondAttribute="height" multiplier="46:5" id="cHO-yZ-2Bq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Verify Kill">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="postKillPressed:" destination="Hs2-eQ-BCK" eventType="touchUpInside" id="5Cu-62-Ntc"/>
+                                    <action selector="verifyKill:" destination="04X-wJ-dH3" eventType="touchUpInside" id="qdg-nf-S74"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Og-ld-2aY">
+                                <rect key="frame" x="0.0" y="691" width="414" height="45"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3Og-ld-2aY" secondAttribute="height" multiplier="46:5" id="W0r-S6-jeD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Contest Kill">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="contestKill:" destination="04X-wJ-dH3" eventType="touchUpInside" id="0tX-FT-0ir"/>
+                                    <action selector="postKillPressed:" destination="Hs2-eQ-BCK" eventType="touchUpInside" id="doJ-oy-OM0"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sFd-Tf-LNL">
+                                <rect key="frame" x="20" y="402" width="83" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sFd-Tf-LNL" secondAttribute="height" multiplier="1:1" id="wLX-ea-h09"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user This is the caption for the post" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xj8-DL-sFP">
+                                <rect key="frame" x="20" y="492" width="374" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Og-ld-2aY" firstAttribute="width" secondItem="FNc-IV-NsH" secondAttribute="width" id="5S2-Mj-tmp"/>
+                            <constraint firstItem="sFd-Tf-LNL" firstAttribute="top" secondItem="DA8-xd-TSc" secondAttribute="bottom" constant="8" id="CMA-Ic-WC9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DA8-xd-TSc" secondAttribute="trailing" id="MSD-ta-beP"/>
+                            <constraint firstItem="sFd-Tf-LNL" firstAttribute="width" secondItem="FNc-IV-NsH" secondAttribute="width" multiplier="0.2" id="OKn-CQ-gsv"/>
+                            <constraint firstItem="3Og-ld-2aY" firstAttribute="leading" secondItem="02q-Z7-aut" secondAttribute="leading" id="Pty-Hn-e2g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xj8-DL-sFP" secondAttribute="trailing" id="TZK-Fp-J8b"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="sFd-Tf-LNL" secondAttribute="leading" id="XdG-cV-AmI"/>
+                            <constraint firstAttribute="trailing" secondItem="3Og-ld-2aY" secondAttribute="trailing" id="cm4-Dw-81P"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="DA8-xd-TSc" secondAttribute="leading" id="ejw-95-wx5"/>
+                            <constraint firstItem="3Og-ld-2aY" firstAttribute="trailing" secondItem="02q-Z7-aut" secondAttribute="trailing" id="iwh-uP-PwG"/>
+                            <constraint firstItem="3Og-ld-2aY" firstAttribute="top" secondItem="02q-Z7-aut" secondAttribute="bottom" constant="8" symbolic="YES" id="nkh-0P-Yww"/>
+                            <constraint firstItem="fiF-mc-4bz" firstAttribute="top" secondItem="3Og-ld-2aY" secondAttribute="bottom" id="pFc-6S-hK0"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Xj8-DL-sFP" secondAttribute="leading" id="q6M-5c-8OE"/>
+                            <constraint firstItem="Xj8-DL-sFP" firstAttribute="top" secondItem="sFd-Tf-LNL" secondAttribute="bottom" constant="7.3333333333333144" id="uBn-nB-v5Q"/>
+                            <constraint firstItem="02q-Z7-aut" firstAttribute="width" secondItem="FNc-IV-NsH" secondAttribute="width" id="wmI-V9-E5u"/>
+                            <constraint firstItem="DA8-xd-TSc" firstAttribute="top" secondItem="qoU-Ft-xun" secondAttribute="bottom" id="yHR-K1-tbr"/>
+                            <constraint firstItem="3Og-ld-2aY" firstAttribute="leading" secondItem="FNc-IV-NsH" secondAttribute="leading" id="yYz-lm-cff"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="captionView" destination="Xj8-DL-sFP" id="5Pg-dR-a39"/>
+                        <outlet property="profileImageView" destination="sFd-Tf-LNL" id="ZkO-4q-OdP"/>
+                        <outlet property="videoView" destination="DA8-xd-TSc" id="w7M-OY-Dgn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dqh-bs-1N5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4363.768115942029" y="-105.97826086956522"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="Kbr-g2-9Sr">
             <objects>
-                <viewController id="kea-8I-s3C" customClass="ProfileViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="provile_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kea-8I-s3C" customClass="ProfileViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p9Y-J1-1go"/>
                         <viewControllerLayoutGuide type="bottom" id="pfk-Cf-1H0"/>
@@ -576,7 +669,7 @@
         <!--Sign Up-->
         <scene sceneID="MvA-Fo-LPt">
             <objects>
-                <viewController title="Sign Up" id="Oni-dK-hTc" customClass="SignUpViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sign_up_vc" title="Sign Up" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oni-dK-hTc" customClass="SignUpViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FCn-2w-e0R"/>
                         <viewControllerLayoutGuide type="bottom" id="h9Q-la-Okh"/>
@@ -695,7 +788,7 @@
         <!--Games-->
         <scene sceneID="FF7-di-R2e">
             <objects>
-                <viewController title="Games" id="tJP-go-mYW" customClass="GameSelectViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="game_select_vc" title="Games" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tJP-go-mYW" customClass="GameSelectViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oy4-Z6-7ai"/>
                         <viewControllerLayoutGuide type="bottom" id="fTL-oY-gmh"/>
@@ -781,7 +874,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ew3-9k-T5q">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PI9-4e-e6d" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="profile_nav_vc" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PI9-4e-e6d" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="clipart--person-icon--cliparts-15.png" id="q6U-HZ-LWU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nup-7J-jFK">
@@ -800,7 +893,7 @@
         <!--Navigation Controller-->
         <scene sceneID="FHI-NY-62E">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nc7-g5-fxE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="feed_nav_vc" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nc7-g5-fxE" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="home-512.png" id="VH3-Qh-WMi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O92-WN-Ctt">
@@ -819,8 +912,7 @@
         <!--Navigation Controller-->
         <scene sceneID="VFg-b4-p4n">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rbj-UK-gvP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="91W-VO-Yd3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="camera_nav_vc" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="91W-VO-Yd3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png" id="1lj-8I-VXH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ca1-Iv-XqR">
@@ -832,13 +924,14 @@
                         <segue destination="c7k-Ah-RQW" kind="relationship" relationship="rootViewController" id="FEa-UA-I2B"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rbj-UK-gvP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2180" y="-108"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QPf-Mj-fJh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fz6-gj-IAS" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="map_nav_vc" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fz6-gj-IAS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icon_12638.png" id="3jn-8o-lS0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WfQ-tn-UEz">
@@ -857,7 +950,7 @@
         <!--Navigation Controller-->
         <scene sceneID="XIO-xP-LIJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="V6X-Wl-h6S" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="leader_nav_vc" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="V6X-Wl-h6S" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="leaderboard-icon-16.png" id="P4l-0l-Stc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hBk-Df-bJE">
@@ -885,6 +978,6 @@
         <image name="leaderboard-icon-16.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nad-yL-1rF"/>
+        <segue reference="b6n-nt-jAf"/>
     </inferredMetricsTieBreakers>
 </document>

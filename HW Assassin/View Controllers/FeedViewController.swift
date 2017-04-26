@@ -56,10 +56,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         let request: NSFetchRequest<Post> = Post.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "timeConfirmed", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
+        request.includesPendingChanges = false
         fetchedResultsController = NSFetchedResultsController<Post>(fetchRequest: request, managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: "PostQueryCache")
         
         fetchedResultsController?.delegate = self
+        AppDelegate.saveViewContext()
         
         do{
             try fetchedResultsController?.performFetch()
@@ -119,8 +121,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             else{
                 cell.viewAllButton.setTitle("View Comment", for: .normal)
             }
-            
-            cell.timeLabel.text = timeAgoSinceDate(date: obj.timeConfirmed!, numericDates: false)
+            if let tc = obj.timeConfirmed{
+                cell.timeLabel.text = timeAgoSinceDate(date: tc, numericDates: false)
+            }
             
             Alamofire.request((obj.postThumbnailURL)!).responseData{ response in
                 debugPrint(response)

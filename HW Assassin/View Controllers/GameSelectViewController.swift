@@ -127,7 +127,8 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
             }
             
             //temporary
-            cell.numPlayersLabel.text = "50 players"
+            let count = obj.statuses?.count
+            cell.numPlayersLabel.text = "\(String(describing: count!)) players"
             
             Alamofire.request(obj.pictureURL!).responseData{ response in
                 debugPrint(response)
