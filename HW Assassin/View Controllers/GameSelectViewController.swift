@@ -248,6 +248,54 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                 
                 // add an action (button)
                 alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default){ action in
+                    
+                    let headers: HTTPHeaders = [
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    ]
+                    
+                    let userId = (UIApplication.shared.delegate as! AppDelegate).user!.id
+                    let gameId = obj.id
+                    
+                    Alamofire.request("http://hwassassin.hwtechcouncil.com/api/statuses/?user=\(userId)&game=\(gameId)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+                        debugPrint(response)
+                        if let status = response.response?.statusCode {
+                            switch(status){
+                            case 200..<299 :
+                                print("Successfully joined game")
+                                
+                                //to get JSON return value
+                                if let result = response.result.value {
+                                    let JSON = result as! NSArray
+                                    if(JSON.count > 0){
+                                        let dict = JSON[0]
+                                        print("Response JSON: \(JSON)")
+                                        UserDefaults.standard.set(dict, forKey:"status")                                        
+                                        self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
+                                    }
+                                }
+                                
+                            case 409:
+                                print("User already joined game")
+                                
+                                //to get JSON return value
+                                if let result = response.result.value {
+                                    let JSON = result as! NSDictionary
+                                    
+                                    print("Response JSON: \(JSON)")
+                                    UserDefaults.standard.set(JSON, forKey:"status")
+                                }
+                                
+                                
+                                self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
+                                
+                                
+                            default:
+                                print("Error with response status: \(status)")
+                            }
+                        }
+                    }
+                    
                     print("Selected yes")
                 })
                 

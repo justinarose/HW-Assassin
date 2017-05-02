@@ -63,6 +63,8 @@ class LoginViewController: UIViewController {
                                 let user = arr[0] as! NSDictionary
                                 
                                 defaults.set(user, forKey: "user")
+                                let delegate = UIApplication.shared.delegate as! AppDelegate
+                                delegate.user = User.userWithUserInfo(user as! [String : Any], inManageObjectContext: AppDelegate.viewContext)
                                 
                                 self.performSegue(withIdentifier: "goToGameSelection", sender: sender)
                             }
