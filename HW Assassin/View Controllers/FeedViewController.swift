@@ -101,13 +101,18 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if let obj = fetchedResultsController?.object(at: indexPath){
             print(obj)
+            cell.postUsernameTitleLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+            
             cell.postUsernameTitleLabel.text = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
             
             cell.usernameCaptionLabel.text = cell.postUsernameTitleLabel.text! + "  " + obj.caption!
             
+            
+            
             let likeCount = String(describing: obj.likes!.count)
             cell.likesLabel.text = likeCount + " " + "Likes"
-            
+             cell.likesLabel.font = UIFont.boldSystemFont(ofSize: 12.0)
+           
             let commentCount = obj.comments!.count
             
             //width of button might be weird
