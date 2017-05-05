@@ -60,6 +60,7 @@
 		DCC1CC8E1E6882AC0020884A /* HW_AssassinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC1CC8D1E6882AC0020884A /* HW_AssassinTests.swift */; };
 		DCC1CC991E6882AC0020884A /* HW_AssassinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC1CC981E6882AC0020884A /* HW_AssassinUITests.swift */; };
 		DCF903FA1EBCD339002855D3 /* 390579-200.png in Resources */ = {isa = PBXBuildFile; fileRef = DCF903F91EBCD339002855D3 /* 390579-200.png */; };
+		DCF903FC1EBCD519002855D3 /* arrow-xxl.png in Resources */ = {isa = PBXBuildFile; fileRef = DCF903FB1EBCD519002855D3 /* arrow-xxl.png */; };
 		FD2ED53B2B205932D766232E /* Pods_HW_Assassin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DFB1AD2EC218C939C1382B /* Pods_HW_Assassin.framework */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +138,7 @@
 		DCC1CC981E6882AC0020884A /* HW_AssassinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HW_AssassinUITests.swift; sourceTree = "<group>"; };
 		DCC1CC9A1E6882AC0020884A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCF903F91EBCD339002855D3 /* 390579-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "390579-200.png"; sourceTree = "<group>"; };
+		DCF903FB1EBCD519002855D3 /* arrow-xxl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-xxl.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 				DCC1CC761E6882AC0020884A /* Products */,
 				DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */,
 				082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */,
+				DCF903FB1EBCD519002855D3 /* arrow-xxl.png */,
 				DC8F79191E6883C60016B355 /* like.png */,
 				DCF903F91EBCD339002855D3 /* 390579-200.png */,
 				DC724C371E69E53B000C4506 /* Unknown-1.png */,
@@ -435,6 +438,7 @@
 				DC8F791F1E6883C60016B355 /* like.png in Resources */,
 				DCC1CC801E6882AC0020884A /* Assets.xcassets in Resources */,
 				DC724C341E69E44C000C4506 /* clipart--person-icon--cliparts-15.png in Resources */,
+				DCF903FC1EBCD519002855D3 /* arrow-xxl.png in Resources */,
 				DC724C2A1E69DFF1000C4506 /* icon_12638.png in Resources */,
 				DC8F79251E6883C60016B355 /* comment-bubble-outline_318-27591.jpg in Resources */,
 				DC8F79151E68839A0016B355 /* Main.storyboard in Resources */,
