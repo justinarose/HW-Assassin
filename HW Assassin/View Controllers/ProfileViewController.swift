@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.status = (userAccount?.statuses?.anyObject() as! UserGameStatus)
         
         let request: NSFetchRequest<Post> = Post.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "timeConfirmed", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         request.predicate = NSPredicate(format: "poster=%@", userAccount!)
         fetchedResultsController = NSFetchedResultsController<Post>(fetchRequest: request, managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: "UserPostQueryCache")
         

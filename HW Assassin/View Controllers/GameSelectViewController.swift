@@ -270,7 +270,7 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                                     if(JSON.count > 0){
                                         let dict = JSON[0]
                                         print("Response JSON: \(JSON)")
-                                        UserDefaults.standard.set(dict, forKey:"status")                                        
+                                        UserDefaults.standard.set(dict, forKey:"status")
                                         self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
                                     }
                                 }
