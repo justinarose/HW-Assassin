@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
@@ -19,6 +21,10 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var viewAllButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var placeholderImage: UIImageView!
+    var playerItem: AVPlayerItem?
+    var player: AVPlayer?
+    var playerLayer: AVPlayerLayer?
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
