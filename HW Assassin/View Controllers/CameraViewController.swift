@@ -380,6 +380,13 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         NextLevel.shared.focusExposeAndAdjustWhiteBalance(atAdjustedPoint: adjustedPoint)
     }
 
+    @IBAction func flipCameraPressed(_ sender: Any) {
+    }
+    
+    
+    @IBAction func finishedRecordingPressed(_ sender: Any) {
+    }
+    
     
     // MARK: - Navigation
 

@@ -297,6 +297,9 @@
                                     <constraint firstAttribute="height" constant="64" id="z5s-ZW-fSw"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="390579-200.png"/>
+                                <connections>
+                                    <action selector="flipCameraPressed:" destination="c7k-Ah-RQW" eventType="touchUpInside" id="ffP-7x-7lu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqI-Bm-lBW">
                                 <rect key="frame" x="340" y="621" width="54" height="46"/>
@@ -305,6 +308,9 @@
                                     <constraint firstAttribute="width" constant="54" id="ctf-au-9HB"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="arrow-xxl.png"/>
+                                <connections>
+                                    <action selector="finishedRecordingPressed:" destination="c7k-Ah-RQW" eventType="touchUpInside" id="VnL-gK-Crg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
