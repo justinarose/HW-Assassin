@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -280,21 +280,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrC-i5-A7N">
                                 <rect key="frame" x="0.0" y="20" width="414" height="667"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moS-Fy-EsM">
-                                        <rect key="frame" x="338" y="64" width="60" height="64"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="Zd3-HR-W29"/>
-                                            <constraint firstAttribute="height" constant="64" id="z5s-ZW-fSw"/>
-                                        </constraints>
-                                        <state key="normal" title="Button" image="390579-200.png"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqI-Bm-lBW">
-                                        <rect key="frame" x="344" y="613" width="54" height="46"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button" image="arrow-xxl.png"/>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Record-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="iM4-TA-HtT">
@@ -305,14 +290,34 @@
                                     <constraint firstAttribute="height" constant="90" id="v0x-s9-Dh3"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moS-Fy-EsM">
+                                <rect key="frame" x="334" y="84" width="60" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Zd3-HR-W29"/>
+                                    <constraint firstAttribute="height" constant="64" id="z5s-ZW-fSw"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="390579-200.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqI-Bm-lBW">
+                                <rect key="frame" x="340" y="621" width="54" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="4td-MS-Sbx"/>
+                                    <constraint firstAttribute="width" constant="54" id="ctf-au-9HB"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="arrow-xxl.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RrC-i5-A7N" firstAttribute="centerX" secondItem="iM4-TA-HtT" secondAttribute="centerX" id="6s2-94-fPp"/>
+                            <constraint firstItem="PvE-xk-PEu" firstAttribute="top" secondItem="UqI-Bm-lBW" secondAttribute="bottom" constant="20" id="8gL-iN-dos"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="moS-Fy-EsM" secondAttribute="trailing" id="8jw-3p-RWg"/>
                             <constraint firstItem="PvE-xk-PEu" firstAttribute="top" secondItem="iM4-TA-HtT" secondAttribute="bottom" constant="8" symbolic="YES" id="BDG-KI-XFk"/>
                             <constraint firstItem="RrC-i5-A7N" firstAttribute="top" secondItem="Ql0-d2-fnB" secondAttribute="top" id="CSD-13-JBL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UqI-Bm-lBW" secondAttribute="trailing" id="EeD-Sp-7TH"/>
                             <constraint firstItem="iM4-TA-HtT" firstAttribute="centerX" secondItem="Ql0-d2-fnB" secondAttribute="centerX" id="Vg2-OU-wUe"/>
                             <constraint firstItem="RrC-i5-A7N" firstAttribute="top" secondItem="Ql0-d2-fnB" secondAttribute="top" constant="20" id="c5w-lw-Wru"/>
+                            <constraint firstItem="moS-Fy-EsM" firstAttribute="top" secondItem="hKO-EA-bng" secondAttribute="bottom" constant="20" id="enp-9o-MJ2"/>
                             <constraint firstItem="RrC-i5-A7N" firstAttribute="bottom" secondItem="PvE-xk-PEu" secondAttribute="top" id="gKB-tr-LsU"/>
                             <constraint firstAttribute="trailing" secondItem="RrC-i5-A7N" secondAttribute="trailing" id="hbg-nh-8lx"/>
                             <constraint firstAttribute="trailing" secondItem="RrC-i5-A7N" secondAttribute="trailing" id="iXJ-5l-oc1"/>
