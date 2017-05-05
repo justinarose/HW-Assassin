@@ -59,6 +59,7 @@
 		DCC1CC831E6882AC0020884A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC1CC811E6882AC0020884A /* LaunchScreen.storyboard */; };
 		DCC1CC8E1E6882AC0020884A /* HW_AssassinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC1CC8D1E6882AC0020884A /* HW_AssassinTests.swift */; };
 		DCC1CC991E6882AC0020884A /* HW_AssassinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC1CC981E6882AC0020884A /* HW_AssassinUITests.swift */; };
+		DCF903FA1EBCD339002855D3 /* 390579-200.png in Resources */ = {isa = PBXBuildFile; fileRef = DCF903F91EBCD339002855D3 /* 390579-200.png */; };
 		FD2ED53B2B205932D766232E /* Pods_HW_Assassin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DFB1AD2EC218C939C1382B /* Pods_HW_Assassin.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,7 @@
 		DCC1CC941E6882AC0020884A /* HW AssassinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HW AssassinUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC1CC981E6882AC0020884A /* HW_AssassinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HW_AssassinUITests.swift; sourceTree = "<group>"; };
 		DCC1CC9A1E6882AC0020884A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCF903F91EBCD339002855D3 /* 390579-200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "390579-200.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 				DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */,
 				082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */,
 				DC8F79191E6883C60016B355 /* like.png */,
+				DCF903F91EBCD339002855D3 /* 390579-200.png */,
 				DC724C371E69E53B000C4506 /* Unknown-1.png */,
 				DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */,
 				DC724C291E69DFF1000C4506 /* icon_12638.png */,
@@ -424,6 +427,7 @@
 				DC724C361E69E4AE000C4506 /* leaderboard-icon-16.png in Resources */,
 				DCC1CC831E6882AC0020884A /* LaunchScreen.storyboard in Resources */,
 				DC724C381E69E53B000C4506 /* Unknown-1.png in Resources */,
+				DCF903FA1EBCD339002855D3 /* 390579-200.png in Resources */,
 				DC724C3C1E69EAF4000C4506 /* Camera Frame.jpg in Resources */,
 				DC724C3A1E69E79C000C4506 /* Record-icon.png in Resources */,
 				DC724C261E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png in Resources */,

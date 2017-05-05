@@ -280,7 +280,21 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrC-i5-A7N">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moS-Fy-EsM">
+                                        <rect key="frame" x="334" y="84" width="60" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="Zd3-HR-W29"/>
+                                            <constraint firstAttribute="height" constant="64" id="z5s-ZW-fSw"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="390579-200.png"/>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="moS-Fy-EsM" secondAttribute="trailing" constant="12" id="0n2-dE-fJa"/>
+                                    <constraint firstItem="moS-Fy-EsM" firstAttribute="top" secondItem="RrC-i5-A7N" secondAttribute="top" constant="84" id="nbl-4R-T16"/>
+                                </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Record-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="iM4-TA-HtT">
                                 <rect key="frame" x="162" y="589" width="90" height="90"/>
@@ -310,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8y-ki-wfG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2904" y="-108"/>
+            <point key="canvasLocation" x="2902.898550724638" y="-108.42391304347827"/>
         </scene>
         <!--Verify Post View Controller-->
         <scene sceneID="w1r-fO-gYw">
@@ -1012,6 +1026,7 @@
     </scenes>
     <resources>
         <image name="342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png" width="35" height="35"/>
+        <image name="390579-200.png" width="200" height="200"/>
         <image name="Record-icon.png" width="512" height="512"/>
         <image name="The_Perfect_Assassin_by_Cascador.jpg" width="600" height="781"/>
         <image name="Unknown-1.png" width="225" height="225"/>
