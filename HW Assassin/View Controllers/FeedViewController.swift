@@ -125,19 +125,32 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.timeLabel.text = timeAgoSinceDate(date: tc, numericDates: false)
             }
             
-            Alamofire.request((obj.postThumbnailURL)!).responseData{ response in
-                debugPrint(response)
-                
-                if let data = response.result.value, let image = UIImage(data: data) {
-                    cell.placeholderImage.image = image
+            if let data = AppDelegate.cache.object(forKey: (obj.postThumbnailURL)! as NSString){
+                let image = UIImage(data: data as Data)
+                cell.placeholderImage.image = image
+            }
+            else{
+                Alamofire.request((obj.postThumbnailURL)!).responseData{ response in
+                    debugPrint(response)
+                    
+                    if let data = response.result.value, let image = UIImage(data: data) {
+                        AppDelegate.cache.setObject(data as NSData, forKey: (obj.postThumbnailURL)! as NSString)
+                        cell.placeholderImage.image = image
+                    }
                 }
             }
-            
-            Alamofire.request((obj.poster?.profilePictureURL)!).responseData{ response in
-                debugPrint(response)
-                
-                if let data = response.result.value, let image = UIImage(data: data) {
-                    cell.profileImageView.image = image
+            if let data = AppDelegate.cache.object(forKey: (obj.poster?.profilePictureURL)! as NSString){
+                let image = UIImage(data: data as Data)
+                cell.profileImageView.image = image
+            }
+            else{
+                Alamofire.request((obj.poster?.profilePictureURL)!).responseData{ response in
+                    debugPrint(response)
+                    
+                    if let data = response.result.value, let image = UIImage(data: data) {
+                        AppDelegate.cache.setObject(data as NSData, forKey: (obj.poster?.profilePictureURL)! as NSString)
+                        cell.profileImageView.image = image
+                    }
                 }
             }
         }

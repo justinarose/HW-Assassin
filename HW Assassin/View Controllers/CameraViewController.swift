@@ -326,6 +326,9 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     }
     
     func endCapture(){
+        
+        NextLevel.shared.flipCaptureDevicePosition()
+        
         if let session = NextLevel.shared.session {
             
             if session.clips.count > 1 {
