@@ -162,6 +162,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             DispatchQueue.global().async {
                 cell.playerItem = AVPlayerItem(url: URL(string: obj.postVideoURL!)!)
                 DispatchQueue.main.async {
+                    
+                    if let l = cell.playerLayer{
+                        l.removeFromSuperlayer()
+                    }
+                    
                     cell.player = AVPlayer(playerItem: cell.playerItem)
                     cell.playerLayer = AVPlayerLayer(player: cell.player)
                     cell.playerLayer?.videoGravity = AVLayerVideoGravityResize
