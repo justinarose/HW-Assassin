@@ -137,19 +137,34 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 postCell.timeLabel.text = timeAgoSinceDate(date: obj.timeConfirmed!, numericDates: false)
                 
-                Alamofire.request((obj.postThumbnailURL)!).responseData{ response in
-                    debugPrint(response)
-                    
-                    if let data = response.result.value, let image = UIImage(data: data) {
-                        postCell.placeholderImage.image = image
+                if let data = AppDelegate.cache.object(forKey: (obj.postThumbnailURL)! as NSString){
+                    print("Using Cache")
+                    let image = UIImage(data: data as Data)
+                    postCell.placeholderImage.image = image
+                }
+                else{
+                    Alamofire.request((obj.postThumbnailURL)!).responseData{ response in
+                        debugPrint(response)
+                        
+                        if let data = response.result.value, let image = UIImage(data: data) {
+                            AppDelegate.cache.setObject(data as NSData, forKey: (obj.postThumbnailURL)! as NSString)
+                            postCell.placeholderImage.image = image
+                        }
                     }
                 }
-                
-                Alamofire.request((obj.poster?.profilePictureURL)!).responseData{ response in
-                    debugPrint(response)
-                    
-                    if let data = response.result.value, let image = UIImage(data: data) {
-                        postCell.profileImageView.image = image
+                if let data = AppDelegate.cache.object(forKey: (obj.poster?.profilePictureURL)! as NSString){
+                    print("Using Cache")
+                    let image = UIImage(data: data as Data)
+                    postCell.profileImageView.image = image
+                }
+                else{
+                    Alamofire.request((obj.poster?.profilePictureURL)!).responseData{ response in
+                        debugPrint(response)
+                        
+                        if let data = response.result.value, let image = UIImage(data: data) {
+                            AppDelegate.cache.setObject(data as NSData, forKey: (obj.poster?.profilePictureURL)! as NSString)
+                            postCell.profileImageView.image = image
+                        }
                     }
                 }
             }

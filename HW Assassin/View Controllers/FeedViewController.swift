@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import Alamofire
+import AVFoundation
+import AVKit
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -100,9 +102,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "post_cell", for: indexPath) as! PostTableViewCell
         
         if let obj = fetchedResultsController?.object(at: indexPath){
-            print(obj)
-            cell.postUsernameTitleLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
-            
             cell.postUsernameTitleLabel.text = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
             
             cell.usernameCaptionLabel.text = cell.postUsernameTitleLabel.text! + "  " + obj.caption!
@@ -111,7 +110,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             let likeCount = String(describing: obj.likes!.count)
             cell.likesLabel.text = likeCount + " " + "Likes"
-             cell.likesLabel.font = UIFont.boldSystemFont(ofSize: 12.0)
            
             let commentCount = obj.comments!.count
             
@@ -131,6 +129,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             
             if let data = AppDelegate.cache.object(forKey: (obj.postThumbnailURL)! as NSString){
+                print("Using Cache")
                 let image = UIImage(data: data as Data)
                 cell.placeholderImage.image = image
             }
@@ -145,6 +144,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             if let data = AppDelegate.cache.object(forKey: (obj.poster?.profilePictureURL)! as NSString){
+                print("Using Cache")
                 let image = UIImage(data: data as Data)
                 cell.profileImageView.image = image
             }
@@ -158,6 +158,25 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
             }
+            
+            DispatchQueue.global().async {
+                cell.playerItem = AVPlayerItem(url: URL(string: obj.postVideoURL!)!)
+                DispatchQueue.main.async {
+                    cell.player = AVPlayer(playerItem: cell.playerItem)
+                    cell.playerLayer = AVPlayerLayer(player: cell.player)
+                    cell.playerLayer?.videoGravity = AVLayerVideoGravityResize
+                    cell.playerLayer?.frame = cell.videoView.bounds
+                    
+                    
+                    cell.bringSubview(toFront: cell.videoView)
+                    cell.placeholderImage.isHidden = true
+                    cell.videoView.layer.addSublayer(cell.playerLayer!)
+                    cell.player?.play()
+                    
+                }
+            }
+            
+            
         }
         
         return cell
