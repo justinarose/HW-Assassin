@@ -31,7 +31,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //to get JSON return value
             if let result = response.result.value {
                 let JSON = result as! NSArray
-                print("Response JSON: \(JSON)")
                 
                 for u in JSON as! [[String: AnyObject]]{
                     User.userWithUserInfo(u, inManageObjectContext: AppDelegate.viewContext)
@@ -45,13 +44,25 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //to get JSON return value
                     if let result = response.result.value {
                         let JSON = result as! NSArray
-                        print("Response JSON: \(JSON)")
                         
                         for p in JSON as! [[String: AnyObject]]{
                             Post.postWithPostInfo(p, inManageObjectContext: AppDelegate.viewContext)
                         }
                         
                         print("Created posts")
+                        
+                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/likes/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                            debugPrint(response)
+                            if let result = response.result.value {
+                                let JSON = result as! NSArray
+                                
+                                for l in JSON as! [[String: AnyObject]]{
+                                    Like.likeWithLikeInfo(l, inManageObjectContext: AppDelegate.viewContext)
+                                }
+                                
+                                print("Created posts")
+                            }
+                        }
                     }
                 }
             }
@@ -85,6 +96,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        for c in tableView.visibleCells{
+            if let pc = c as? PostTableViewCell{
+                pc.player?.pause()
+            }
+        }
+        
+        super.viewWillDisappear(animated)
+    }
+    
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -102,14 +123,20 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "post_cell", for: indexPath) as! PostTableViewCell
         
         if let obj = fetchedResultsController?.object(at: indexPath){
+            cell.post = obj
             cell.postUsernameTitleLabel.text = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
-            
             cell.usernameCaptionLabel.text = cell.postUsernameTitleLabel.text! + "  " + obj.caption!
             
-            
+            //NOTE location label is actually to display who was killed; should change, but not enough time
+            cell.locationLabel.text = "Killed " + (obj.killed?.firstName)! + " " + (obj.killed?.lastName)!
             
             let likeCount = String(describing: obj.likes!.count)
-            cell.likesLabel.text = likeCount + " " + "Likes"
+            if obj.likes!.count != 1 {
+                cell.likesLabel.text = likeCount + " " + "Likes"
+            }
+            else{
+                cell.likesLabel.text = "1 Like"
+            }
            
             let commentCount = obj.comments!.count
             
@@ -176,7 +203,18 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     cell.bringSubview(toFront: cell.videoView)
                     cell.placeholderImage.isHidden = true
                     cell.videoView.layer.addSublayer(cell.playerLayer!)
-                    cell.player?.play()
+                    
+                    //causes to crash for some reason; initial video will only play when scroll
+                    /*if(self.cellIsVisible(cell)){
+                        cell.player?.play()
+                    }*/
+                    
+                    NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: cell.player?.currentItem, queue: nil, using: { (_) in
+                        DispatchQueue.main.async {
+                            cell.player?.seek(to: kCMTimeZero)
+                            cell.player?.play()
+                        }
+                    })
                     
                 }
             }
@@ -188,9 +226,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK: - NSFetchedResultsControllerDelegate
-    
+    /*
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
+        print("Table view doing updates")
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
@@ -202,6 +241,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        print("Updating cells")
         switch type{
         case .insert:
             tableView.insertRows(at: [newIndexPath!], with: .fade)
@@ -217,12 +257,41 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
-    }
+    }*/
     
     // MARK: - UITableViewDelegate
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        for c in self.tableView.visibleCells{
+            let pc = c as! PostTableViewCell
+            let visible = self.cellIsVisible(pc)
+            
+            if(visible){
+                pc.player?.play()
+            }
+            else{
+                pc.player?.pause()
+            }
+            
+        }
+    }
     
-    
+    func cellIsVisible(_ cell: UITableViewCell) -> Bool {
+        let indexPath = self.tableView.indexPath(for: cell)
+        let cellRect = self.tableView.rectForRow(at: indexPath!)
+        let superView = self.tableView.superview!
+        
+        let convertedRect = self.tableView.convert(cellRect, to: superView)
+        let intersect = convertedRect.intersection(self.tableView.frame)
+        let height = intersect.height
+        
+        if(height > 0.6 * cell.frame.height){
+            return true
+        }
+        else{
+            return false
+        }
+    }
     
     
     // MARK: - Helper functions

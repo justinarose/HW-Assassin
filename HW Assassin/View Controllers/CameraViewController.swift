@@ -235,6 +235,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     
     func nextLevel(_ nextLevel: NextLevel, didCompleteClip clip: NextLevelClip, inSession session: NextLevelSession){
         print("Completed clip")
+        print("Clip count: \(nextLevel.session!.clips.count) ")
         if self.timeLeft! <= 0{
             self.endCapture()
         }
@@ -326,12 +327,10 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     }
     
     func endCapture(){
-        
-        NextLevel.shared.flipCaptureDevicePosition()
-        
         if let session = NextLevel.shared.session {
             
             if session.clips.count > 1 {
+                print("Multiple clips")
                 NextLevel.shared.session?.mergeClips(usingPreset: AVAssetExportPresetLowQuality, completionHandler: { (url: URL?, error: Error?) in
                     if let videoUrl = url {
                         var fileSize : UInt64 = 0
@@ -358,6 +357,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
                     }
                 })
             } else {
+                print("One clip")
                 if let videoUrl = NextLevel.shared.session?.lastClipUrl {
                     self.url = videoUrl
                     self.performSegue(withIdentifier: "viewVideo", sender: nil)
@@ -381,10 +381,14 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     }
 
     @IBAction func flipCameraPressed(_ sender: Any) {
+        NextLevel.shared.pause()
+        NextLevel.shared.flipCaptureDevicePosition()
+        
     }
     
     
     @IBAction func finishedRecordingPressed(_ sender: Any) {
+        self.endCapture()
     }
     
     

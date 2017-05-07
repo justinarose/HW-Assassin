@@ -93,6 +93,8 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                     let JSON = result as! NSDictionary
                                     
                                     UserDefaults.standard.set(JSON, forKey: "user")
+                                    let delegate = UIApplication.shared.delegate as! AppDelegate
+                                    delegate.user = User.userWithUserInfo(JSON as! [String : Any], inManageObjectContext: AppDelegate.viewContext)
                                     
                                     print("Response JSON: \(JSON)")
                                     
