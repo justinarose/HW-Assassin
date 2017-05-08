@@ -27,6 +27,7 @@ class PostTableViewCell: UITableViewCell {
     var player: AVPlayer?
     var playerLayer: AVPlayerLayer?
     var post: Post?
+    var vc: UIViewController?
     
 
     override func awakeFromNib() {
@@ -36,6 +37,7 @@ class PostTableViewCell: UITableViewCell {
     
     @IBAction func viewComments(_ sender: Any) {
         print("View comments selected")
+        self.vc?.performSegue(withIdentifier: "displayComments", sender: post)
     }
     @IBAction func like(_ sender: Any) {
         print("Like selected")

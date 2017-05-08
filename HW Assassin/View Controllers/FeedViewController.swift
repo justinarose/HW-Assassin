@@ -71,7 +71,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let request: NSFetchRequest<Post> = Post.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
         request.includesPendingChanges = false
-        fetchedResultsController = NSFetchedResultsController<Post>(fetchRequest: request, managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: "PostQueryCache")
+        fetchedResultsController = NSFetchedResultsController<Post>(fetchRequest: request, managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
         fetchedResultsController?.delegate = self
         AppDelegate.saveViewContext()
@@ -123,7 +123,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "post_cell", for: indexPath) as! PostTableViewCell
         
         if let obj = fetchedResultsController?.object(at: indexPath){
+            cell.vc = self
             cell.post = obj
+            
             cell.postUsernameTitleLabel.text = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
             cell.usernameCaptionLabel.text = cell.postUsernameTitleLabel.text! + "  " + obj.caption!
             

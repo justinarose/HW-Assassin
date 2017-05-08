@@ -10,6 +10,7 @@
 		082BFA3D1EAAF9820065A656 /* circle-outline-512.gif in Resources */ = {isa = PBXBuildFile; fileRef = 082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */; };
 		085FC3811E89FA72000931E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3801E89FA71000931E7 /* LoginViewController.swift */; };
 		085FC3831E8A1224000931E7 /* GameSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3821E8A1224000931E7 /* GameSelectViewController.swift */; };
+		086BEAFE1EBFFD8F0077AFC6 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086BEAFD1EBFFD8F0077AFC6 /* CommentViewController.swift */; };
 		0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0870FA481E89BB2A00E6F29C /* HWAssassin.xcdatamodeld */; };
 		087158461EA7D49200673D4B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087158451EA7D49200673D4B /* CameraViewController.swift */; };
 		08AFBE0B1EB065F200C5B645 /* VerifyKillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AFBE0A1EB065F200C5B645 /* VerifyKillViewController.swift */; };
@@ -85,6 +86,7 @@
 		082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "circle-outline-512.gif"; sourceTree = "<group>"; };
 		085FC3801E89FA71000931E7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "View Controllers/LoginViewController.swift"; sourceTree = "<group>"; };
 		085FC3821E8A1224000931E7 /* GameSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSelectViewController.swift; path = "View Controllers/GameSelectViewController.swift"; sourceTree = "<group>"; };
+		086BEAFD1EBFFD8F0077AFC6 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentViewController.swift; path = "View Controllers/CommentViewController.swift"; sourceTree = "<group>"; };
 		0870FA491E89BB2A00E6F29C /* HWAssassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HWAssassin.xcdatamodel; sourceTree = "<group>"; };
 		087158451EA7D49200673D4B /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = "View Controllers/CameraViewController.swift"; sourceTree = "<group>"; };
 		08AFBE0A1EB065F200C5B645 /* VerifyKillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyKillViewController.swift; path = "View Controllers/VerifyKillViewController.swift"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				087158451EA7D49200673D4B /* CameraViewController.swift */,
 				08F1692D1EADB29A007EB73A /* VerifyPostViewController.swift */,
 				08AFBE0A1EB065F200C5B645 /* VerifyKillViewController.swift */,
+				086BEAFD1EBFFD8F0077AFC6 /* CommentViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */,
 				08C79C9B1EA45E6300BD3F07 /* FeedViewController.swift in Sources */,
 				08C69FFC1E92B5C000A559B2 /* Like.swift in Sources */,
+				086BEAFE1EBFFD8F0077AFC6 /* CommentViewController.swift in Sources */,
 				08C69FFA1E92B5AF00A559B2 /* Game.swift in Sources */,
 				085FC3831E8A1224000931E7 /* GameSelectViewController.swift in Sources */,
 				DCC1CC791E6882AC0020884A /* AppDelegate.swift in Sources */,
