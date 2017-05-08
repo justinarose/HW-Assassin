@@ -60,7 +60,22 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                     Like.likeWithLikeInfo(l, inManageObjectContext: AppDelegate.viewContext)
                                 }
                                 
-                                print("Created posts")
+                                print("Created likes")
+                            }
+                        }
+                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/comments/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                            debugPrint(response)
+                            
+                            //to get JSON return value
+                            if let result = response.result.value {
+                                let JSON = result as! NSArray
+                                print("Response JSON: \(JSON)")
+                                
+                                for c in JSON as! [[String: AnyObject]]{
+                                    Comment.commentWithCommentInfo(c, inManageObjectContext: AppDelegate.viewContext)
+                                }
+                                
+                                print("Created comments")
                             }
                         }
                     }
@@ -100,6 +115,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         for c in tableView.visibleCells{
             if let pc = c as? PostTableViewCell{
                 pc.player?.pause()
+                print("View will disappear pausing")
             }
         }
         
@@ -153,6 +169,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             else{
                 cell.viewAllButton.setTitle("View Comment", for: .normal)
             }
+            
             if let tc = obj.timeConfirmed{
                 cell.timeLabel.text = timeAgoSinceDate(date: tc, numericDates: false)
             }
@@ -267,8 +284,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         for c in self.tableView.visibleCells{
             let pc = c as! PostTableViewCell
             let visible = self.cellIsVisible(pc)
+            let vcVisible = self.navigationController?.visibleViewController == self
             
-            if(visible){
+            if(visible && vcVisible){
                 pc.player?.play()
             }
             else{
@@ -360,14 +378,23 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        for c in tableView.visibleCells{
+            if let pc = c as? PostTableViewCell{
+                pc.player?.pause()
+                print("Pausing")
+            }
+        }
+        
+        let vc = segue.destination as! CommentViewController
+        vc.post = sender as? Post
     }
-    */
+    
 
 }
