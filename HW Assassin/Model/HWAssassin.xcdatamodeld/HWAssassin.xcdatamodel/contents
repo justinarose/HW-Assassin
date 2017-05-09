@@ -53,6 +53,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profilePictureURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="badges" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Badge" inverseName="user" inverseEntity="Badge" syncable="YES"/>
@@ -78,7 +79,7 @@
         <element name="Game" positionX="-54" positionY="-103" width="128" height="150"/>
         <element name="Like" positionX="151" positionY="228" width="128" height="90"/>
         <element name="Post" positionX="-2" positionY="-405" width="128" height="225"/>
-        <element name="User" positionX="223" positionY="-72" width="128" height="270"/>
+        <element name="User" positionX="223" positionY="-72" width="128" height="285"/>
         <element name="UserGameStatus" positionX="-153" positionY="99" width="128" height="120"/>
     </elements>
 </model>

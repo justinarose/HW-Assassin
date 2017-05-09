@@ -42,8 +42,6 @@ class UserGameStatus: NSManagedObject {
                 status.target = target
             }
             
-            print("\(status)")
-            
             return status
         }
     }

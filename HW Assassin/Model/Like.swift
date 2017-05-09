@@ -35,8 +35,6 @@ class Like: NSManagedObject {
                 like.post = post
             }
             
-            print("\(like)")
-            
             return like
         }
     }

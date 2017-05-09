@@ -15,6 +15,7 @@ import AVKit
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     var fetchedResultsController: NSFetchedResultsController<Post>?
+    var heightAtIndexPath = NSMutableDictionary()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,11 +51,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         }
                         
                         print("Created posts")
-                        
-                        if self.tableView.visibleCells.count == 0{
-                            print("Reloading table cells")
-                            self.tableView.reloadData()
-                        }
                         
                         Alamofire.request("http://hwassassin.hwtechcouncil.com/api/likes/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                             debugPrint(response)
@@ -106,7 +102,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.register(UINib(nibName:"PostTableViewCell", bundle:nil), forCellReuseIdentifier: "post_cell")
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 660.0
         tableView.allowsSelection = false
         tableView.reloadData()
     }
@@ -180,7 +175,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             
             if let data = AppDelegate.cache.object(forKey: (obj.postThumbnailURL)! as NSString){
-                print("Using Cache")
+                //print("Using Cache")
                 let image = UIImage(data: data as Data)
                 cell.placeholderImage.image = image
             }
@@ -195,7 +190,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             if let data = AppDelegate.cache.object(forKey: (obj.poster?.profilePictureURL)! as NSString){
-                print("Using Cache")
+                //print("Using Cache")
                 let image = UIImage(data: data as Data)
                 cell.profileImageView.image = image
             }
@@ -278,8 +273,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             tableView.deleteRows(at: [indexPath!], with: .fade)
         case .update:
             print("Update cell")
-            tableView.reloadRows(at: [indexPath!], with: .fade)
-            break
+            //tableView.reloadRows(at: [indexPath!], with: .fade)
         case .move:
             print("Move cell")
             tableView.deleteRows(at: [indexPath!], with: .fade)
@@ -293,6 +287,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK: - UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let height = heightAtIndexPath.object(forKey: indexPath) as? NSNumber {
+            return CGFloat(height.floatValue)
+        } else {
+            return 750.0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let height = NSNumber(value: Float(cell.frame.size.height))
+        heightAtIndexPath.setObject(height, forKey: indexPath as NSCopying)
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         for c in self.tableView.visibleCells{
