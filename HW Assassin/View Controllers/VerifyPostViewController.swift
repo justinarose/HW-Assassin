@@ -9,19 +9,38 @@
 import UIKit
 import AVFoundation
 import Alamofire
+import CoreLocation
 
-class VerifyPostViewController: UIViewController {
+class VerifyPostViewController: UIViewController, CLLocationManagerDelegate {
     
     var url : URL?
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var captionTextField: UITextView!
     var player : AVPlayer?
-    
+    let manager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        manager.delegate = self
+        
         if let videoUrl = self.url{
+            if CLLocationManager.locationServicesEnabled() {
+                switch(CLLocationManager.authorizationStatus()) {
+                case .notDetermined:
+                    print("Not determined")
+                    manager.requestWhenInUseAuthorization()
+                case .restricted, .denied:
+                    print("No access")
+                case .authorizedAlways, .authorizedWhenInUse:
+                    print("Access")
+                    manager.requestLocation()
+                }
+            } else {
+                print("Location services are not enabled")
+                manager.requestWhenInUseAuthorization()
+            }
+            
             captionTextField.layer.borderColor = UIColor.lightGray.cgColor
             captionTextField.layer.borderWidth = 1.0
             self.player = AVPlayer(url: videoUrl)
@@ -134,6 +153,29 @@ class VerifyPostViewController: UIViewController {
     
     @IBAction func cancelPressed(_ sender: Any) {
         self.navigationController!.popViewController(animated: true)
+    }
+    
+    // MARK: - CLLocationManagerDelegate
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("Found user's location: \(location)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch(CLLocationManager.authorizationStatus()) {
+        case .notDetermined, .restricted, .denied:
+            print("No access")
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("Access")
+            manager.requestLocation()
+        }
+        
     }
 
     /*

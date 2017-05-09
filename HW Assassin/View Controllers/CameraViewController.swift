@@ -379,12 +379,6 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         let adjustedPoint = previewLayer.captureDevicePointOfInterest(for: tapPoint)
         NextLevel.shared.focusExposeAndAdjustWhiteBalance(atAdjustedPoint: adjustedPoint)
     }
-
-    @IBAction func flipCameraPressed(_ sender: Any) {
-        NextLevel.shared.pause()
-        NextLevel.shared.flipCaptureDevicePosition()
-        
-    }
     
     
     @IBAction func finishedRecordingPressed(_ sender: Any) {

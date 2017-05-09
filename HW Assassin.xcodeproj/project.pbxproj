@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		082BFA3D1EAAF9820065A656 /* circle-outline-512.gif in Resources */ = {isa = PBXBuildFile; fileRef = 082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */; };
+		0857AA481EC18009003DBDDD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857AA471EC18009003DBDDD /* MapViewController.swift */; };
 		085FC3811E89FA72000931E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3801E89FA71000931E7 /* LoginViewController.swift */; };
 		085FC3831E8A1224000931E7 /* GameSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3821E8A1224000931E7 /* GameSelectViewController.swift */; };
 		086BEAFE1EBFFD8F0077AFC6 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086BEAFD1EBFFD8F0077AFC6 /* CommentViewController.swift */; };
@@ -84,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "circle-outline-512.gif"; sourceTree = "<group>"; };
+		0857AA471EC18009003DBDDD /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = "View Controllers/MapViewController.swift"; sourceTree = "<group>"; };
 		085FC3801E89FA71000931E7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "View Controllers/LoginViewController.swift"; sourceTree = "<group>"; };
 		085FC3821E8A1224000931E7 /* GameSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSelectViewController.swift; path = "View Controllers/GameSelectViewController.swift"; sourceTree = "<group>"; };
 		086BEAFD1EBFFD8F0077AFC6 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentViewController.swift; path = "View Controllers/CommentViewController.swift"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				08F1692D1EADB29A007EB73A /* VerifyPostViewController.swift */,
 				08AFBE0A1EB065F200C5B645 /* VerifyKillViewController.swift */,
 				086BEAFD1EBFFD8F0077AFC6 /* CommentViewController.swift */,
+				0857AA471EC18009003DBDDD /* MapViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				08C79C8D1EA420FE00BD3F07 /* ProfileViewController.swift in Sources */,
 				08AFBE0B1EB065F200C5B645 /* VerifyKillViewController.swift in Sources */,
 				08C6A0001E92B5E400A559B2 /* User.swift in Sources */,
+				0857AA481EC18009003DBDDD /* MapViewController.swift in Sources */,
 				0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */,
 				08C79C9B1EA45E6300BD3F07 /* FeedViewController.swift in Sources */,
 				08C69FFC1E92B5C000A559B2 /* Like.swift in Sources */,

@@ -102,6 +102,7 @@ class PostTableViewCell: UITableViewCell {
     
     @IBAction func comment(_ sender: Any) {
         print("Comment selected")
+        self.vc?.performSegue(withIdentifier: "displayComments", sender: post)
     }
     
 

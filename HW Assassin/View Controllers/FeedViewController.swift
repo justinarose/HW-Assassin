@@ -51,6 +51,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                         print("Created posts")
                         
+                        if self.tableView.visibleCells.count == 0{
+                            print("Reloading table cells")
+                            self.tableView.reloadData()
+                        }
+                        
                         Alamofire.request("http://hwassassin.hwtechcouncil.com/api/likes/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                             debugPrint(response)
                             if let result = response.result.value {
@@ -180,7 +185,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.placeholderImage.image = image
             }
             else{
-                Alamofire.request((obj.postThumbnailURL)!).responseData{ response in
+                Alamofire.request((obj.postThumbnailURL)!).responseData{[unowned cell] response in
                     debugPrint(response)
                     
                     if let data = response.result.value, let image = UIImage(data: data) {
@@ -195,7 +200,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.profileImageView.image = image
             }
             else{
-                Alamofire.request((obj.poster?.profilePictureURL)!).responseData{ response in
+                Alamofire.request((obj.poster?.profilePictureURL)!).responseData{[unowned cell] response in
                     debugPrint(response)
                     
                     if let data = response.result.value, let image = UIImage(data: data) {
@@ -205,12 +210,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             
-            DispatchQueue.global().async {
+            DispatchQueue.global().async {[unowned cell] in
                 cell.playerItem = AVPlayerItem(url: URL(string: obj.postVideoURL!)!)
                 DispatchQueue.main.async {
                     
                     if let l = cell.playerLayer{
                         l.removeFromSuperlayer()
+                    }
+                    if let p = cell.player{
+                        p.pause()
                     }
                     
                     cell.player = AVPlayer(playerItem: cell.playerItem)
@@ -245,7 +253,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK: - NSFetchedResultsControllerDelegate
-    /*
+    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
         print("Table view doing updates")
@@ -263,20 +271,26 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("Updating cells")
         switch type{
         case .insert:
+            print("Insert cell")
             tableView.insertRows(at: [newIndexPath!], with: .fade)
         case .delete:
+            print("Deleted cell")
             tableView.deleteRows(at: [indexPath!], with: .fade)
         case .update:
+            print("Update cell")
             tableView.reloadRows(at: [indexPath!], with: .fade)
+            break
         case .move:
+            print("Move cell")
             tableView.deleteRows(at: [indexPath!], with: .fade)
             tableView.insertRows(at: [newIndexPath!], with: .fade)
         }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("Ended updates")
         tableView.endUpdates()
-    }*/
+    }
     
     // MARK: - UITableViewDelegate
     

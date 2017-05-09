@@ -18,6 +18,8 @@ class Post: NSManagedObject {
         request.predicate = NSPredicate(format: "id=%d", postInfo["id"] as! Int64)
         if let post = (try? context.fetch(request))?.first{
             print("Object already exists")
+            post.latitude = postInfo["latitude"] as! Float
+            post.longitude = postInfo["longitude"] as! Float
             return post
         }
         else{
@@ -26,6 +28,8 @@ class Post: NSManagedObject {
             post.caption = postInfo["caption"] as? String
             post.postVideoURL = postInfo["post_video"] as? String
             post.postThumbnailURL = postInfo["post_thumbnail_image"] as? String
+            post.latitude = postInfo["latitude"] as! Float
+            post.longitude = postInfo["longitude"] as! Float
             
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"

@@ -359,10 +359,10 @@
             </objects>
             <point key="canvasLocation" x="2902.898550724638" y="954.61956521739137"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="LNA-Rq-4lQ">
             <objects>
-                <viewController storyboardIdentifier="map_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1ha-wJ-isa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1ha-wJ-isa" customClass="MapViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nyT-ms-ePE"/>
                         <viewControllerLayoutGuide type="bottom" id="GA7-dt-BAm"/>
@@ -384,6 +384,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2Lg-fe-wFu"/>
+                    <connections>
+                        <outlet property="mapView" destination="SIR-bx-rlH" id="sfI-s9-pzb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6PD-22-CbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -413,22 +416,11 @@
                                     <constraint firstAttribute="height" constant="90" id="v0x-s9-Dh3"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moS-Fy-EsM">
-                                <rect key="frame" x="334" y="84" width="60" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Zd3-HR-W29"/>
-                                    <constraint firstAttribute="height" constant="64" id="z5s-ZW-fSw"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="390579-200.png"/>
-                                <connections>
-                                    <action selector="flipCameraPressed:" destination="c7k-Ah-RQW" eventType="touchUpInside" id="ffP-7x-7lu"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqI-Bm-lBW">
-                                <rect key="frame" x="340" y="621" width="54" height="46"/>
+                                <rect key="frame" x="356" y="635" width="38" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="4td-MS-Sbx"/>
-                                    <constraint firstAttribute="width" constant="54" id="ctf-au-9HB"/>
+                                    <constraint firstAttribute="height" constant="32" id="4td-MS-Sbx"/>
+                                    <constraint firstAttribute="width" constant="38" id="ctf-au-9HB"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="arrow-xxl.png"/>
                                 <connections>
@@ -440,12 +432,10 @@
                         <constraints>
                             <constraint firstItem="RrC-i5-A7N" firstAttribute="centerX" secondItem="iM4-TA-HtT" secondAttribute="centerX" id="6s2-94-fPp"/>
                             <constraint firstItem="PvE-xk-PEu" firstAttribute="top" secondItem="UqI-Bm-lBW" secondAttribute="bottom" constant="20" id="8gL-iN-dos"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="moS-Fy-EsM" secondAttribute="trailing" id="8jw-3p-RWg"/>
                             <constraint firstItem="PvE-xk-PEu" firstAttribute="top" secondItem="iM4-TA-HtT" secondAttribute="bottom" constant="8" symbolic="YES" id="BDG-KI-XFk"/>
                             <constraint firstItem="RrC-i5-A7N" firstAttribute="top" secondItem="Ql0-d2-fnB" secondAttribute="top" id="CSD-13-JBL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UqI-Bm-lBW" secondAttribute="trailing" id="EeD-Sp-7TH"/>
                             <constraint firstItem="iM4-TA-HtT" firstAttribute="centerX" secondItem="Ql0-d2-fnB" secondAttribute="centerX" id="Vg2-OU-wUe"/>
-                            <constraint firstItem="moS-Fy-EsM" firstAttribute="top" secondItem="hKO-EA-bng" secondAttribute="bottom" constant="20" id="enp-9o-MJ2"/>
                             <constraint firstItem="RrC-i5-A7N" firstAttribute="bottom" secondItem="PvE-xk-PEu" secondAttribute="top" id="gKB-tr-LsU"/>
                             <constraint firstAttribute="trailing" secondItem="RrC-i5-A7N" secondAttribute="trailing" id="hbg-nh-8lx"/>
                             <constraint firstAttribute="trailing" secondItem="RrC-i5-A7N" secondAttribute="trailing" id="iXJ-5l-oc1"/>
@@ -1127,7 +1117,6 @@
     </scenes>
     <resources>
         <image name="342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png" width="35" height="35"/>
-        <image name="390579-200.png" width="200" height="200"/>
         <image name="Record-icon.png" width="512" height="512"/>
         <image name="The_Perfect_Assassin_by_Cascador.jpg" width="600" height="781"/>
         <image name="Unknown-1.png" width="225" height="225"/>
