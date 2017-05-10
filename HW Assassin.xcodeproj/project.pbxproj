@@ -46,9 +46,6 @@
 		DC8F79151E68839A0016B355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79141E68839A0016B355 /* Main.storyboard */; };
 		DC8F79161E68839A0016B355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79141E68839A0016B355 /* Main.storyboard */; };
 		DC8F79171E68839A0016B355 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79141E68839A0016B355 /* Main.storyboard */; };
-		DC8F791C1E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */; };
-		DC8F791D1E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */; };
-		DC8F791E1E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */; };
 		DC8F791F1E6883C60016B355 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79191E6883C60016B355 /* like.png */; };
 		DC8F79201E6883C60016B355 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79191E6883C60016B355 /* like.png */; };
 		DC8F79211E6883C60016B355 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = DC8F79191E6883C60016B355 /* like.png */; };
@@ -130,7 +127,6 @@
 		DC724C391E69E79C000C4506 /* Record-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Record-icon.png"; sourceTree = "<group>"; };
 		DC724C3B1E69EAF4000C4506 /* Camera Frame.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Camera Frame.jpg"; sourceTree = "<group>"; };
 		DC8F79141E68839A0016B355 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = The_Perfect_Assassin_by_Cascador.jpg; sourceTree = "<group>"; };
 		DC8F79191E6883C60016B355 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
 		DC8F791A1E6883C60016B355 /* 9571.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9571.png; sourceTree = "<group>"; };
 		DC8F791B1E6883C60016B355 /* comment-bubble-outline_318-27591.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "comment-bubble-outline_318-27591.jpg"; sourceTree = "<group>"; };
@@ -253,7 +249,6 @@
 				DCC1CC8C1E6882AC0020884A /* HW AssassinTests */,
 				DCC1CC971E6882AC0020884A /* HW AssassinUITests */,
 				DCC1CC761E6882AC0020884A /* Products */,
-				DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */,
 				0814A2E81EC2A49C0091B7E7 /* Assassin.png */,
 				082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */,
 				DCF903FB1EBCD519002855D3 /* arrow-xxl.png */,
@@ -446,7 +441,6 @@
 				DC724C3C1E69EAF4000C4506 /* Camera Frame.jpg in Resources */,
 				DC724C3A1E69E79C000C4506 /* Record-icon.png in Resources */,
 				DC724C261E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png in Resources */,
-				DC8F791C1E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg in Resources */,
 				DC8F791F1E6883C60016B355 /* like.png in Resources */,
 				DCC1CC801E6882AC0020884A /* Assets.xcassets in Resources */,
 				DC724C341E69E44C000C4506 /* clipart--person-icon--cliparts-15.png in Resources */,
@@ -468,7 +462,6 @@
 			files = (
 				DC8F79161E68839A0016B355 /* Main.storyboard in Resources */,
 				DC8F79231E6883C60016B355 /* 9571.png in Resources */,
-				DC8F791D1E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg in Resources */,
 				DC8F79261E6883C60016B355 /* comment-bubble-outline_318-27591.jpg in Resources */,
 				DC8F79201E6883C60016B355 /* like.png in Resources */,
 			);
@@ -480,7 +473,6 @@
 			files = (
 				DC8F79171E68839A0016B355 /* Main.storyboard in Resources */,
 				DC8F79241E6883C60016B355 /* 9571.png in Resources */,
-				DC8F791E1E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg in Resources */,
 				DC8F79271E6883C60016B355 /* comment-bubble-outline_318-27591.jpg in Resources */,
 				DC8F79211E6883C60016B355 /* like.png in Resources */,
 			);

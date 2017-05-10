@@ -22,8 +22,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard(){
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +44,41 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             
             // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if(usernameTextField.text == nil || usernameTextField.text! == ""){
+            let alert = UIAlertController(title: "Error", message: "Username can't be empty", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if(emailTextField.text == nil || emailTextField.text! == ""){
+            let alert = UIAlertController(title: "Error", message: "Email can't be empty", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if(firstNameTextField.text == nil || firstNameTextField.text! == ""){
+            let alert = UIAlertController(title: "Error", message: "First name can't be empty", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if(lastNameTextField.text == nil || lastNameTextField.text! == ""){
+            let alert = UIAlertController(title: "Error", message: "Last name can't be empty", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if(passwordTextField.text == nil || passwordTextField.text! == ""){
+            let alert = UIAlertController(title: "Error", message: "Password can't be empty", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if(passwordConformationTextField.text == nil || passwordConformationTextField.text! == ""){
+            let alert = UIAlertController(title: "Error", message: "Password confirmation can't be empty", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if(yearTextField.text == nil || yearTextField.text! == ""){
+            let alert = UIAlertController(title: "Error", message: "Year can't be empty", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         else if(passwordTextField.text! != passwordConformationTextField.text!){

@@ -19,7 +19,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
-        // Do any additional setup after loading the view.
     }
     
     func dismissKeyboard(){
@@ -74,6 +73,14 @@ class LoginViewController: UIViewController {
                     }
                 default:
                     print("Error with response status: \(status)")
+                    // create the alert
+                    let alert = UIAlertController(title: "Error", message: "Username or password was incorrect", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }
