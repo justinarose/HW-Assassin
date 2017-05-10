@@ -437,14 +437,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        for c in tableView.visibleCells{
+            if let pc = c as? PostTableViewCell{
+                pc.player?.pause()
+                print("Pausing")
+            }
+        }
+        
+        if let vc = segue.destination as? CommentViewController{
+            vc.post = sender as? Post
+        }
     }
-    */
+    
 
 }

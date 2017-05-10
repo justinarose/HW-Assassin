@@ -893,6 +893,7 @@
                     <navigationItem key="navigationItem" id="Cvp-db-sWE"/>
                     <connections>
                         <outlet property="tableView" destination="dRA-Tu-WbA" id="Tv0-Hn-xhh"/>
+                        <segue destination="9iI-HX-Y5i" kind="show" identifier="displayComments" id="Bj1-Ji-JZg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vnb-HR-5rZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1238,6 +1239,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="b6n-nt-jAf"/>
+        <segue reference="Bj1-Ji-JZg"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
