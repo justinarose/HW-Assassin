@@ -107,6 +107,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
         tableView.reloadData()
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
     }
 
     override func didReceiveMemoryWarning() {
@@ -191,6 +193,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             cell.postUsernameTitleLabel.text = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
             cell.usernameCaptionLabel.text = cell.postUsernameTitleLabel.text! + "  " + obj.caption!
+            cell.rankLabel.text = "Rank " + String(describing: obj.poster!.rank)
             
             //NOTE location label is actually to display who was killed; should change, but not enough time
             cell.locationLabel.text = "Killed " + (obj.killed?.firstName)! + " " + (obj.killed?.lastName)!
@@ -290,6 +293,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             
         }
+        
+        cell.layoutIfNeeded()
         
         return cell
     }

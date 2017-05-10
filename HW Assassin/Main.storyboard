@@ -752,7 +752,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profile_cell" id="lN3-Gd-ZNF" customClass="ProfileTableViewCell" customModule="HW_Assassin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profile_cell" rowHeight="138" id="lN3-Gd-ZNF" customClass="ProfileTableViewCell" customModule="HW_Assassin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="138"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lN3-Gd-ZNF" id="u8h-JK-WZD">

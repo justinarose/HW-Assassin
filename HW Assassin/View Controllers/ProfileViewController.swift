@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import Alamofire
+import AVFoundation
+import AVKit
 
 
 class ProfileTableViewCell: UITableViewCell{
@@ -27,6 +29,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var fetchedResultsController: NSFetchedResultsController<Post>?
     var userAccount: User?
     var status: UserGameStatus?
+    var isDeviceUser: Bool = false
+    var heightAtIndexPath = NSMutableDictionary()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +39,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if userAccount == nil {
             let dict = UserDefaults.standard.value(forKey: "user") as! [String: Any]
             userAccount = User.userWithUserInfo(dict, inManageObjectContext: AppDelegate.viewContext)
+            self.isDeviceUser = true
         }
         
         self.status = (userAccount?.statuses?.anyObject() as! UserGameStatus)
@@ -58,9 +63,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.register(UINib(nibName:"PostTableViewCell", bundle:nil), forCellReuseIdentifier: "post_cell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.reloadData()
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
         
         self.title = (userAccount?.username)!
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        for c in tableView.visibleCells{
+            if let pc = c as? PostTableViewCell{
+                pc.player?.pause()
+                print("View will disappear pausing")
+            }
+        }
+        
+        super.viewWillDisappear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,13 +130,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let newerIndexPath = IndexPath(row: indexPath.row, section: indexPath.section-1)
             let postCell = tableView.dequeueReusableCell(withIdentifier: "post_cell", for: indexPath) as! PostTableViewCell
             if let obj = fetchedResultsController?.object(at: newerIndexPath){
-                print(obj)
-                postCell.postUsernameTitleLabel.text = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
+                postCell.vc = self
+                postCell.post = obj
                 
+                postCell.postUsernameTitleLabel.text = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
                 postCell.usernameCaptionLabel.text = postCell.postUsernameTitleLabel.text! + "  " + obj.caption!
+                postCell.rankLabel.text = "Rank " + String(describing: obj.poster!.rank)
+                
+                //NOTE location label is actually to display who was killed; should change, but not enough time
+                postCell.locationLabel.text = "Killed " + (obj.killed?.firstName)! + " " + (obj.killed?.lastName)!
                 
                 let likeCount = String(describing: obj.likes!.count)
-                postCell.likesLabel.text = likeCount + " " + "Likes"
+                if obj.likes!.count != 1 {
+                    postCell.likesLabel.text = likeCount + " " + "Likes"
+                }
+                else{
+                    postCell.likesLabel.text = "1 Like"
+                }
                 
                 let commentCount = obj.comments!.count
                 
@@ -134,15 +162,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     postCell.viewAllButton.setTitle("View Comment", for: .normal)
                 }
                 
-                postCell.timeLabel.text = timeAgoSinceDate(date: obj.timeConfirmed!, numericDates: false)
+                if let tc = obj.timeConfirmed{
+                    postCell.timeLabel.text = timeAgoSinceDate(date: tc, numericDates: false)
+                }
                 
                 if let data = AppDelegate.cache.object(forKey: (obj.postThumbnailURL)! as NSString){
-                    print("Using Cache")
+                    //print("Using Cache")
                     let image = UIImage(data: data as Data)
                     postCell.placeholderImage.image = image
                 }
                 else{
-                    Alamofire.request((obj.postThumbnailURL)!).responseData{ response in
+                    Alamofire.request((obj.postThumbnailURL)!).responseData{[unowned postCell] response in
                         debugPrint(response)
                         
                         if let data = response.result.value, let image = UIImage(data: data) {
@@ -152,18 +182,54 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
                 if let data = AppDelegate.cache.object(forKey: (obj.poster?.profilePictureURL)! as NSString){
-                    print("Using Cache")
+                    //print("Using Cache")
                     let image = UIImage(data: data as Data)
                     postCell.profileImageView.image = image
                 }
                 else{
-                    Alamofire.request((obj.poster?.profilePictureURL)!).responseData{ response in
+                    Alamofire.request((obj.poster?.profilePictureURL)!).responseData{[unowned postCell] response in
                         debugPrint(response)
                         
                         if let data = response.result.value, let image = UIImage(data: data) {
                             AppDelegate.cache.setObject(data as NSData, forKey: (obj.poster?.profilePictureURL)! as NSString)
                             postCell.profileImageView.image = image
                         }
+                    }
+                }
+                
+                DispatchQueue.global().async {[unowned postCell] in
+                    postCell.playerItem = AVPlayerItem(url: URL(string: obj.postVideoURL!)!)
+                    DispatchQueue.main.async {
+                        
+                        if let l = postCell.playerLayer{
+                            l.removeFromSuperlayer()
+                        }
+                        if let p = postCell.player{
+                            p.pause()
+                        }
+                        
+                        postCell.player = AVPlayer(playerItem: postCell.playerItem)
+                        postCell.playerLayer = AVPlayerLayer(player: postCell.player)
+                        postCell.playerLayer?.videoGravity = AVLayerVideoGravityResize
+                        postCell.playerLayer?.frame = postCell.videoView.bounds
+                        
+                        
+                        postCell.bringSubview(toFront: postCell.videoView)
+                        postCell.placeholderImage.isHidden = true
+                        postCell.videoView.layer.addSublayer(postCell.playerLayer!)
+                        
+                        //causes to crash for some reason; initial video will only play when scroll
+                        /*if(self.cellIsVisible(cell)){
+                         cell.player?.play()
+                         }*/
+                        
+                        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: postCell.player?.currentItem, queue: nil, using: { (_) in
+                            DispatchQueue.main.async {
+                                postCell.player?.seek(to: kCMTimeZero)
+                                postCell.player?.play()
+                            }
+                        })
+                        
                     }
                 }
             }
@@ -205,7 +271,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             tableView.deleteRows(at: [updatedIndexPath], with: .fade)
         case .update:
             print("Update")
-            tableView.reloadRows(at: [updatedIndexPath], with: .fade)
+            //tableView.reloadRows(at: [updatedIndexPath], with: .fade)
         case .move:
             tableView.deleteRows(at: [updatedIndexPath], with: .fade)
             tableView.insertRows(at: [updatedNewIndexPath], with: .fade)
@@ -217,16 +283,57 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     // MARK: - UITableViewDelegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.section == 0){
-            return 150.0
+            return 138.0
         }
         else{
-            return 660.0
+            if let height = heightAtIndexPath.object(forKey: indexPath) as? NSNumber {
+                print(height.floatValue)
+                return CGFloat(height.floatValue)
+            } else {
+                return 750.0
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let height = NSNumber(value: Float(cell.frame.size.height))
+        heightAtIndexPath.setObject(height, forKey: indexPath as NSCopying)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        for c in self.tableView.visibleCells{
+            if let pc = c as? PostTableViewCell{
+                let visible = self.cellIsVisible(pc)
+                let vcVisible = self.navigationController?.visibleViewController == self
+            
+                if(visible && vcVisible){
+                    pc.player?.play()
+                }
+                else{
+                    pc.player?.pause()
+                }
+            }
+            
+        }
+    }
+    
+    func cellIsVisible(_ cell: UITableViewCell) -> Bool {
+        let indexPath = self.tableView.indexPath(for: cell)
+        let cellRect = self.tableView.rectForRow(at: indexPath!)
+        let superView = self.tableView.superview!
+        
+        let convertedRect = self.tableView.convert(cellRect, to: superView)
+        let intersect = convertedRect.intersection(self.tableView.frame)
+        let height = intersect.height
+        
+        if(height > 0.6 * cell.frame.height){
+            return true
+        }
+        else{
+            return false
         }
     }
     
