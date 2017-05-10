@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0814A2E91EC2A49C0091B7E7 /* Assassin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0814A2E81EC2A49C0091B7E7 /* Assassin.png */; };
+		0814A2EB1EC2BFA90091B7E7 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0814A2EA1EC2BFA90091B7E7 /* LeaderboardViewController.swift */; };
 		082BFA3D1EAAF9820065A656 /* circle-outline-512.gif in Resources */ = {isa = PBXBuildFile; fileRef = 082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */; };
 		0857AA481EC18009003DBDDD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857AA471EC18009003DBDDD /* MapViewController.swift */; };
 		085FC3811E89FA72000931E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3801E89FA71000931E7 /* LoginViewController.swift */; };
@@ -86,6 +87,7 @@
 
 /* Begin PBXFileReference section */
 		0814A2E81EC2A49C0091B7E7 /* Assassin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Assassin.png; sourceTree = "<group>"; };
+		0814A2EA1EC2BFA90091B7E7 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaderboardViewController.swift; path = "View Controllers/LeaderboardViewController.swift"; sourceTree = "<group>"; };
 		082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "circle-outline-512.gif"; sourceTree = "<group>"; };
 		0857AA471EC18009003DBDDD /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = "View Controllers/MapViewController.swift"; sourceTree = "<group>"; };
 		085FC3801E89FA71000931E7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "View Controllers/LoginViewController.swift"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				08AFBE0A1EB065F200C5B645 /* VerifyKillViewController.swift */,
 				086BEAFD1EBFFD8F0077AFC6 /* CommentViewController.swift */,
 				0857AA471EC18009003DBDDD /* MapViewController.swift */,
+				0814A2EA1EC2BFA90091B7E7 /* LeaderboardViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				DCC1CC791E6882AC0020884A /* AppDelegate.swift in Sources */,
 				08C69FF61E92B56A00A559B2 /* Comment.swift in Sources */,
 				087158461EA7D49200673D4B /* CameraViewController.swift in Sources */,
+				0814A2EB1EC2BFA90091B7E7 /* LeaderboardViewController.swift in Sources */,
 				08C6A0021E92B5F700A559B2 /* UserGameStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

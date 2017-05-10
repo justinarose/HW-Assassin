@@ -72,7 +72,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func numberOfSections(in tableView: UITableView) -> Int {
         let count = fetchedResultsController?.sections?.count ?? 1
-        print("SECTION COUNT---------- \(count+1)")
         return count+1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

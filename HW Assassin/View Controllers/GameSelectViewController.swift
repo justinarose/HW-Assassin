@@ -271,9 +271,10 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                                         let dict = JSON[0]
                                         print("Response JSON: \(JSON)")
                                         UserDefaults.standard.set(dict, forKey:"status")
-                                        self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
                                     }
                                 }
+                                
+                                self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
                                 
                             case 409:
                                 print("User already joined game")

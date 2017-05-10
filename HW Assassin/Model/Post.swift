@@ -56,6 +56,12 @@ class Post: NSManagedObject {
                 post.killed = killed
             }
             
+            let gameRequest: NSFetchRequest<Game> = Game.fetchRequest()
+            gameRequest.predicate = NSPredicate(format: "id=%d", postInfo["game"] as! Int64!)
+            if let game = (try? context.fetch(gameRequest))?.first{
+                post.game = game
+            }
+            
             return post
         }
     }

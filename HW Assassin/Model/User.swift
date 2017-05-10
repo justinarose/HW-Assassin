@@ -32,4 +32,49 @@ class User: NSManagedObject {
             return user
         }
     }
+    
+    class func calculateRankInContext(_ context:NSManagedObjectContext){
+        let request: NSFetchRequest<User> = User.fetchRequest()
+        
+        var rank = 1
+        var count = 1
+        var prevKills = -1
+        
+        if let us = (try? context.fetch(request)){
+            let users = us.sorted(by: { (u1, u2) -> Bool in
+                var c1 = 0
+                var c2 = 0
+                if let p1 = u1.posts{
+                    c1 = p1.count
+                }
+                if let p2 = u2.posts{
+                    c2 = p2.count
+                }
+                
+                return c1>c2
+            })
+            for u in users{
+                var kills = 0
+                
+                if let p = u.posts{
+                    kills = p.count
+                }
+                
+                if prevKills == -1{
+                    u.rank = Int64(rank)
+                    prevKills = kills
+                }
+                else if kills == prevKills{
+                    u.rank = Int64(rank)
+                }
+                else{
+                    rank = count
+                    prevKills = kills
+                    u.rank = Int64(rank)
+                }
+                count += 1
+            }
+        }
+    }
+    
 }
