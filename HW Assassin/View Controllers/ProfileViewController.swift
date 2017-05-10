@@ -20,6 +20,7 @@ class ProfileTableViewCell: UITableViewCell{
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var rankCountLabel: UILabel!
     @IBOutlet weak var targetButton: UIButton!
+    @IBOutlet weak var targetLabel: UILabel!
 }
 
 
@@ -109,13 +110,39 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath.section == 0 {
             let c = tableView.dequeueReusableCell(withIdentifier: "profile_cell", for: indexPath) as! ProfileTableViewCell
             c.nameLabel.text = (userAccount?.firstName)! + " " + (userAccount?.lastName)!
-            c.killCountLabel.text = "0"
+            
+            if let p = self.userAccount!.posts{
+                c.killCountLabel.text = String(p.count)
+            }
+            else{
+                c.killCountLabel.text = "0"
+            }
             c.yearLabel.text = (userAccount?.year)!
-            c.rankCountLabel.text = "0"
+            
+            if self.isDeviceUser{
+                c.targetLabel.isHidden = false
+                c.targetButton.isHidden = false
+                let targetName = (self.status?.target?.firstName)! + " " + (self.status?.target?.lastName)!
+                c.targetButton.setTitle(targetName, for: .normal)
+            }
+            else{
+                c.targetLabel.isHidden = true
+                c.targetButton.isHidden = true
+            }
             
             
-            let targetName = (self.status?.target?.firstName)! + " " + (self.status?.target?.lastName)!
-            c.targetButton.setTitle(targetName, for: .normal)
+            //NOTE CHANGED RANK COUNT LABEL TO DISPLAY STATUS
+            
+            switch(status!.status!){
+            case "a":
+                c.rankCountLabel.text = "Alive"
+            case "p":
+                c.rankCountLabel.text = "Pending"
+            case "d":
+                c.rankCountLabel.text = "Dead"
+            default:
+                c.rankCountLabel.text = "Status: Error"
+            }
             
             Alamofire.request((userAccount?.profilePictureURL)!).responseData{ response in
                 debugPrint(response)
@@ -336,6 +363,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             return false
         }
     }
+    
+    @IBAction func clickedTargetButton(_ sender: Any) {
+        print("Clicked target button")
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = mainStoryboard.instantiateViewController(withIdentifier: "profile_vc") as! ProfileViewController
+        vc.userAccount = self.status?.target
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     // MARK: - Helper functions
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {

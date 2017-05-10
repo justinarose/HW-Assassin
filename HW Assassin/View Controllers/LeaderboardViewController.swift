@@ -25,8 +25,13 @@ class UserLeaderboardTableViewCell: UITableViewCell{
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var userButton: UIButton!
     var vc: UIViewController?
+    var u: User?
     
     @IBAction func userButtonPressed(_ sender: Any) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewc = mainStoryboard.instantiateViewController(withIdentifier: "profile_vc") as! ProfileViewController
+        viewc.userAccount = self.u
+        vc?.navigationController?.pushViewController(viewc, animated: true)
     }
 }
 
@@ -67,6 +72,8 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
         tableView.reloadData()
     }
 
@@ -158,7 +165,8 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             let c = tableView.dequeueReusableCell(withIdentifier: "user_leaderboard_cell", for: indexPath) as! UserLeaderboardTableViewCell
             
             if let obj = fetchedResultsController?.object(at: newerIndexPath){
-                
+                c.u = obj
+                c.vc = self
                 c.rankLabel.text = String(obj.rank)
                 
                 let name = obj.firstName! + " " + obj.lastName!
