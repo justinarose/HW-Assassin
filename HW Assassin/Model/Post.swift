@@ -20,6 +20,13 @@ class Post: NSManagedObject {
             print("Object already exists")
             post.latitude = postInfo["latitude"] as! Float
             post.longitude = postInfo["longitude"] as! Float
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            let localDate = formatter.date(from: postInfo["time_confirmed"] as! String)
+            
+            post.timeConfirmed = localDate as NSDate?
+            
             return post
         }
         else{

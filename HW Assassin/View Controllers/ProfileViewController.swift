@@ -189,17 +189,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        let updatedIndexPath = IndexPath(row: (indexPath?.row)!, section: (indexPath?.section)!+1)
+        var updatedIndexPath : IndexPath = IndexPath()
         var updatedNewIndexPath : IndexPath = IndexPath()
+        
+        if let p = indexPath{
+            updatedIndexPath = IndexPath(row: p.row, section: p.section+1)
+        }
         if let ip = newIndexPath{
             updatedNewIndexPath = IndexPath(row: ip.row, section: ip.section+1)
         }
+        
         switch type{
         case .insert:
             tableView.insertRows(at: [updatedNewIndexPath], with: .fade)
         case .delete:
             tableView.deleteRows(at: [updatedIndexPath], with: .fade)
         case .update:
+            print("Update")
             tableView.reloadRows(at: [updatedIndexPath], with: .fade)
         case .move:
             tableView.deleteRows(at: [updatedIndexPath], with: .fade)

@@ -17,6 +17,8 @@ class VerifyPostViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var captionTextField: UITextView!
     var player : AVPlayer?
+    var latitude: Float = 34.140808
+    var longitude: Float = -118.412303
     let manager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -72,7 +74,9 @@ class VerifyPostViewController: UIViewController, CLLocationManagerDelegate {
         let game = dict["game"] as! Int64
         
         let parameters: [String:String] = ["caption": self.captionTextField.text,
-                          "game": String(game)]
+                          "game": String(game),
+                          "latitude": String(self.latitude),
+                          "longitude": String(self.longitude)]
         
         let token = UserDefaults.standard.value(forKey: "token")!
         
@@ -133,7 +137,7 @@ class VerifyPostViewController: UIViewController, CLLocationManagerDelegate {
                                         default:
                                             print("An error occured")
                                             // create the alert
-                                            let alert = UIAlertController(title: "Error", message: "An error occured. Have you already submited a kill for this target?", preferredStyle: UIAlertControllerStyle.alert)
+                                            let alert = UIAlertController(title: "Error", message: "An error occured. Is your previous kill still pending? Are you dead?", preferredStyle: UIAlertControllerStyle.alert)
                                             
                                             // add an action (button)
                                             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action in
@@ -160,6 +164,8 @@ class VerifyPostViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             print("Found user's location: \(location)")
+            self.latitude = Float(location.coordinate.latitude)
+            self.longitude = Float(location.coordinate.longitude)
         }
     }
     

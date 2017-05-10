@@ -86,7 +86,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let request: NSFetchRequest<Post> = Post.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
-        request.includesPendingChanges = false
         fetchedResultsController = NSFetchedResultsController<Post>(fetchRequest: request, managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
         fetchedResultsController?.delegate = self
@@ -103,6 +102,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.allowsSelection = false
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
         tableView.reloadData()
     }
 
@@ -122,6 +125,50 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillDisappear(animated)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let dict = UserDefaults.standard.value(forKey: "status") as! [String: Any]
+        let game = dict["game"] as! Int64
+        let headers = ["Content-Type": "application/json"]
+        
+        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+            debugPrint(response)
+            
+            //to get JSON return value
+            if let result = response.result.value {
+                let JSON = result as! NSArray
+                
+                for p in JSON as! [[String: AnyObject]]{
+                    Post.postWithPostInfo(p, inManageObjectContext: AppDelegate.viewContext)
+                }
+                
+                print("Created posts")
+            }
+        }
+        
+    }
+    
+    func refresh(sender: UIRefreshControl) {
+        let dict = UserDefaults.standard.value(forKey: "status") as! [String: Any]
+        let game = dict["game"] as! Int64
+        let headers = ["Content-Type": "application/json"]
+        
+        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+            debugPrint(response)
+            sender.endRefreshing()
+            //to get JSON return value
+            if let result = response.result.value {
+                let JSON = result as! NSArray
+                
+                for p in JSON as! [[String: AnyObject]]{
+                    Post.postWithPostInfo(p, inManageObjectContext: AppDelegate.viewContext)
+                }
+                
+                print("Created posts")
+            }
+        }
+    }
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -290,6 +337,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if let height = heightAtIndexPath.object(forKey: indexPath) as? NSNumber {
+            print(height.floatValue)
             return CGFloat(height.floatValue)
         } else {
             return 750.0

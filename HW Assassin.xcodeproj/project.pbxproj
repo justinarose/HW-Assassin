@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0814A2E91EC2A49C0091B7E7 /* Assassin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0814A2E81EC2A49C0091B7E7 /* Assassin.png */; };
 		082BFA3D1EAAF9820065A656 /* circle-outline-512.gif in Resources */ = {isa = PBXBuildFile; fileRef = 082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */; };
 		0857AA481EC18009003DBDDD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857AA471EC18009003DBDDD /* MapViewController.swift */; };
 		085FC3811E89FA72000931E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085FC3801E89FA71000931E7 /* LoginViewController.swift */; };
@@ -84,6 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0814A2E81EC2A49C0091B7E7 /* Assassin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Assassin.png; sourceTree = "<group>"; };
 		082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "circle-outline-512.gif"; sourceTree = "<group>"; };
 		0857AA471EC18009003DBDDD /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = "View Controllers/MapViewController.swift"; sourceTree = "<group>"; };
 		085FC3801E89FA71000931E7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "View Controllers/LoginViewController.swift"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				DCC1CC971E6882AC0020884A /* HW AssassinUITests */,
 				DCC1CC761E6882AC0020884A /* Products */,
 				DC8F79181E6883C60016B355 /* The_Perfect_Assassin_by_Cascador.jpg */,
+				0814A2E81EC2A49C0091B7E7 /* Assassin.png */,
 				082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */,
 				DCF903FB1EBCD519002855D3 /* arrow-xxl.png */,
 				DC8F79191E6883C60016B355 /* like.png */,
@@ -449,6 +452,7 @@
 				DC8F79251E6883C60016B355 /* comment-bubble-outline_318-27591.jpg in Resources */,
 				DC8F79151E68839A0016B355 /* Main.storyboard in Resources */,
 				DC724C2C1E69E03B000C4506 /* home-512.png in Resources */,
+				0814A2E91EC2A49C0091B7E7 /* Assassin.png in Resources */,
 				082BFA3D1EAAF9820065A656 /* circle-outline-512.gif in Resources */,
 				DC8F79221E6883C60016B355 /* 9571.png in Resources */,
 				08C79C911EA440B400BD3F07 /* PostTableViewCell.xib in Resources */,
