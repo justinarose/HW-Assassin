@@ -212,10 +212,24 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                                     print("Response JSON: \(JSON)")
                                     UserDefaults.standard.set(JSON, forKey:"status")
                                 }
+                                Alamofire.request("https://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                                    debugPrint(response)
+                                    
+                                    //to get JSON return value
+                                    if let result = response.result.value {
+                                        let JSON = result as! NSArray
+                                        print("Response JSON: \(JSON)")
+                                        
+                                        for s in JSON as! [[String: AnyObject]]{
+                                            UserGameStatus.statusWithStatusInfo(s, inManageObjectContext: AppDelegate.viewContext)
+                                        }
+                                        
+                                        print("Created statuses")
+                                        
+                                        self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
+                                    }
+                                }
                                 
-                                
-                                self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
-                            
                             case 409:
                                 print("User already joined game")
                                 
@@ -227,6 +241,23 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                                     UserDefaults.standard.set(JSON, forKey:"status")
                                 }
                                 
+                                Alamofire.request("https://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                                    debugPrint(response)
+                                    
+                                    //to get JSON return value
+                                    if let result = response.result.value {
+                                        let JSON = result as! NSArray
+                                        print("Response JSON: \(JSON)")
+                                        
+                                        for s in JSON as! [[String: AnyObject]]{
+                                            UserGameStatus.statusWithStatusInfo(s, inManageObjectContext: AppDelegate.viewContext)
+                                        }
+                                        
+                                        print("Created statuses")
+                                        
+                                        self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
+                                    }
+                                }
                                 
                                 self.performSegue(withIdentifier: "joinGameSegue", sender: nil)
                                 
