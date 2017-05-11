@@ -110,7 +110,7 @@ class VerifyPostViewController: UIViewController, CLLocationManagerDelegate {
             
         },
                          usingThreshold: UInt64.init(),
-                         to: "http://hwassassin.hwtechcouncil.com/api/posts/",
+                         to: "https://hwassassin.hwtechcouncil.com/api/posts/",
                          method: .post,
                          headers: headers,
                          encodingCompletion: { [unowned self] encodingResult in

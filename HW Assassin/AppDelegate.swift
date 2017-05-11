@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let headers = ["Content-Type": "application/json"]
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/games/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/games/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
             debugPrint(response)
             
             //to get JSON return value
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 print("Created games")
                 
-                Alamofire.request("http://hwassassin.hwtechcouncil.com/api/users/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                Alamofire.request("https://hwassassin.hwtechcouncil.com/api/users/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                     debugPrint(response)
                     
                     //to get JSON return value
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         print("Created users")
                         
-                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                             debugPrint(response)
                             
                             //to get JSON return value
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                         
-                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                             debugPrint(response)
                             
                             //to get JSON return value
@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                         
                         if self.user != nil && self.gameId != nil{
-                            Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/?killed=\(self.user!.id)&game=\(self.gameId!)&status=p").responseJSON{ response in
+                            Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?killed=\(self.user!.id)&game=\(self.gameId!)&status=p").responseJSON{ response in
                                 debugPrint(response)
                                 
                                 if let result = response.result.value{

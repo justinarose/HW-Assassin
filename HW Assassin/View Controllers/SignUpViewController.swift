@@ -113,7 +113,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 multipartFormData.append(imageData!, withName: "player.profile_picture", fileName: "player.profile_picture", mimeType: "image/png")
             },
                              usingThreshold: UInt64.init(),
-                             to: "http://hwassassin.hwtechcouncil.com/api/users/",
+                             to: "https://hwassassin.hwtechcouncil.com/api/users/",
                              method: .post,
                              headers: headers,
                              encodingCompletion: { [unowned self] encodingResult in
@@ -141,7 +141,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                                       "password":self.passwordTextField.text!];
                                     
                                 
-                                    Alamofire.request("http://hwassassin.hwtechcouncil.com/api-token-auth/", method: .post, parameters: loginParameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+                                    Alamofire.request("https://hwassassin.hwtechcouncil.com/api-token-auth/", method: .post, parameters: loginParameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
                                         debugPrint(response)
                                     
                                         if let status = response.response?.statusCode {

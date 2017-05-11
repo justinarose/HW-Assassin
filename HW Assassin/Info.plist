@@ -22,8 +22,8 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<false/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Allowing access to the camera lets you take photos and videos.</string>

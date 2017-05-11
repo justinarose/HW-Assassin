@@ -63,7 +63,7 @@ class PostTableViewCell: UITableViewCell {
             }
         }
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/\(post!.id)/\(text)/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/\(post!.id)/\(text)/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
             debugPrint(response)
             
             if let status = response.response?.statusCode {

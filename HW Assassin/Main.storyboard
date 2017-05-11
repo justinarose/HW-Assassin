@@ -417,7 +417,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Assassin.png" translatesAutoresizingMaskIntoConstraints="NO" id="paj-LO-OCj">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unknown-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="paj-LO-OCj">
                                                     <rect key="frame" x="40.666666666666657" y="8" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="EZE-iI-KNG"/>

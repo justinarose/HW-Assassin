@@ -28,7 +28,7 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
         
         let headers = ["Content-Type": "application/json"]
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/games/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/games/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
             debugPrint(response)
             
             if let status = response.response?.statusCode {
@@ -197,7 +197,7 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                     
                     print(headers)
                     
-                    Alamofire.request("http://hwassassin.hwtechcouncil.com/api/games/\(obj.id)/join/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+                    Alamofire.request("https://hwassassin.hwtechcouncil.com/api/games/\(obj.id)/join/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
                         debugPrint(response)
                         
                         if let status = response.response?.statusCode {
@@ -257,7 +257,7 @@ class GameSelectViewController: UIViewController, UITableViewDataSource, UITable
                     let userId = (UIApplication.shared.delegate as! AppDelegate).user!.id
                     let gameId = obj.id
                     
-                    Alamofire.request("http://hwassassin.hwtechcouncil.com/api/statuses/?user=\(userId)&game=\(gameId)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+                    Alamofire.request("https://hwassassin.hwtechcouncil.com/api/statuses/?user=\(userId)&game=\(gameId)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
                         debugPrint(response)
                         if let status = response.response?.statusCode {
                             switch(status){

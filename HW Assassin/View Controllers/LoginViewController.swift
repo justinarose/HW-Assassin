@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
         
         let headers = ["Content-Type": "application/json"]
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api-token-auth/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api-token-auth/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
             debugPrint(response)
             
             if let status = response.response?.statusCode {
@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
                         let defaults = UserDefaults.standard
                         defaults.set(JSON["token"], forKey: "token")
                         
-                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/users/?username=\(self.usernameTextField.text!)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] userResponse in
+                        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/users/?username=\(self.usernameTextField.text!)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] userResponse in
                             debugPrint(userResponse)
                             
                             if let userResult = userResponse.result.value{

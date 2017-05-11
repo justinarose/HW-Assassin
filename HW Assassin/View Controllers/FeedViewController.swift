@@ -26,7 +26,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let headers = ["Content-Type": "application/json"]
         
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/users/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/users/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
             debugPrint(response)
             
             //to get JSON return value
@@ -39,7 +39,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 print("Created users")
                 
-                Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                     debugPrint(response)
                     
                     //to get JSON return value
@@ -52,7 +52,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         
                         print("Created posts")
                         
-                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/likes/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                        User.calculateRankInContext(AppDelegate.viewContext)
+                        
+                        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/likes/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                             debugPrint(response)
                             if let result = response.result.value {
                                 let JSON = result as! NSArray
@@ -64,7 +66,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                 print("Created likes")
                             }
                         }
-                        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/comments/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/comments/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                             debugPrint(response)
                             
                             //to get JSON return value
@@ -134,7 +136,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let game = dict["game"] as! Int64
         let headers = ["Content-Type": "application/json"]
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
             debugPrint(response)
             
             //to get JSON return value
@@ -156,7 +158,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let game = dict["game"] as! Int64
         let headers = ["Content-Type": "application/json"]
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
             debugPrint(response)
             sender.endRefreshing()
             //to get JSON return value

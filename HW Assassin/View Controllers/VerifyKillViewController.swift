@@ -81,7 +81,7 @@ class VerifyKillViewController: UIViewController {
         ]
         
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/\(String(describing: (self.post?.id)!))/verify/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/\(String(describing: (self.post?.id)!))/verify/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
             if let status = response.response?.statusCode {
                 switch(status){
                 case 200..<299:
@@ -115,7 +115,7 @@ class VerifyKillViewController: UIViewController {
         ]
         
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/posts/\(String(describing: (self.post?.id)!))/deny/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/\(String(describing: (self.post?.id)!))/deny/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
             debugPrint(response)
             
             if let status = response.response?.statusCode {

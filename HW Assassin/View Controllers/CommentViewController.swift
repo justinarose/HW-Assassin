@@ -31,7 +31,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         if let p = self.post{
             let headers = ["Content-Type": "application/json"]
             
-            Alamofire.request("http://hwassassin.hwtechcouncil.com/api/comments/?post=\(p.id)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+            Alamofire.request("https://hwassassin.hwtechcouncil.com/api/comments/?post=\(p.id)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                 debugPrint(response)
                 
                 //to get JSON return value
@@ -85,7 +85,7 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         ]
         
         
-        Alamofire.request("http://hwassassin.hwtechcouncil.com/api/comments/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/comments/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
             debugPrint(response)
             
             if let status = response.response?.statusCode {
