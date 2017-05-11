@@ -24,7 +24,7 @@ class ProfileTableViewCell: UITableViewCell{
 }
 
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate{
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     var fetchedResultsController: NSFetchedResultsController<Post>?
@@ -32,18 +32,27 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var status: UserGameStatus?
     var isDeviceUser: Bool = false
     var heightAtIndexPath = NSMutableDictionary()
+    var g: Game?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         if userAccount == nil {
-            let dict = UserDefaults.standard.value(forKey: "user") as! [String: Any]
-            userAccount = User.userWithUserInfo(dict, inManageObjectContext: AppDelegate.viewContext)
+            userAccount = (UIApplication.shared.delegate as! AppDelegate).user
             self.isDeviceUser = true
         }
         
         self.status = (userAccount?.statuses?.anyObject() as! UserGameStatus)
+        
+        let dict = UserDefaults.standard.value(forKey: "status") as! [String: Any]
+        let gameId = dict["game"] as! Int64
+        
+        let gameRequest: NSFetchRequest<Game> = Game.fetchRequest()
+        gameRequest.predicate = NSPredicate(format: "id=%d", gameId)
+        if let game = (try? AppDelegate.viewContext.fetch(gameRequest))?.first{
+            self.g = game
+        }
         
         let request: NSFetchRequest<Post> = Post.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
@@ -69,6 +78,94 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.title = (userAccount?.username)!
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    func refresh(sender: UIRefreshControl) {
+        let headers = ["Content-Type": "application/json"]
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/games/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{[unowned self] response in
+            debugPrint(response)
+            sender.endRefreshing()
+            
+            //to get JSON return value
+            if let result = response.result.value {
+                let JSON = result as! NSArray
+                print("Response JSON: \(JSON)")
+                
+                for g in JSON as! [[String: AnyObject]]{
+                    Game.gameWithGameInfo(g, inManageObjectContext: AppDelegate.viewContext)
+                }
+                
+                print("Created games")
+                
+                Alamofire.request("https://hwassassin.hwtechcouncil.com/api/users/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    debugPrint(response)
+                    
+                    //to get JSON return value
+                    if let result = response.result.value {
+                        let JSON = result as! NSArray
+                        print("Response JSON: \(JSON)")
+                        
+                        for u in JSON as! [[String: AnyObject]]{
+                            User.userWithUserInfo(u, inManageObjectContext: AppDelegate.viewContext)
+                        }
+                        
+                        print("Created users")
+                        
+                        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                            debugPrint(response)
+                            
+                            //to get JSON return value
+                            if let result = response.result.value {
+                                let JSON = result as! NSArray
+                                print("Response JSON: \(JSON)")
+                                
+                                for s in JSON as! [[String: AnyObject]]{
+                                    UserGameStatus.statusWithStatusInfo(s, inManageObjectContext: AppDelegate.viewContext)
+                                }
+                                
+                                print("Created statuses")
+                                
+                                if let tc = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell, let game = self.g{
+                                    
+                                    if let p = self.userAccount!.posts{
+                                        tc.killCountLabel.text = String(p.count)
+                                    }
+                                    
+                                    tc.yearLabel.text = (self.userAccount?.year)!
+                                    
+                                    //NOTE CHANGED RANK COUNT LABEL TO DISPLAY STATUS
+                                    
+                                    switch(self.status!.status!){
+                                    case "a":
+                                        tc.rankCountLabel.text = "Alive"
+                                    case "p":
+                                        tc.rankCountLabel.text = "Pending"
+                                    case "d":
+                                        tc.rankCountLabel.text = "Dead"
+                                    default:
+                                        tc.rankCountLabel.text = "Status: Error"
+                                    }
+                                    
+                                    if self.isDeviceUser && game.status! != "r"{
+                                        tc.targetLabel.isHidden = false
+                                        tc.targetButton.isHidden = false
+                                        let targetName = (self.status?.target?.firstName)! + " " + (self.status?.target?.lastName)!
+                                        tc.targetButton.setTitle(targetName, for: .normal)
+                                    }
+                                    else{
+                                        tc.targetLabel.isHidden = true
+                                        tc.targetButton.isHidden = true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,7 +216,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             c.yearLabel.text = (userAccount?.year)!
             
-            if self.isDeviceUser{
+            if self.isDeviceUser && g!.status! != "r"{
                 c.targetLabel.isHidden = false
                 c.targetButton.isHidden = false
                 let targetName = (self.status?.target?.firstName)! + " " + (self.status?.target?.lastName)!
@@ -142,6 +239,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 c.rankCountLabel.text = "Dead"
             default:
                 c.rankCountLabel.text = "Status: Error"
+            }
+            
+            if self.isDeviceUser {
+                let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.changePhoto))
+                c.profileImageView.addGestureRecognizer(tap)
+                c.profileImageView.isUserInteractionEnabled = true
             }
             
             Alamofire.request((userAccount?.profilePictureURL)!).responseData{ response in
@@ -265,6 +368,116 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String :
+        Any]) {
+        
+        let id = self.userAccount!.id
+        let headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            Alamofire.upload(multipartFormData: { multipartFormData in
+                
+                let imageData = UIImagePNGRepresentation(image)
+                multipartFormData.append(imageData!, withName: "player.profile_picture", fileName: "player.profile_picture", mimeType: "image/png")
+            },
+                             usingThreshold: UInt64.init(),
+                             to: "https://hwassassin.hwtechcouncil.com/api/users/\(id)/",
+                             method: .patch,
+                             headers: headers,
+                             encodingCompletion: { [unowned self] encodingResult in
+                                
+                                switch encodingResult {
+                                case .success(let upload, _, _):
+                                    upload.responseJSON { response in
+                                        debugPrint(response)
+                                        if let status = response.response?.statusCode {
+                                            switch(status){
+                                            case 200..<299:
+                                                print("Successfully updated picture")
+                                                
+                                            default:
+                                                print("Error with response status: \(status)")
+                                                // create the alert
+                                                let alert = UIAlertController(title: "Error", message: "There was a server error.", preferredStyle: UIAlertControllerStyle.alert)
+                                                
+                                                // add an action (button)
+                                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                                
+                                                // show the alert
+                                                self.present(alert, animated: true, completion: nil)
+                                            }
+                                        }
+                                    }
+                                case .failure(let encodingError):
+                                    print(encodingError)
+                                }
+            })
+        } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            Alamofire.upload(multipartFormData: { multipartFormData in
+                
+                let imageData = UIImagePNGRepresentation(image)
+                multipartFormData.append(imageData!, withName: "player.profile_picture", fileName: "player.profile_picture", mimeType: "image/png")
+            },
+                             usingThreshold: UInt64.init(),
+                             to: "https://hwassassin.hwtechcouncil.com/api/users/\(id)/",
+                method: .patch,
+                headers: headers,
+                encodingCompletion: { [unowned self] encodingResult in
+                    
+                    switch encodingResult {
+                    case .success(let upload, _, _):
+                        upload.responseJSON { response in
+                            debugPrint(response)
+                            if let status = response.response?.statusCode {
+                                switch(status){
+                                case 200..<299:
+                                    print("Successfully updated picture")
+                                    
+                                default:
+                                    print("Error with response status: \(status)")
+                                    // create the alert
+                                    let alert = UIAlertController(title: "Error", message: "There was a server error.", preferredStyle: UIAlertControllerStyle.alert)
+                                    
+                                    // add an action (button)
+                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                    
+                                    // show the alert
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+                            }
+                        }
+                    case .failure(let encodingError):
+                        print(encodingError)
+                    }
+            })
+        }
+        
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    func changePhoto() {
+        print("Change photo")
+        let alert = UIAlertController(title: "Change photo", message: "Would you like to change your profile photo?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default){ action in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self;
+                imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+                imagePicker.allowsEditing = true;
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        })
+        
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
     
     // MARK: - NSFetchedResultsControllerDelegate
     

@@ -389,7 +389,7 @@
 				TargetAttributes = {
 					DCC1CC741E6882AC0020884A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ESLTP7LTA8;
+						DevelopmentTeam = UZ23C7PMQG;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -790,11 +790,11 @@
 			baseConfigurationReference = B2189064ED16E8E77693FED8 /* Pods-HW Assassin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ESLTP7LTA8;
+				DEVELOPMENT_TEAM = UZ23C7PMQG;
 				INFOPLIST_FILE = "HW Assassin/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Justin-Rose.HW-Assassin";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Justin-Rose.HW-Assassin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -805,11 +805,11 @@
 			baseConfigurationReference = 762B58DC6D49C6350446528B /* Pods-HW Assassin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ESLTP7LTA8;
+				DEVELOPMENT_TEAM = UZ23C7PMQG;
 				INFOPLIST_FILE = "HW Assassin/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Justin-Rose.HW-Assassin";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Justin-Rose.HW-Assassin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

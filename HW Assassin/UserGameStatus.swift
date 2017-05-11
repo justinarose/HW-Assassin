@@ -17,6 +17,26 @@ class UserGameStatus: NSManagedObject {
         request.predicate = NSPredicate(format: "id=%d", statusInfo["id"] as! Int64)
         if let s = (try? context.fetch(request))?.first{
             print("Object already exists")
+            s.status = statusInfo["status"] as? String
+            
+            let userRequest: NSFetchRequest<User> = User.fetchRequest()
+            userRequest.predicate = NSPredicate(format: "id=%d", statusInfo["user"] as! Int64!)
+            if let user = (try? context.fetch(userRequest))?.first{
+                s.user = user
+            }
+            
+            let gameRequest: NSFetchRequest<Game> = Game.fetchRequest()
+            gameRequest.predicate = NSPredicate(format: "id=%d", statusInfo["game"] as! Int64!)
+            if let game = (try? context.fetch(gameRequest))?.first{
+                s.game = game
+            }
+            
+            let targetRequest: NSFetchRequest<User> = User.fetchRequest()
+            targetRequest.predicate = NSPredicate(format: "id=%d", statusInfo["target"] as! Int64!)
+            if let target = (try? context.fetch(targetRequest))?.first{
+                s.target = target
+            }
+            
             return s
         }
         else{

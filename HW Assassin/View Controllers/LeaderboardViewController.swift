@@ -31,7 +31,9 @@ class UserLeaderboardTableViewCell: UITableViewCell{
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewc = mainStoryboard.instantiateViewController(withIdentifier: "profile_vc") as! ProfileViewController
         viewc.userAccount = self.u
-        vc?.navigationController?.pushViewController(viewc, animated: true)
+        if (self.u?.statuses?.count)! > 0{
+            vc?.navigationController?.pushViewController(viewc, animated: true)
+        }
     }
 }
 
@@ -57,7 +59,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
         let request: NSFetchRequest<User> = User.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "rank", ascending: true)]
-        //request.fetchLimit = 20
+        request.fetchLimit = 20
         
         fetchedResultsController = NSFetchedResultsController<User>(fetchRequest: request, managedObjectContext: AppDelegate.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -75,6 +77,45 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
         tableView.reloadData()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    func refresh(sender: UIRefreshControl) {
+        User.calculateRankInContext(AppDelegate.viewContext)
+        
+        let headers = ["Content-Type": "application/json"]
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/games/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{[unowned self] response in
+            debugPrint(response)
+            sender.endRefreshing()
+            
+            //to get JSON return value
+            if let result = response.result.value {
+                let JSON = result as! NSArray
+                print("Response JSON: \(JSON)")
+                
+                for g in JSON as! [[String: AnyObject]]{
+                    Game.gameWithGameInfo(g, inManageObjectContext: AppDelegate.viewContext)
+                }
+                
+                print("Created games")
+                
+                if let tc = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? GameStatusTableViewCell, let game = self.g{
+                    switch(game.status!){
+                    case "r":
+                        tc.statusLabel.text = "Registration"
+                    case "p":
+                        tc.statusLabel.text = "In Progress"
+                    case "c":
+                        tc.statusLabel.text = "Complete"
+                    default:
+                        tc.statusLabel.text = "Error"
+                    }
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

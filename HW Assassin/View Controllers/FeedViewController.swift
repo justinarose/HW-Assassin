@@ -170,6 +170,36 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
                 
                 print("Created posts")
+                
+                User.calculateRankInContext(AppDelegate.viewContext)
+                
+                Alamofire.request("https://hwassassin.hwtechcouncil.com/api/likes/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    debugPrint(response)
+                    if let result = response.result.value {
+                        let JSON = result as! NSArray
+                        
+                        for l in JSON as! [[String: AnyObject]]{
+                            Like.likeWithLikeInfo(l, inManageObjectContext: AppDelegate.viewContext)
+                        }
+                        
+                        print("Created likes")
+                    }
+                }
+                Alamofire.request("https://hwassassin.hwtechcouncil.com/api/comments/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    debugPrint(response)
+                    
+                    //to get JSON return value
+                    if let result = response.result.value {
+                        let JSON = result as! NSArray
+                        print("Response JSON: \(JSON)")
+                        
+                        for c in JSON as! [[String: AnyObject]]{
+                            Comment.commentWithCommentInfo(c, inManageObjectContext: AppDelegate.viewContext)
+                        }
+                        
+                        print("Created comments")
+                    }
+                }
             }
         }
     }

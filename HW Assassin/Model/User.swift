@@ -18,6 +18,12 @@ class User: NSManagedObject {
         request.predicate = NSPredicate(format: "id=%d", userInfo["id"] as! Int64)
         if let user = (try? context.fetch(request))?.first{
             print("Object already exists")
+            user.firstName = userInfo["first_name"] as! String?
+            user.lastName = userInfo["last_name"] as! String?
+            user.email = userInfo["email"] as! String?
+            user.username = userInfo["username"] as! String?
+            user.profilePictureURL = (userInfo["player"] as! NSDictionary)["profile_picture"] as! String?
+            user.year = (userInfo["player"] as! NSDictionary)["year"] as! String?
             return user
         }
         else{

@@ -68,6 +68,34 @@ class CommentViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.reloadData()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    func refresh(sender: UIRefreshControl) {
+        if let p = self.post{
+            let headers = ["Content-Type": "application/json"]
+            
+            Alamofire.request("https://hwassassin.hwtechcouncil.com/api/comments/?post=\(p.id)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                sender.endRefreshing()
+                debugPrint(response)
+                
+                //to get JSON return value
+                if let result = response.result.value {
+                    let JSON = result as! NSArray
+                    print("Response JSON: \(JSON)")
+                    
+                    for c in JSON as! [[String: AnyObject]]{
+                        Comment.commentWithCommentInfo(c, inManageObjectContext: AppDelegate.viewContext)
+                    }
+                    
+                    print("Created comments")
+                }
+            }
+        }
+        
     }
     
     @IBAction func postButtonPressed(_ sender: Any) {
