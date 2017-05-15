@@ -16,6 +16,7 @@ import QuartzCore
 
 class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDelegate,NextLevelVideoDelegate {
     
+    @IBOutlet weak var finishedButton: UIButton!
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var recordImageView: UIImageView!
     var statusView: UIView!
@@ -41,7 +42,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
             focusTapGestureRecognizer.numberOfTapsRequired = 1
             previewView.addGestureRecognizer(focusTapGestureRecognizer)
             
-            self.statusView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 2))
+            self.statusView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 10))
             self.statusView.backgroundColor = UIColor.red
             self.view.addSubview(self.statusView)
             
@@ -61,6 +62,10 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated);
@@ -76,7 +81,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         if nextLevel.session == nil {
             do {
                 try nextLevel.start()
-                self.statusView.frame = CGRect(x: 0, y: 0, width: 0, height: 2)
+                self.statusView.frame = CGRect(x: 0, y: 0, width: 0, height: 10)
                 self.gesture.isEnabled = true
             } catch {
                 print("NextLevel, failed to start camera session with error \(error)")
@@ -102,7 +107,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
         if nextLevel.session == nil {
             do {
                 try nextLevel.start()
-                self.statusView.frame = CGRect(x: 0, y: 0, width: 0, height: 2)
+                self.statusView.frame = CGRect(x: 0, y: 0, width: 0, height: 10)
                 self.gesture.isEnabled = true
             } catch {
                 print("NextLevel, failed to start camera session with error \(error)")
@@ -371,6 +376,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
             }
             
         }
+        self.finishedButton.isEnabled = true
     }
     
     func handleFocusTapGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
@@ -382,6 +388,7 @@ class CameraViewController: UIViewController,NextLevelDelegate,NextLevelDeviceDe
     
     
     @IBAction func finishedRecordingPressed(_ sender: Any) {
+        self.finishedButton.isEnabled = false
         self.endCapture()
     }
     

@@ -474,7 +474,7 @@
             </objects>
             <point key="canvasLocation" x="2902.898550724638" y="954.61956521739137"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Kills Map-->
         <scene sceneID="LNA-Rq-4lQ">
             <objects>
                 <viewController storyboardIdentifier="map_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1ha-wJ-isa" customClass="MapViewController" customModule="HW_Assassin" customModuleProvider="target" sceneMemberID="viewController">
@@ -498,7 +498,7 @@
                             <constraint firstAttribute="trailing" secondItem="SIR-bx-rlH" secondAttribute="trailing" id="wRg-Pf-XQj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2Lg-fe-wFu"/>
+                    <navigationItem key="navigationItem" title="Kills Map" id="2Lg-fe-wFu"/>
                     <connections>
                         <outlet property="mapView" destination="SIR-bx-rlH" id="sfI-s9-pzb"/>
                     </connections>
@@ -559,6 +559,7 @@
                     <navigationItem key="navigationItem" id="Spo-8z-NQb"/>
                     <connections>
                         <outlet property="cameraView" destination="RrC-i5-A7N" id="OmC-i2-oxx"/>
+                        <outlet property="finishedButton" destination="UqI-Bm-lBW" id="BlN-vO-LMT"/>
                         <outlet property="recordImageView" destination="iM4-TA-HtT" id="The-oU-uj0"/>
                         <segue destination="Hs2-eQ-BCK" kind="show" identifier="viewVideo" id="Km4-a5-ZSn"/>
                     </connections>

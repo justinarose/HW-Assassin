@@ -117,6 +117,33 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let dict = UserDefaults.standard.value(forKey: "status") as! [String: Any]
+        let game = dict["game"] as! Int64
+        let user = (UIApplication.shared.delegate as! AppDelegate).user
+        
+        if user != nil{
+            Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?killed=\(user!.id)&game=\(game)&status=p").responseJSON{ response in
+                debugPrint(response)
+                
+                if let result = response.result.value{
+                    let JSON = result as! NSArray
+                    print("Response JSON: \(JSON)")
+                    
+                    if JSON.count > 0 {
+                        let postDict = JSON.firstObject!
+                        let post = Post.postWithPostInfo(postDict as! [String : Any], inManageObjectContext: AppDelegate.viewContext)
+                        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let vc : VerifyKillViewController = mainStoryboard.instantiateViewController(withIdentifier: "verify_kill_vc") as! VerifyKillViewController
+                        vc.post = post
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

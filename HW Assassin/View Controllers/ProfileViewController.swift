@@ -263,12 +263,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 postCell.vc = self
                 postCell.post = obj
                 
-                postCell.postUsernameTitleLabel.text = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
-                postCell.usernameCaptionLabel.text = postCell.postUsernameTitleLabel.text! + "  " + obj.caption!
+                let postUsernameText = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
+                postCell.postUsernameButton.setTitle(postUsernameText, for: .normal)
+                postCell.usernameCaptionLabel.text = postUsernameText + "  " + obj.caption!
                 postCell.rankLabel.text = "Rank " + String(describing: obj.poster!.rank)
                 
-                //NOTE location label is actually to display who was killed; should change, but not enough time
-                postCell.locationLabel.text = "Killed " + (obj.killed?.firstName)! + " " + (obj.killed?.lastName)!
+                let killedUsernameText = "Killed " + (obj.killed?.firstName)! + " " + (obj.killed?.lastName)!
+                postCell.killedUserButton.setTitle(killedUsernameText, for: .normal)
                 
                 let likeCount = String(describing: obj.likes!.count)
                 if obj.likes!.count != 1 {

@@ -36,6 +36,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func createAccountPressed(_ sender: Any) {
+        print("TAP")
         if(imageView.image == nil){
             // create the alert
             let alert = UIAlertController(title: "Error", message: "You must choose a profile photo", preferredStyle: UIAlertControllerStyle.alert)
@@ -92,6 +93,10 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.present(alert, animated: true, completion: nil)
         }
         else{
+            if let butten = sender as? UIButton{
+                butten.isEnabled = false
+            }
+            
             let parameters = ["username":usernameTextField.text,
                               "email":emailTextField.text,
                               "first_name":firstNameTextField.text,
@@ -168,14 +173,30 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                                 }
                             default:
                                 print("Error with response status: \(status)")
-                                // create the alert
-                                let alert = UIAlertController(title: "Error", message: "There was a server error.", preferredStyle: UIAlertControllerStyle.alert)
-                                
-                                // add an action (button)
-                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                
-                                // show the alert
-                                self.present(alert, animated: true, completion: nil)
+                                if let result = response.result.value {
+                                    let JSON = result as! NSDictionary
+                                    if let arr = JSON.allValues.first as? NSArray, let value = arr.firstObject{
+                                        let alert = UIAlertController(title: "Error", message: String(describing: value), preferredStyle: UIAlertControllerStyle.alert)
+                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                        self.present(alert, animated: true){
+                                            if let butten = sender as? UIButton{
+                                                butten.isEnabled = true
+                                                print("enabled")
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                                else{
+                                    let alert = UIAlertController(title: "Error", message: "There was a server error.", preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                    self.present(alert, animated: true){
+                                        if let butten = sender as? UIButton{
+                                            butten.isEnabled = true
+                                            print("enabled")
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

@@ -60,7 +60,14 @@ class VerifyPostViewController: UIViewController, CLLocationManagerDelegate {
             })
             
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(VerifyPostViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
+    
+    func dismissKeyboard(){
+        view.endEditing(true)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -70,6 +77,10 @@ class VerifyPostViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @IBAction func postKillPressed(_ sender: Any) {
+        if let butten = sender as? UIButton{
+            butten.isEnabled = false
+            print("enabled")
+        }
         let dict = UserDefaults.standard.value(forKey: "status") as! [String: Any]
         let game = dict["game"] as! Int64
         
@@ -136,16 +147,42 @@ class VerifyPostViewController: UIViewController, CLLocationManagerDelegate {
                                             
                                         default:
                                             print("An error occured")
-                                            // create the alert
-                                            let alert = UIAlertController(title: "Error", message: "An error occured. Is your previous kill still pending? Are you dead?", preferredStyle: UIAlertControllerStyle.alert)
-                                            
-                                            // add an action (button)
-                                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action in
-                                                self.navigationController?.popViewController(animated: true)
-                                            })
-                                            
-                                            // show the alert
-                                            self.present(alert, animated: true, completion: nil)
+                                            if let result = response.result.value {
+                                                if let JSON = result as? NSDictionary{
+                                                    if let arr = JSON.allValues.first as? NSArray, let value = arr.firstObject{
+                                                        let alert = UIAlertController(title: "Error submitting post", message: String(describing: value), preferredStyle: UIAlertControllerStyle.alert)
+                                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                                        self.present(alert, animated: true){
+                                                            if let butten = sender as? UIButton{
+                                                                butten.isEnabled = true
+                                                                print("enabled")
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else if let JSON = result as? NSArray{
+                                                    if let value = JSON.firstObject{
+                                                        let alert = UIAlertController(title: "Error submitting post", message: String(describing: value), preferredStyle: UIAlertControllerStyle.alert)
+                                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                                        self.present(alert, animated: true){
+                                                            if let butten = sender as? UIButton{
+                                                                butten.isEnabled = true
+                                                                print("enabled")
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                let alert = UIAlertController(title: "Error", message: "There was a server error.", preferredStyle: UIAlertControllerStyle.alert)
+                                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                                self.present(alert, animated: true){
+                                                    if let butten = sender as? UIButton{
+                                                        butten.isEnabled = true
+                                                        print("enabled")
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }

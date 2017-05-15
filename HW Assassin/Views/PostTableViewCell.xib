@@ -21,24 +21,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="655.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xg-R7-PIc">
-                        <rect key="frame" x="66" y="38" width="187.5" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unknown-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="rO8-Pp-90o" userLabel="Profile Icon">
                         <rect key="frame" x="8" y="8" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="rO8-Pp-90o" secondAttribute="height" multiplier="1:1" id="89k-Aq-kjS"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0x-gO-o1Z">
-                        <rect key="frame" x="66" y="8" width="188" height="20"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank 7" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2S2-TF-rUT" userLabel="Rank ">
                         <rect key="frame" x="292" y="23" width="75" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -103,20 +91,38 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30v-FR-CNh">
+                        <rect key="frame" x="66" y="8" width="84" height="20"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <state key="normal" title="Username">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickedPostUsername:" destination="1fq-eH-3Gc" eventType="touchUpInside" id="YHU-UK-s9m"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xj-fg-7hF">
+                        <rect key="frame" x="66" y="38" width="66" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="Location">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickedKilledUsername:" destination="1fq-eH-3Gc" eventType="touchUpInside" id="veO-ku-bzY"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2S2-TF-rUT" firstAttribute="centerY" secondItem="rO8-Pp-90o" secondAttribute="centerY" id="0ho-gJ-LnW"/>
                     <constraint firstItem="pL4-uq-fKP" firstAttribute="top" secondItem="SdP-GR-OWu" secondAttribute="bottom" constant="8" id="0i1-Jz-l1L"/>
-                    <constraint firstItem="f0x-gO-o1Z" firstAttribute="height" secondItem="rO8-Pp-90o" secondAttribute="height" multiplier="0.4" id="1Nw-Ef-3sC"/>
+                    <constraint firstItem="8Xj-fg-7hF" firstAttribute="leading" secondItem="rO8-Pp-90o" secondAttribute="trailing" constant="8" id="1dx-x3-uvs"/>
                     <constraint firstAttribute="bottomMargin" secondItem="WhC-An-XOC" secondAttribute="bottom" constant="31" id="1fC-Ia-fUF"/>
                     <constraint firstItem="2RV-ci-d3F" firstAttribute="top" secondItem="rO8-Pp-90o" secondAttribute="bottom" constant="8" id="2SS-yD-kjz"/>
                     <constraint firstAttribute="leadingMargin" secondItem="5ph-UQ-qNL" secondAttribute="leading" id="2oa-0G-6mx"/>
-                    <constraint firstItem="6xg-R7-PIc" firstAttribute="bottom" secondItem="rO8-Pp-90o" secondAttribute="bottom" id="521-I9-2Wa"/>
                     <constraint firstItem="SdP-GR-OWu" firstAttribute="height" relation="greaterThanOrEqual" secondItem="jTp-WU-cEl" secondAttribute="height" id="6Ld-do-uLT"/>
                     <constraint firstItem="jTp-WU-cEl" firstAttribute="top" secondItem="5ph-UQ-qNL" secondAttribute="bottom" constant="8" id="7Ig-PI-HP5"/>
                     <constraint firstItem="qHn-VB-zmJ" firstAttribute="height" secondItem="5ph-UQ-qNL" secondAttribute="height" id="7ly-4I-Lzw"/>
                     <constraint firstItem="5ph-UQ-qNL" firstAttribute="top" secondItem="2RV-ci-d3F" secondAttribute="bottom" constant="8" id="9bF-1C-JtF"/>
-                    <constraint firstItem="6xg-R7-PIc" firstAttribute="height" secondItem="rO8-Pp-90o" secondAttribute="height" multiplier="0.4" id="A7J-IO-PbJ"/>
                     <constraint firstAttribute="leadingMargin" secondItem="jTp-WU-cEl" secondAttribute="leading" id="CsW-jT-gx9"/>
                     <constraint firstItem="2RV-ci-d3F" firstAttribute="leading" secondItem="8kt-Nc-Zef" secondAttribute="leadingMargin" constant="-8" id="DVd-LJ-X43"/>
                     <constraint firstAttribute="trailingMargin" secondItem="WhC-An-XOC" secondAttribute="trailing" id="EPH-ri-00b"/>
@@ -127,9 +133,9 @@
                     <constraint firstAttribute="trailingMargin" secondItem="2S2-TF-rUT" secondAttribute="trailing" id="QHG-8O-jpd"/>
                     <constraint firstItem="SdP-GR-OWu" firstAttribute="top" secondItem="jTp-WU-cEl" secondAttribute="bottom" constant="8" id="R2f-2M-xbR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="SdP-GR-OWu" secondAttribute="trailing" id="RV6-aL-yxt"/>
-                    <constraint firstItem="6xg-R7-PIc" firstAttribute="width" secondItem="8kt-Nc-Zef" secondAttribute="width" multiplier="0.5" id="UJ3-l2-qh3"/>
                     <constraint firstItem="WhC-An-XOC" firstAttribute="top" secondItem="pL4-uq-fKP" secondAttribute="bottom" constant="8" id="UK1-YN-YCN"/>
                     <constraint firstItem="rO8-Pp-90o" firstAttribute="width" secondItem="8kt-Nc-Zef" secondAttribute="width" multiplier="50/375" id="Ubh-kr-c3x"/>
+                    <constraint firstItem="30v-FR-CNh" firstAttribute="height" secondItem="rO8-Pp-90o" secondAttribute="height" multiplier="0.4" id="W4M-MC-SJK"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2RV-ci-d3F" secondAttribute="trailing" constant="-8" id="WcE-3T-NIU"/>
                     <constraint firstAttribute="leadingMargin" secondItem="SdP-GR-OWu" secondAttribute="leading" id="Xju-aP-nZc"/>
                     <constraint firstAttribute="leadingMargin" secondItem="rO8-Pp-90o" secondAttribute="leading" id="Y4H-DO-Piz"/>
@@ -137,25 +143,25 @@
                     <constraint firstItem="qHn-VB-zmJ" firstAttribute="leading" secondItem="5ph-UQ-qNL" secondAttribute="trailing" constant="16" id="dQK-nr-psj"/>
                     <constraint firstItem="5lE-jN-Suf" firstAttribute="bottom" secondItem="2RV-ci-d3F" secondAttribute="bottom" id="egv-8b-7jA"/>
                     <constraint firstAttribute="leadingMargin" secondItem="WhC-An-XOC" secondAttribute="leading" id="eo8-Cf-gxB"/>
-                    <constraint firstItem="6xg-R7-PIc" firstAttribute="leading" secondItem="rO8-Pp-90o" secondAttribute="trailing" constant="8" id="hFi-Ao-07f"/>
-                    <constraint firstItem="f0x-gO-o1Z" firstAttribute="width" secondItem="8kt-Nc-Zef" secondAttribute="width" multiplier="0.5" id="k4s-dC-Jo7"/>
+                    <constraint firstItem="8Xj-fg-7hF" firstAttribute="bottom" secondItem="rO8-Pp-90o" secondAttribute="bottom" id="f7k-sj-wWo"/>
+                    <constraint firstItem="30v-FR-CNh" firstAttribute="top" secondItem="rO8-Pp-90o" secondAttribute="top" id="j3h-YG-jVC"/>
                     <constraint firstItem="pL4-uq-fKP" firstAttribute="height" secondItem="jTp-WU-cEl" secondAttribute="height" id="l6f-8h-8dY"/>
-                    <constraint firstItem="f0x-gO-o1Z" firstAttribute="leading" secondItem="rO8-Pp-90o" secondAttribute="trailing" constant="8" id="r4N-HL-fxy"/>
+                    <constraint firstItem="8Xj-fg-7hF" firstAttribute="height" secondItem="rO8-Pp-90o" secondAttribute="height" multiplier="0.4" id="qPt-Fg-9hm"/>
+                    <constraint firstItem="30v-FR-CNh" firstAttribute="leading" secondItem="rO8-Pp-90o" secondAttribute="trailing" constant="8" id="rbt-Sr-Rc6"/>
                     <constraint firstItem="5lE-jN-Suf" firstAttribute="trailing" secondItem="2RV-ci-d3F" secondAttribute="trailing" id="sdA-fI-A0f"/>
                     <constraint firstItem="WhC-An-XOC" firstAttribute="height" secondItem="jTp-WU-cEl" secondAttribute="height" id="uj3-Qg-1Jc"/>
                     <constraint firstItem="jTp-WU-cEl" firstAttribute="height" secondItem="5ph-UQ-qNL" secondAttribute="height" multiplier="2/3" id="vQR-lo-exo"/>
-                    <constraint firstItem="f0x-gO-o1Z" firstAttribute="top" secondItem="rO8-Pp-90o" secondAttribute="top" id="wwa-3z-c9s"/>
                     <constraint firstItem="qHn-VB-zmJ" firstAttribute="top" secondItem="2RV-ci-d3F" secondAttribute="bottom" constant="8" id="x3k-F7-fav"/>
                     <constraint firstAttribute="leadingMargin" secondItem="pL4-uq-fKP" secondAttribute="leading" id="ylI-zu-eD5"/>
                     <constraint firstItem="5lE-jN-Suf" firstAttribute="leading" secondItem="2RV-ci-d3F" secondAttribute="leading" id="zlQ-bJ-reg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="killedUserButton" destination="8Xj-fg-7hF" id="Yub-16-Ch4"/>
                 <outlet property="likeButton" destination="5ph-UQ-qNL" id="lm6-tV-4pS"/>
                 <outlet property="likesLabel" destination="jTp-WU-cEl" id="hsm-xl-0bA"/>
-                <outlet property="locationLabel" destination="6xg-R7-PIc" id="21z-nI-CQR"/>
                 <outlet property="placeholderImage" destination="5lE-jN-Suf" id="mYs-vj-hww"/>
-                <outlet property="postUsernameTitleLabel" destination="f0x-gO-o1Z" id="Tk3-C0-GZF"/>
+                <outlet property="postUsernameButton" destination="30v-FR-CNh" id="7p7-89-1vg"/>
                 <outlet property="profileImageView" destination="rO8-Pp-90o" id="Owh-9Z-Lxo"/>
                 <outlet property="rankLabel" destination="2S2-TF-rUT" id="AwZ-Ah-ix4"/>
                 <outlet property="timeLabel" destination="WhC-An-XOC" id="5am-Uy-dRz"/>

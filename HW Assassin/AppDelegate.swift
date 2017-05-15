@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        print("Did finish launching")
         // Override point for customization after application launch.
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -104,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 print("Created statuses")
                             }
                         }
-                        
+                        /*
                         if self.user != nil && self.gameId != nil{
                             Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?killed=\(self.user!.id)&game=\(self.gameId!)&status=p").responseJSON{ response in
                                 debugPrint(response)
@@ -122,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     }
                                 }
                             }
-                        }
+                        }*/
                     }
                 }
             }
@@ -145,6 +147,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if self.user != nil && self.gameId != nil{
+            Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?killed=\(self.user!.id)&game=\(self.gameId!)&status=p").responseJSON{ response in
+                debugPrint(response)
+                
+                if let result = response.result.value{
+                    let JSON = result as! NSArray
+                    print("Response JSON: \(JSON)")
+                    
+                    if JSON.count > 0 {
+                        let postDict = JSON.firstObject!
+                        let post = Post.postWithPostInfo(postDict as! [String : Any], inManageObjectContext: AppDelegate.viewContext)
+                        let vc : VerifyKillViewController = mainStoryboard.instantiateViewController(withIdentifier: "verify_kill_vc") as! VerifyKillViewController
+                        vc.post = post
+                        self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

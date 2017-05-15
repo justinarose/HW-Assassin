@@ -12,10 +12,10 @@ import AVKit
 import Alamofire
 
 class PostTableViewCell: UITableViewCell {
+    @IBOutlet weak var killedUserButton: UIButton!
+    @IBOutlet weak var postUsernameButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var postUsernameTitleLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var likesLabel: UILabel!
@@ -105,7 +105,20 @@ class PostTableViewCell: UITableViewCell {
         self.vc?.performSegue(withIdentifier: "displayComments", sender: post)
     }
     
-
+    @IBAction func clickedPostUsername(_ sender: Any) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileVc = mainStoryboard.instantiateViewController(withIdentifier: "profile_vc") as! ProfileViewController
+        profileVc.userAccount = self.post?.poster!
+        self.vc?.navigationController?.pushViewController(profileVc, animated: true)
+    }
+    
+    @IBAction func clickedKilledUsername(_ sender: Any) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileVc = mainStoryboard.instantiateViewController(withIdentifier: "profile_vc") as! ProfileViewController
+        profileVc.userAccount = self.post?.killed
+        self.vc?.navigationController?.pushViewController(profileVc, animated: true)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

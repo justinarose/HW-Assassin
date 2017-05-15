@@ -91,7 +91,7 @@ class VerifyKillViewController: UIViewController {
                 default:
                     print("An error occured")
                     // create the alert
-                    let alert = UIAlertController(title: "Error", message: "An error occured. Have you already submited a kill for this target?", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Error", message: "An error occured.", preferredStyle: UIAlertControllerStyle.alert)
                     
                     // add an action (button)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action in
@@ -127,7 +127,7 @@ class VerifyKillViewController: UIViewController {
                 default:
                     print("An error occured")
                     // create the alert
-                    let alert = UIAlertController(title: "Error", message: "An error occured. Have you already submited a kill for this target?", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Error", message: "An error occured.", preferredStyle: UIAlertControllerStyle.alert)
                     
                     // add an action (button)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default){ action in
@@ -139,6 +139,10 @@ class VerifyKillViewController: UIViewController {
                 }
             }
         }
+        
+        let context = AppDelegate.viewContext
+        context.delete(self.post!)
+        AppDelegate.saveViewContext()
     }
     /*
     // MARK: - Navigation

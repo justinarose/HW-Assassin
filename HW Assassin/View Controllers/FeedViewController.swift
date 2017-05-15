@@ -136,7 +136,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let game = dict["game"] as! Int64
         let headers = ["Content-Type": "application/json"]
         
-        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?game=\(game)&status=v", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
             debugPrint(response)
             
             //to get JSON return value
@@ -148,6 +148,27 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
                 
                 print("Created posts")
+                let user = (UIApplication.shared.delegate as! AppDelegate).user
+                
+                if user != nil{
+                    Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/?killed=\(user!.id)&game=\(game)&status=p").responseJSON{ response in
+                        debugPrint(response)
+                        
+                        if let result = response.result.value{
+                            let JSON = result as! NSArray
+                            print("Response JSON: \(JSON)")
+                            
+                            if JSON.count > 0 {
+                                let postDict = JSON.firstObject!
+                                let post = Post.postWithPostInfo(postDict as! [String : Any], inManageObjectContext: AppDelegate.viewContext)
+                                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                let vc : VerifyKillViewController = mainStoryboard.instantiateViewController(withIdentifier: "verify_kill_vc") as! VerifyKillViewController
+                                vc.post = post
+                                self.present(vc, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }
             }
         }
         
@@ -223,12 +244,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.vc = self
             cell.post = obj
             
-            cell.postUsernameTitleLabel.text = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
-            cell.usernameCaptionLabel.text = cell.postUsernameTitleLabel.text! + "  " + obj.caption!
+            let postUsernameText = (obj.poster?.firstName)! + " " + (obj.poster?.lastName)!
+            cell.postUsernameButton.setTitle(postUsernameText, for: .normal)
+            cell.usernameCaptionLabel.text = postUsernameText + "  " + obj.caption!
             cell.rankLabel.text = "Rank " + String(describing: obj.poster!.rank)
             
-            //NOTE location label is actually to display who was killed; should change, but not enough time
-            cell.locationLabel.text = "Killed " + (obj.killed?.firstName)! + " " + (obj.killed?.lastName)!
+            let killedUsernameText = "Killed " + (obj.killed?.firstName)! + " " + (obj.killed?.lastName)!
+            cell.killedUserButton.setTitle(killedUsernameText, for: .normal)
             
             let likeCount = String(describing: obj.likes!.count)
             if obj.likes!.count != 1 {
