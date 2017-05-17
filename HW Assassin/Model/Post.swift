@@ -27,6 +27,10 @@ class Post: NSManagedObject {
             
             post.timeConfirmed = localDate as NSDate?
             
+            post.caption = postInfo["caption"] as? String
+            post.postVideoURL = postInfo["post_video"] as? String
+            post.postThumbnailURL = postInfo["post_thumbnail_image"] as? String
+            
             return post
         }
         else{

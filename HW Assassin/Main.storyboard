@@ -347,7 +347,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iCK-2k-CoG" id="4Pg-h2-yzJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="89.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HW Assassin 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slR-Se-eYJ">
@@ -404,7 +404,7 @@
                                         <rect key="frame" x="0.0" y="118" width="414" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ft7-bH-Ilm" id="OO7-G7-8ot">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcj-kh-NHb">
@@ -763,7 +763,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="138"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lN3-Gd-ZNF" id="u8h-JK-WZD">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="137.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="137.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unknown-1.png" translatesAutoresizingMaskIntoConstraints="NO" id="ya8-9Z-ceF">
@@ -1020,6 +1020,20 @@
                                     <constraint firstAttribute="width" secondItem="5zN-zw-Ciu" secondAttribute="height" multiplier="1:1" id="Zng-Wm-Qx6"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMM-X5-URo">
+                                <rect key="frame" x="132" y="369" width="151" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="our Terms of Service"/>
+                                <connections>
+                                    <segue destination="RKQ-HM-WR4" kind="show" id="M6j-Ji-F7x"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By signing up, you agree to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnS-Pf-0Ag">
+                                <rect key="frame" x="108.66666666666669" y="342" width="196.66666666666663" height="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1029,12 +1043,15 @@
                             <constraint firstItem="tlg-ol-09b" firstAttribute="width" secondItem="lTm-0c-ZlL" secondAttribute="width" id="67L-wM-b1S"/>
                             <constraint firstItem="c7H-1f-49F" firstAttribute="leading" secondItem="6En-ks-8HT" secondAttribute="leadingMargin" id="8Yb-Dc-Un7"/>
                             <constraint firstItem="ib3-lr-xPD" firstAttribute="leading" secondItem="c7H-1f-49F" secondAttribute="trailing" constant="8" id="8jX-wt-zWr"/>
+                            <constraint firstItem="RnS-Pf-0Ag" firstAttribute="top" secondItem="5zN-zw-Ciu" secondAttribute="bottom" constant="8" id="ApO-ge-ncF"/>
                             <constraint firstItem="c7H-1f-49F" firstAttribute="width" secondItem="ib3-lr-xPD" secondAttribute="width" id="BqK-ut-BF7"/>
+                            <constraint firstItem="VMM-X5-URo" firstAttribute="centerX" secondItem="6En-ks-8HT" secondAttribute="centerX" id="DnJ-fu-t2Z"/>
                             <constraint firstItem="bI7-9e-qPh" firstAttribute="trailing" secondItem="ib3-lr-xPD" secondAttribute="trailing" id="F1R-XA-x7n"/>
                             <constraint firstItem="c7H-1f-49F" firstAttribute="top" secondItem="FCn-2w-e0R" secondAttribute="bottom" constant="8" id="NE4-IO-utw"/>
                             <constraint firstItem="BBp-Dj-V3h" firstAttribute="width" secondItem="c7H-1f-49F" secondAttribute="width" id="NuU-Pe-EJF"/>
                             <constraint firstItem="BBp-Dj-V3h" firstAttribute="top" secondItem="c7H-1f-49F" secondAttribute="bottom" constant="8" id="PNy-xS-1xD"/>
                             <constraint firstItem="5zN-zw-Ciu" firstAttribute="top" secondItem="BDO-eU-XtC" secondAttribute="bottom" constant="8" id="S4I-gd-sED"/>
+                            <constraint firstItem="VMM-X5-URo" firstAttribute="top" secondItem="RnS-Pf-0Ag" secondAttribute="bottom" constant="8" id="SLx-0Q-gnq"/>
                             <constraint firstItem="BBp-Dj-V3h" firstAttribute="leading" secondItem="c7H-1f-49F" secondAttribute="leading" id="UXx-Qh-c0n"/>
                             <constraint firstItem="bI7-9e-qPh" firstAttribute="width" secondItem="ib3-lr-xPD" secondAttribute="width" id="WMF-8h-7ET"/>
                             <constraint firstItem="lTm-0c-ZlL" firstAttribute="top" secondItem="BBp-Dj-V3h" secondAttribute="bottom" constant="8" id="ZTQ-xl-Fc0"/>
@@ -1050,6 +1067,7 @@
                             <constraint firstItem="h9Q-la-Okh" firstAttribute="top" secondItem="qMP-Sg-gnC" secondAttribute="bottom" id="lwY-6W-zyG"/>
                             <constraint firstItem="ib3-lr-xPD" firstAttribute="top" secondItem="FCn-2w-e0R" secondAttribute="bottom" constant="8" id="lwc-aA-lOx"/>
                             <constraint firstItem="JR9-XL-TKp" firstAttribute="trailing" secondItem="bI7-9e-qPh" secondAttribute="trailing" id="r69-f7-0m5"/>
+                            <constraint firstItem="RnS-Pf-0Ag" firstAttribute="centerX" secondItem="6En-ks-8HT" secondAttribute="centerX" id="sVy-YK-Vqc"/>
                             <constraint firstItem="BDO-eU-XtC" firstAttribute="centerX" secondItem="JR9-XL-TKp" secondAttribute="centerX" id="tSl-Yb-2dV"/>
                             <constraint firstItem="tlg-ol-09b" firstAttribute="leading" secondItem="lTm-0c-ZlL" secondAttribute="leading" id="u2U-UL-Wqp"/>
                         </constraints>
@@ -1071,6 +1089,39 @@
             </objects>
             <point key="canvasLocation" x="-571.01449275362324" y="-106.79347826086958"/>
         </scene>
+        <!--Terms of Service-->
+        <scene sceneID="akk-mo-0Bh">
+            <objects>
+                <viewController title="Terms of Service" id="RKQ-HM-WR4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kf9-cB-NQW"/>
+                        <viewControllerLayoutGuide type="bottom" id="iM7-Ih-t09"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ajc-1F-686">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJh-QE-Gn3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Please read these Terms of Service ("Terms", "Terms of Service") carefully before using HW Assassin (the "Service") operated by the Harvard Westlake Tech Council.Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service. By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.TerminationWe may terminate or suspend access to our Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations of liability.ContentOur Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material ("Content"). You are responsible for ensuring the Content you submit to the Service is not objectionable; any users adding content found to be harassing, inappropriate, obscene, or abusive will not be tolerated and could be suspended our Service. Contact UsIf you have any questions about these Terms, please contact us via email at jrose1@hwemail.com before June 2017 and the corresponding Harvard-Westlake Tech Council representative thereafter.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iM7-Ih-t09" firstAttribute="top" secondItem="sJh-QE-Gn3" secondAttribute="bottom" id="9Q3-SK-af9"/>
+                            <constraint firstItem="sJh-QE-Gn3" firstAttribute="top" secondItem="Ajc-1F-686" secondAttribute="top" id="lGb-Cz-Sd9"/>
+                            <constraint firstItem="sJh-QE-Gn3" firstAttribute="leading" secondItem="Ajc-1F-686" secondAttribute="leading" id="t6Z-tT-A1C"/>
+                            <constraint firstAttribute="trailing" secondItem="sJh-QE-Gn3" secondAttribute="trailing" id="z6V-3R-OXL"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vba-vH-TIm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="366.66666666666669" y="-771.19565217391312"/>
+        </scene>
         <!--Games-->
         <scene sceneID="FF7-di-R2e">
             <objects>
@@ -1091,7 +1142,7 @@
                                         <rect key="frame" x="0.0" y="28" width="406" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CXJ-V2-LzU" id="VeV-Ru-JrV">
-                                            <rect key="frame" x="0.0" y="0.0" width="406" height="139.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="406" height="139.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWY-39-MPD">

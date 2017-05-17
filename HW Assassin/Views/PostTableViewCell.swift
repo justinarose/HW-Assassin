@@ -12,6 +12,7 @@ import AVKit
 import Alamofire
 
 class PostTableViewCell: UITableViewCell {
+    @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var killedUserButton: UIButton!
     @IBOutlet weak var postUsernameButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
@@ -96,6 +97,54 @@ class PostTableViewCell: UITableViewCell {
             }
             
             self.likeButton.isEnabled = true
+            
+        }
+    }
+    
+    @IBAction func report(_ sender: Any) {
+        print("Report selected")
+        reportButton.isEnabled = false
+        
+        let token = UserDefaults.standard.value(forKey: "token")!
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Token \(token)",
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/posts/\(post!.id)/report/", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ [unowned self] response in
+            debugPrint(response)
+            
+            if let status = response.response?.statusCode {
+                switch(status){
+                case 200..<299 :
+                    print("Successfully liked post")
+                    
+                    //to get JSON return value
+                    if (response.result.value != nil) {
+                        let alert = UIAlertController(title: "Submitted", message: "The post report has been submitted", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.vc?.present(alert, animated: true, completion: nil)
+                    }
+                    else{
+                        let alert = UIAlertController(title: "Error", message: "An error occured reporting post", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.vc?.present(alert, animated: true, completion: nil)
+                    }
+                case 409:
+                    let alert = UIAlertController(title: "Already Submitted", message: "You've already reported this post", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.vc?.present(alert, animated: true, completion: nil)
+                    
+                default:
+                    let alert = UIAlertController(title: "Error", message: "An error occured reporting post", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.vc?.present(alert, animated: true, completion: nil)
+                }
+            }
+            
+            self.reportButton.isEnabled = true
             
         }
     }

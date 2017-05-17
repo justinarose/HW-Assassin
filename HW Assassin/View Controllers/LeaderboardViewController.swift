@@ -101,17 +101,83 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                 }
                 
                 print("Created games")
-                
-                if let tc = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? GameStatusTableViewCell, let game = self.g{
-                    switch(game.status!){
-                    case "r":
-                        tc.statusLabel.text = "Registration"
-                    case "p":
-                        tc.statusLabel.text = "In Progress"
-                    case "c":
-                        tc.statusLabel.text = "Complete"
-                    default:
-                        tc.statusLabel.text = "Error"
+                Alamofire.request("https://hwassassin.hwtechcouncil.com/api/users/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    debugPrint(response)
+                    
+                    //to get JSON return value
+                    if let result = response.result.value {
+                        let JSON = result as! NSArray
+                        print("Response JSON: \(JSON)")
+                        
+                        for u in JSON as! [[String: AnyObject]]{
+                            User.userWithUserInfo(u, inManageObjectContext: AppDelegate.viewContext)
+                        }
+                        
+                        print("Created users")
+                        
+                        Alamofire.request("https://hwassassin.hwtechcouncil.com/api/statuses/", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                            debugPrint(response)
+                            
+                            //to get JSON return value
+                            if let result = response.result.value {
+                                let JSON = result as! NSArray
+                                print("Response JSON: \(JSON)")
+                                
+                                for s in JSON as! [[String: AnyObject]]{
+                                    UserGameStatus.statusWithStatusInfo(s, inManageObjectContext: AppDelegate.viewContext)
+                                }
+                                
+                                print("Created statuses")
+                                if let tc = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? GameStatusTableViewCell, let game = self.g{
+                                    switch(game.status!){
+                                    case "r":
+                                        tc.statusLabel.text = "Registration"
+                                    case "p":
+                                        tc.statusLabel.text = "In Progress"
+                                    case "c":
+                                        tc.statusLabel.text = "Complete"
+                                    default:
+                                        tc.statusLabel.text = "Error"
+                                    }
+                                    
+                                    var count = 0
+                                    var alive = 0
+                                    
+                                    for s in game.statuses!{
+                                        count += 1
+                                        if let stat = s as? UserGameStatus{
+                                            if stat.status == "a"{
+                                                alive += 1
+                                            }
+                                        }
+                                    }
+                                    
+                                    tc.fractionAliveLabel.text = "\(alive)/\(count) Alive"
+                                    
+                                    if tc.greenSubview == nil{
+                                        tc.greenSubview = UIView()
+                                        tc.greenSubview?.backgroundColor = UIColor.green
+                                        tc.progressView.addSubview(tc.greenSubview!)
+                                    }
+                                    
+                                    if tc.redSubview == nil{
+                                        tc.redSubview = UIView()
+                                        tc.redSubview?.backgroundColor = UIColor.red
+                                        tc.progressView.addSubview(tc.redSubview!)
+                                    }
+                                    
+                                    let totalWidth = tc.progressView.frame.width
+                                    let greenWidth = totalWidth*CGFloat(alive)/CGFloat(count)
+                                    let redWidth = totalWidth-greenWidth
+                                    let height = tc.progressView.frame.height
+                                    
+                                    if count != 0{
+                                        tc.greenSubview?.frame = CGRect(x: 0, y: 0, width: greenWidth, height: height)
+                                        tc.redSubview?.frame = CGRect(x: greenWidth, y: 0, width: redWidth, height: height)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -16,6 +16,7 @@
 		086BEAFE1EBFFD8F0077AFC6 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086BEAFD1EBFFD8F0077AFC6 /* CommentViewController.swift */; };
 		0870FA4A1E89BB2A00E6F29C /* HWAssassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0870FA481E89BB2A00E6F29C /* HWAssassin.xcdatamodeld */; };
 		087158461EA7D49200673D4B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087158451EA7D49200673D4B /* CameraViewController.swift */; };
+		0889BFF01ECBE11B003399F9 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0889BFEF1ECBE11B003399F9 /* exclamation.png */; };
 		08AFBE0B1EB065F200C5B645 /* VerifyKillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AFBE0A1EB065F200C5B645 /* VerifyKillViewController.swift */; };
 		08C69FF61E92B56A00A559B2 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C69FF51E92B56A00A559B2 /* Comment.swift */; };
 		08C69FF81E92B58A00A559B2 /* CommentLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C69FF71E92B58A00A559B2 /* CommentLike.swift */; };
@@ -92,6 +93,7 @@
 		086BEAFD1EBFFD8F0077AFC6 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentViewController.swift; path = "View Controllers/CommentViewController.swift"; sourceTree = "<group>"; };
 		0870FA491E89BB2A00E6F29C /* HWAssassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HWAssassin.xcdatamodel; sourceTree = "<group>"; };
 		087158451EA7D49200673D4B /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = "View Controllers/CameraViewController.swift"; sourceTree = "<group>"; };
+		0889BFEF1ECBE11B003399F9 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
 		08AFBE0A1EB065F200C5B645 /* VerifyKillViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyKillViewController.swift; path = "View Controllers/VerifyKillViewController.swift"; sourceTree = "<group>"; };
 		08C69FF51E92B56A00A559B2 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = Model/Comment.swift; sourceTree = "<group>"; };
 		08C69FF71E92B58A00A559B2 /* CommentLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentLike.swift; path = Model/CommentLike.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				082BFA3C1EAAF9820065A656 /* circle-outline-512.gif */,
 				DCF903FB1EBCD519002855D3 /* arrow-xxl.png */,
 				DC8F79191E6883C60016B355 /* like.png */,
+				0889BFEF1ECBE11B003399F9 /* exclamation.png */,
 				DCF903F91EBCD339002855D3 /* 390579-200.png */,
 				DC724C371E69E53B000C4506 /* Unknown-1.png */,
 				DC724C251E69DBD0000C4506 /* 342068ae5bbfb0a8689f078674bf3e55_crosshairs-clip-art-at-clker-free-rifle-scope-clipart_300-300.png */,
@@ -436,6 +439,7 @@
 			files = (
 				DC724C361E69E4AE000C4506 /* leaderboard-icon-16.png in Resources */,
 				DCC1CC831E6882AC0020884A /* LaunchScreen.storyboard in Resources */,
+				0889BFF01ECBE11B003399F9 /* exclamation.png in Resources */,
 				DC724C381E69E53B000C4506 /* Unknown-1.png in Resources */,
 				DCF903FA1EBCD339002855D3 /* 390579-200.png in Resources */,
 				DC724C3C1E69EAF4000C4506 /* Camera Frame.jpg in Resources */,

@@ -111,6 +111,16 @@
                             <action selector="clickedKilledUsername:" destination="1fq-eH-3Gc" eventType="touchUpInside" id="veO-ku-bzY"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paa-Zx-XVr">
+                        <rect key="frame" x="335.5" y="474" width="31.5" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="paa-Zx-XVr" secondAttribute="height" multiplier="37:35" id="LVS-ZM-hLN"/>
+                        </constraints>
+                        <state key="normal" image="exclamation.png"/>
+                        <connections>
+                            <action selector="report:" destination="1fq-eH-3Gc" eventType="touchUpInside" id="Mi0-Pu-P7z"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2S2-TF-rUT" firstAttribute="centerY" secondItem="rO8-Pp-90o" secondAttribute="centerY" id="0ho-gJ-LnW"/>
@@ -123,6 +133,7 @@
                     <constraint firstItem="jTp-WU-cEl" firstAttribute="top" secondItem="5ph-UQ-qNL" secondAttribute="bottom" constant="8" id="7Ig-PI-HP5"/>
                     <constraint firstItem="qHn-VB-zmJ" firstAttribute="height" secondItem="5ph-UQ-qNL" secondAttribute="height" id="7ly-4I-Lzw"/>
                     <constraint firstItem="5ph-UQ-qNL" firstAttribute="top" secondItem="2RV-ci-d3F" secondAttribute="bottom" constant="8" id="9bF-1C-JtF"/>
+                    <constraint firstItem="paa-Zx-XVr" firstAttribute="trailing" secondItem="8kt-Nc-Zef" secondAttribute="trailingMargin" id="BVA-JZ-dRi"/>
                     <constraint firstAttribute="leadingMargin" secondItem="jTp-WU-cEl" secondAttribute="leading" id="CsW-jT-gx9"/>
                     <constraint firstItem="2RV-ci-d3F" firstAttribute="leading" secondItem="8kt-Nc-Zef" secondAttribute="leadingMargin" constant="-8" id="DVd-LJ-X43"/>
                     <constraint firstAttribute="trailingMargin" secondItem="WhC-An-XOC" secondAttribute="trailing" id="EPH-ri-00b"/>
@@ -137,6 +148,7 @@
                     <constraint firstItem="rO8-Pp-90o" firstAttribute="width" secondItem="8kt-Nc-Zef" secondAttribute="width" multiplier="50/375" id="Ubh-kr-c3x"/>
                     <constraint firstItem="30v-FR-CNh" firstAttribute="height" secondItem="rO8-Pp-90o" secondAttribute="height" multiplier="0.4" id="W4M-MC-SJK"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2RV-ci-d3F" secondAttribute="trailing" constant="-8" id="WcE-3T-NIU"/>
+                    <constraint firstItem="paa-Zx-XVr" firstAttribute="height" secondItem="qHn-VB-zmJ" secondAttribute="height" id="Xak-o3-3Fi"/>
                     <constraint firstAttribute="leadingMargin" secondItem="SdP-GR-OWu" secondAttribute="leading" id="Xju-aP-nZc"/>
                     <constraint firstAttribute="leadingMargin" secondItem="rO8-Pp-90o" secondAttribute="leading" id="Y4H-DO-Piz"/>
                     <constraint firstAttribute="topMargin" secondItem="rO8-Pp-90o" secondAttribute="top" id="bMg-zd-LcL"/>
@@ -152,6 +164,7 @@
                     <constraint firstItem="WhC-An-XOC" firstAttribute="height" secondItem="jTp-WU-cEl" secondAttribute="height" id="uj3-Qg-1Jc"/>
                     <constraint firstItem="jTp-WU-cEl" firstAttribute="height" secondItem="5ph-UQ-qNL" secondAttribute="height" multiplier="2/3" id="vQR-lo-exo"/>
                     <constraint firstItem="qHn-VB-zmJ" firstAttribute="top" secondItem="2RV-ci-d3F" secondAttribute="bottom" constant="8" id="x3k-F7-fav"/>
+                    <constraint firstItem="paa-Zx-XVr" firstAttribute="top" secondItem="qHn-VB-zmJ" secondAttribute="top" id="xur-jd-g2z"/>
                     <constraint firstAttribute="leadingMargin" secondItem="pL4-uq-fKP" secondAttribute="leading" id="ylI-zu-eD5"/>
                     <constraint firstItem="5lE-jN-Suf" firstAttribute="leading" secondItem="2RV-ci-d3F" secondAttribute="leading" id="zlQ-bJ-reg"/>
                 </constraints>
@@ -164,6 +177,7 @@
                 <outlet property="postUsernameButton" destination="30v-FR-CNh" id="7p7-89-1vg"/>
                 <outlet property="profileImageView" destination="rO8-Pp-90o" id="Owh-9Z-Lxo"/>
                 <outlet property="rankLabel" destination="2S2-TF-rUT" id="AwZ-Ah-ix4"/>
+                <outlet property="reportButton" destination="paa-Zx-XVr" id="mg8-7t-AVM"/>
                 <outlet property="timeLabel" destination="WhC-An-XOC" id="5am-Uy-dRz"/>
                 <outlet property="usernameCaptionLabel" destination="SdP-GR-OWu" id="Pku-lg-7gK"/>
                 <outlet property="videoView" destination="2RV-ci-d3F" id="0Ds-Y4-Adx"/>
@@ -175,6 +189,7 @@
     <resources>
         <image name="Unknown-1.png" width="225" height="225"/>
         <image name="comment-bubble-outline_318-27591.jpg" width="626" height="626"/>
+        <image name="exclamation.png" width="200" height="200"/>
         <image name="like.png" width="512" height="512"/>
     </resources>
 </document>
