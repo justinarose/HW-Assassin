@@ -297,6 +297,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     postCell.timeLabel.text = timeAgoSinceDate(date: tc, numericDates: false)
                 }
                 
+                postCell.layoutIfNeeded()
+                
                 if let data = AppDelegate.cache.object(forKey: (obj.postThumbnailURL)! as NSString){
                     //print("Using Cache")
                     let image = UIImage(data: data as Data)
@@ -327,7 +329,85 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         }
                     }
                 }
+                let tempDir = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true)
+                let fileURL = tempDir.appendingPathComponent("post\(obj.id)-\(obj.caption!).mp4")
+                let fileManager = FileManager.default
                 
+                
+                if fileManager.fileExists(atPath: fileURL.path){
+                    print("Using cached video")
+                    let asset = AVAsset(url: fileURL)
+                    postCell.playerItem = AVPlayerItem(asset: asset)
+                    
+                    if let l = postCell.playerLayer{
+                        l.removeFromSuperlayer()
+                    }
+                    if let p = postCell.player{
+                        p.pause()
+                    }
+                    
+                    postCell.player = AVPlayer(playerItem: postCell.playerItem)
+                    postCell.playerLayer = AVPlayerLayer(player: postCell.player)
+                    postCell.playerLayer?.videoGravity = AVLayerVideoGravityResize
+                    postCell.playerLayer?.frame = postCell.videoView.bounds
+                    
+                    
+                    postCell.bringSubview(toFront: postCell.videoView)
+                    postCell.placeholderImage.isHidden = true
+                    postCell.videoView.layer.addSublayer(postCell.playerLayer!)
+                    
+                    NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: postCell.player?.currentItem, queue: nil, using: { (_) in
+                        DispatchQueue.main.async {
+                            postCell.player?.seek(to: kCMTimeZero)
+                            postCell.player?.play()
+                        }
+                    })
+                }
+                else{
+                    
+                    if let l = postCell.playerLayer{
+                        l.removeFromSuperlayer()
+                    }
+                    if let p = postCell.player{
+                        p.pause()
+                    }
+                    
+                    print("Downloading video")
+                    Alamofire.request((obj.postVideoURL)!).responseData{[unowned postCell] response in
+                        debugPrint(response)
+                        
+                        if let data = response.result.value{
+                            do {
+                                try data.write(to: fileURL)
+                            } catch {
+                                // Replace this implementation with code to handle the error appropriately.
+                                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                                let nserror = error as NSError
+                                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                            }
+                            postCell.playerItem = AVPlayerItem(url: fileURL)
+                            
+                            postCell.player = AVPlayer(playerItem: postCell.playerItem)
+                            postCell.playerLayer = AVPlayerLayer(player: postCell.player)
+                            postCell.playerLayer?.videoGravity = AVLayerVideoGravityResize
+                            postCell.playerLayer?.frame = postCell.videoView.bounds
+                            
+                            
+                            postCell.bringSubview(toFront: postCell.videoView)
+                            postCell.placeholderImage.isHidden = true
+                            postCell.videoView.layer.addSublayer(postCell.playerLayer!)
+                            
+                            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: postCell.player?.currentItem, queue: nil, using: { (_) in
+                                DispatchQueue.main.async {
+                                    postCell.player?.seek(to: kCMTimeZero)
+                                    postCell.player?.play()
+                                }
+                            })
+                        }
+                    }
+                }
+                
+                /*
                 DispatchQueue.global().async {[unowned postCell] in
                     postCell.playerItem = AVPlayerItem(url: URL(string: obj.postVideoURL!)!)
                     DispatchQueue.main.async {
@@ -362,8 +442,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         })
                         
                     }
-                }
+                }*/
             }
+            postCell.layoutIfNeeded()
             cell = postCell
         }
         return cell

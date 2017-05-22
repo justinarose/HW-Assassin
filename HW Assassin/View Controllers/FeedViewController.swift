@@ -278,6 +278,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.timeLabel.text = timeAgoSinceDate(date: tc, numericDates: false)
             }
             
+            cell.layoutIfNeeded()
+            
             if let data = AppDelegate.cache.object(forKey: (obj.postThumbnailURL)! as NSString){
                 //print("Using Cache")
                 let image = UIImage(data: data as Data)
@@ -309,6 +311,85 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             
+            
+            let tempDir = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true)
+            let fileURL = tempDir.appendingPathComponent("post\(obj.id)-\(obj.caption!).mp4")
+            let fileManager = FileManager.default
+            
+            
+            if fileManager.fileExists(atPath: fileURL.path){
+                print("Using cached video")
+                let asset = AVAsset(url: fileURL)
+                cell.playerItem = AVPlayerItem(asset: asset)
+                
+                if let l = cell.playerLayer{
+                    l.removeFromSuperlayer()
+                }
+                if let p = cell.player{
+                    p.pause()
+                }
+                
+                cell.player = AVPlayer(playerItem: cell.playerItem)
+                cell.playerLayer = AVPlayerLayer(player: cell.player)
+                cell.playerLayer?.videoGravity = AVLayerVideoGravityResize
+                cell.playerLayer?.frame = cell.videoView.bounds
+                
+                
+                cell.bringSubview(toFront: cell.videoView)
+                cell.placeholderImage.isHidden = true
+                cell.videoView.layer.addSublayer(cell.playerLayer!)
+                
+                NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: cell.player?.currentItem, queue: nil, using: { (_) in
+                    DispatchQueue.main.async {
+                        cell.player?.seek(to: kCMTimeZero)
+                        cell.player?.play()
+                    }
+                })
+            }
+            else{
+                
+                if let l = cell.playerLayer{
+                    l.removeFromSuperlayer()
+                }
+                if let p = cell.player{
+                    p.pause()
+                }
+                
+                print("Downloading video")
+                Alamofire.request((obj.postVideoURL)!).responseData{[unowned cell] response in
+                    debugPrint(response)
+                    
+                    if let data = response.result.value{
+                        do {
+                            try data.write(to: fileURL)
+                        } catch {
+                            // Replace this implementation with code to handle the error appropriately.
+                            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                            let nserror = error as NSError
+                            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                        }
+                        cell.playerItem = AVPlayerItem(url: fileURL)
+                        
+                        cell.player = AVPlayer(playerItem: cell.playerItem)
+                        cell.playerLayer = AVPlayerLayer(player: cell.player)
+                        cell.playerLayer?.videoGravity = AVLayerVideoGravityResize
+                        cell.playerLayer?.frame = cell.videoView.bounds
+                        
+                        
+                        cell.bringSubview(toFront: cell.videoView)
+                        cell.placeholderImage.isHidden = true
+                        cell.videoView.layer.addSublayer(cell.playerLayer!)
+                        
+                        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: cell.player?.currentItem, queue: nil, using: { (_) in
+                            DispatchQueue.main.async {
+                                cell.player?.seek(to: kCMTimeZero)
+                                cell.player?.play()
+                            }
+                        })
+                    }
+                }
+            }
+            /*
             DispatchQueue.global().async {[unowned cell] in
                 cell.playerItem = AVPlayerItem(url: URL(string: obj.postVideoURL!)!)
                 DispatchQueue.main.async {
@@ -343,7 +424,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     })
                     
                 }
-            }
+            }*/
             
             
         }
